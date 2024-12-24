@@ -47,7 +47,7 @@ h2.titulo span {
     margin: 10px 0;
 }
 
-/* Efeito hover */
+
 .button:hover {
     box-shadow: 0px 0px 10px #ad1700;
     transform: scale(1.1);
