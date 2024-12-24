@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+h2.titulo {
+    color: #d6d0d0;
+    font-size: 28px;
+    text-align: center;
+}
+
+h2.titulo span {
+    color: #ad1700; 
+}
+
+.Btn-contato {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.Btn-contato h4 {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo do link */
+.button {
+    display: inline-block;
+    padding: 15px 50px;
+    width: 300px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    background-color: #222121;
+    border: none;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+}
+
+/* Efeito hover */
+.button:hover {
+    box-shadow: 0px 0px 10px #ad1700;
+    transform: scale(1.1);
+}
+
+/* Estilo do texto dentro do span */
+.button span {
+    color: #ad1700;
+    font-weight: bold;
+}
+
+/* Outros estilos */
+.header {
+    margin-top: 30px;
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
