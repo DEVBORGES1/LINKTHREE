@@ -128,7 +128,7 @@ footer {
 }
 
 .footer-list .footer-link:hover {
-    color: #7f37c9;
+    color: #ad1700;
 }
 
 #footer_subscribe {
@@ -158,8 +158,8 @@ footer {
     background-color: #ad1700;
     border: none;
     color: var(--color-neutral-40);
-    padding: 0px 1.25rem;
-    font-size: 1.125rem;
+    padding: 0px 1rem;
+    font-size: 1.10rem;
     height: 100%;
     border-radius: 0px 4px 4px 0px;
     cursor: pointer;
