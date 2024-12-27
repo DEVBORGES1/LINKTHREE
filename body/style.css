@@ -103,11 +103,18 @@ footer {
     text-decoration: none;
 }
 
+#footer_contacts p {
+    margin-top: 10px;
+    margin-bottom: 0;
+    line-height: 1.5; 
+}
+
 #footer_content {
     background-color: var(--color-neutral-10);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     padding: 0.9rem 1.0rem; 
+   
 }
 
 #footer_contacts h1 {
