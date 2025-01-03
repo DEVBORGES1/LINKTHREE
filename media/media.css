@@ -170,6 +170,9 @@ section.slider{
 #radio3:checked ~ .primeiro{
     margin-left: -50%;
 }
+#radio4:checked ~ .primeiro{
+    margin-left: -75%;
+}
 
 @media screen and (max-width: 900px) {
     .img-desktop{
