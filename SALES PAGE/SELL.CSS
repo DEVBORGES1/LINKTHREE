@@ -208,6 +208,37 @@ p {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Avaliações do curso*/
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 980px;
+    margin: 0 auto;
+    grid-gap: 40px;
+    font-size: 0.55rem;
+
+}
+
+.card{
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 35px 40px;
+    box-shadow: 6px 6px 10px #ad1700;
+}
+
+.card .user {
+    width: 100px;
+
+}
+
+.star{
+    width: 20px;
+
+}
+
+
 .resultados {
     color: var(--color-neutral-30);
     font-size: 0.55rem;
