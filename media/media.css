@@ -232,8 +232,43 @@ section.sobre {
 
 .img-sobre img {
     max-width: 100%;
-    height: auto;
+    height: 750px;
     border-radius: 10px;
+}
+.titulo h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.titulo h2 span {
+    color: #ad1700;
+}
+.telefone {
+    text-decoration: none;
+}
+
+.telefone-botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    width: 300px;
+    background-color: #242424; /* Cor de fundo */
+    color: #ffffff; /* Cor do texto */
+    border: 2px solid #ad1700; /* Cor da borda */
+    border-radius: 5px;
+    transition: all 0.6s ease;
+    cursor: pointer;
+}
+
+.telefone-botao img {
+    margin-right: 10px;
+}
+
+.telefone-botao:hover {
+    background-color: #ad1700; /* Cor de fundo ao passar o mouse */
+    color: #000; /* Cor do texto ao passar o mouse */
+    box-shadow: #ffffff; /* Cor da borda ao passar o mouse */
 }
 
 
