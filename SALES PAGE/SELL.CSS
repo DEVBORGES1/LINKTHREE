@@ -6,6 +6,9 @@
     --color-neutral-30: #a8a29e;
     --color-neutral-40: #f5f5f5;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 main {
     height: 80vh;
 }
@@ -33,7 +36,7 @@ body {
 .interface{
     max-width: 1200px;
     margin: 0 auto;
-
+    
 }
 .flex{
     display: flex;
@@ -61,8 +64,13 @@ h2.titulo span{
 }
 /* estilo do cabecalho*/
 header{
-    padding: 40px 4%;
-
+    padding: 20px 4%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: transparent;
+    z-index: 1000;
+    transition: transform 0.6s ease, opacity 0.6s ease;
 }  
 
 header > .interface{
@@ -96,6 +104,7 @@ header nav ul li{
 /*Estilo do topo do site*/
 section.topo-do-site{
     padding: 40px 4%;
+    margin-top: 10rem;
 }
 section.topo-do-site .flex{
     align-items: center;
@@ -353,4 +362,20 @@ footer {
         grid-template-columns: repeat(1, 1fr);
         padding: 3rem 2rem;
     }
+}
+
+html {
+    scroll-behavior: smooth;
+
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(20px); 
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
 }
