@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.interface {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.Btn-contato button {
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: #ad1700;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+header{
+    padding: 20px 4%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: transparent;
+    z-index: 1000;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}  
+
+header > .interface{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a{
+    color: #5c5c5c;
+    text-decoration: none;
+    display: inline-block;
+    transition: .2s;
+}
+header a:hover {
+    color: #fff;
+    transform: scale(1.05);
+}
+header nav ul{
+    list-style-type: none;
+}
+header nav ul li{
+    display: inline-block;
+    padding: 0 40px;
+    font-size: 1.2rem;
+}
+
+section.topo-do-site {
+    padding: 40px 4%;
+}
+
+section.topo-do-site .flex {
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+}
+.topo-do-site h1{
+    color: #5c5c5c;
+    text-decoration: none;
+    font-size: 4.5rem;
+}
+.topo-do-site h1 span {
+    color: #ad1700;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+main {
+    color: #fff;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.slider-content img {
+    width: 105.7%;
+    height: 28rem;
+    object-fit: cover;
+}
+
+.logotext {
+    margin-top: -340px;
+    text-align: center;
+    font-size: larger;
+}
+
+span {
+    color: #ad1700;
+}
+
+.estrategia {
+    text-align: center; /* Centraliza o texto e elementos */
+}
+
+.telefone {
+    text-decoration: none;
+}
+
+.telefone-botao {
+    margin: 0 auto; /* Centraliza o botão horizontalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    width: 300px;
+    background-color: #242424; /* Cor de fundo */
+    color: #ffffff; /* Cor do texto */
+    border: 2px solid #ad1700; /* Cor da borda */
+    border-radius: 5px;
+    transition: all 0.6s ease;
+    cursor: pointer;
+}
+
+.telefone-botao img {
+    margin-right: 10px;
+}
+
+.telefone-botao:hover {
+    background-color: #ad1700; /* Cor de fundo ao passar o mouse */
+    color: #000; /* Cor do texto ao passar o mouse */
+    box-shadow: #ffffff; /* Cor da borda ao passar o mouse */
+}
+
+html {
+    scroll-behavior: smooth; /* Rolagem suave */
+}
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/*SECTION ON THE CARD*/
+.section.CARDS {
+    display: flex;
+    justify-content: center; /* Centralizar os cards */
+    align-items: flex-start;
+    gap: 2rem; /* Espaçamento uniforme entre os cards */
+    padding: 2rem;
+    flex-wrap: wrap; /* Permitir quebra de linha quando necessário */
+}
+
+.Card {
+    --color: #ad1700;
+    --border-size: 0.75rem;
+    --bg-color: #252525;
+    position: relative;
+    background-color: var(--bg-color);
+    width: 280px; /* Largura ajustada */
+    height: 400px; /* Altura fixa para manter os tamanhos iguais */
+    margin: 1rem;
+    border-radius: var(--border-size);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    isolation: isolate;
+    overflow: hidden;
+    text-align: center;
+}
+
+.Card .title {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: var(--color);
+}
+
+.Card .detail {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    opacity: 0.85;
+    flex-grow: 1;
+}
+
+.Card i {
+    font-size: 3rem; /* Ajuste no tamanho do ícone */
+    margin-bottom: 1rem;
+    color: transparent;
+    -webkit-text-stroke: thin var(--color);
+}
+
+.Card:hover i {
+    color: var(--color);
+    -webkit-text-stroke-width: 0;
+}
+
+.Card::before,
+.Card::after {
+    content: "";
+    position: absolute;
+}
+
+.Card::before {
+    width: 200%;
+    height: 200%;
+    background-image: conic-gradient(
+        var(--color) 0deg,
+        transparent 60deg,
+        transparent 180deg,
+        var(--color) 180deg,
+        transparent 240deg
+    );
+    inset: -50%;
+    z-index: -2;
+    animation: border 8s linear infinite;
+}
+
+.Card:hover::before {
+    animation-play-state: paused;
+}
+
+@keyframes border {
+    to {
+        transform: rotateZ(-360deg);
+    }
+}
+
+.Card::after {
+    --inset: 0.25rem;
+    background-color: #111;
+    inset: var(--inset);
+    border-radius: calc(var(--border-size) - var(--inset));
+    z-index: -1;
+    transition: all 0.35s linear;
+}
+
+.Card:hover::after {
+    background-color: var(--bg-color);
+}
+
