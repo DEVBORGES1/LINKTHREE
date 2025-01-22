@@ -172,7 +172,7 @@ html {
 /*SECTION ON THE CARD*/
 .section.CARDS {
     display: flex;
-    justify-content: center; /* Centralizar os cards */
+    justify-content: center;
     align-items: flex-start;
     gap: 2rem; /* Espaçamento uniforme entre os cards */
     padding: 2rem;
@@ -192,7 +192,7 @@ html {
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex;
     justify-content: space-between;
     padding: 1.5rem;
     isolation: isolate;
