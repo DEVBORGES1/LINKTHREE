@@ -278,3 +278,87 @@ html {
     text-align: center;
     opacity: 0.75;
 }
+
+
+.beneficios {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #111; /* Cor escura para harmonizar com o tema */
+    color: #fff;
+}
+
+.beneficios h1 {
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+.beneficios h1 span {
+    color: #ad1700;
+}
+
+.beneficios p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #aaa;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.beneficios-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.beneficio {
+    flex: 1 1 calc(20% - 20px);
+    min-width: 200px;
+    max-width: 250px;
+    text-align: center;
+    background-color: #000000; /* Fundo similar ao dos cards */
+    padding: 20px;
+    border-radius: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.beneficio:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ffffff78;
+}
+
+.beneficio i {
+    font-size: 3rem; /* Aumente o valor para ajustar o tamanho do ícone */
+    color: #ad1700; /* Mantém a cor do ícone */
+    margin-bottom: 10px; /* Dá espaço entre o ícone e o texto */
+} /* Fechamento adicionado aqui */
+
+.beneficio h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.beneficio h3 span {
+    color: #ad1700;
+}
+
+.btn-saber-mais {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ad1700;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-saber-mais:hover {
+    background-color: #d22b1d;
+    transform: scale(1.05);
+}
