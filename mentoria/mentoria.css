@@ -376,6 +376,16 @@ html {
     margin-bottom: 50px;
     padding-bottom: 15px;
 }
+.testimonial-area .container .sec-title:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 3px;
+    background: #ad1700;
+
+}
 
 .testimonial-area .container .sec-title h2{
     font-size: 60px;
@@ -389,5 +399,7 @@ html {
     font-size: 18px;
     line-height: 28px;
     color: #fff;
-    
+    text-transform: capitalize;
+
+
 }
