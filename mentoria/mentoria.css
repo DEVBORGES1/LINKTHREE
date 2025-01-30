@@ -362,3 +362,32 @@ html {
     background-color: #d22b1d;
     transform: scale(1.05);
 }
+
+.testimonial-area .container{
+    max-width: 1140px;
+    width: 100%;
+    margin: auto;
+    padding: 0 15px;
+
+}
+
+.testimonial-area .container .sec-title{
+    position: relative;
+    margin-bottom: 50px;
+    padding-bottom: 15px;
+}
+
+.testimonial-area .container .sec-title h2{
+    font-size: 60px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.testimonial-area .container .sec-title p{
+    font-size: 18px;
+    line-height: 28px;
+    color: #fff;
+    
+}
