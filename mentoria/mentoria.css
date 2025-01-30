@@ -403,3 +403,18 @@ html {
 
 
 }
+
+.testimonial-area{
+    
+    position: relative;
+    z-index: 2;
+    padding: 50px 0;
+}
+
+.testimonial-area .owl-carousel{
+    overflow: hidden;
+    padding: 0 20px;
+    margin: 0 -40px;
+    padding-right: 40px;
+
+}

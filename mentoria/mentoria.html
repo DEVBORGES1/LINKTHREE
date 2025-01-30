@@ -145,16 +145,14 @@
                     <p>O que meu Clientes estão Achando?</p>
                 </div>
                
-                <div class="testimonial-content">
+                <div class="testimonial-content owl-carousel">
                     <div class="single-testimonial">
                         <p>O curso é prático e direto, ótimo para quem está começando. As aulas de criação de conteúdo e
                             engajamento foram as melhores. Já usei algumas ideias e vi mais interação com meu público.
                             Recomendo!</p>
                         <div class="client-info">
                             <div class="client-pic">
-                                <a href="#">
-                                    <img src="imagens/LUCAS.png" alt="user1">
-                                </a>
+                                <a href="#"><img src="imagens/LUCAS.png" alt="user1"></a>
                             </div>
                             <div class="client-details">
                                 <h6>Cleudemir Consorte</h6>
@@ -162,15 +160,13 @@
                             </div>
                         </div>
                     </div>
-                <div class="testimonial-content">
+                
                     <div class="single-testimonial">
                         <p>O curso transformou meu negócio! Aprendi a criar e gerenciar campanhas de anúncios
                             e vi um aumento de 30% nas vendas em menos de um mês. Totalmente recomendável!</p>
                         <div class="client-info">
                             <div class="client-pic">
-                                <a href="#">
-                                    <img src="imagens/MARIA.png" alt="user1">
-                                </a>
+                                <a href="#"><img src="imagens/MARIA.png" alt="user1"></a>
                             </div>
                             <div class="client-details">
                                 <h6>Maria Eduarda</h6>
@@ -178,7 +174,7 @@
                             </div>
                         </div>
                     </div>
-                <div class="testimonial-content">
+                
                     <div class="single-testimonial">
                         <p>O curso é prático e fácil de entender, ideal para iniciantes.
                             Adorei as aulas sobre criação de conteúdo e engajamento.
@@ -186,27 +182,22 @@
                             dobro depois desse curso. Recomendo!</p>
                         <div class="client-info">
                             <div class="client-pic">
-                                <a href="#">
-                                    <img src="imagens/MURILO.png" alt="user1">
-                                </a>
+                                <a href="#"><img src="imagens/MURILO.png" alt="user1"></a>
                             </div>
                             <div class="client-details">
-                                <h6>Murilo De Souza </h6>
-                                <span>Auriculoterapia, acupuntura, reiki, hipnose e neurociência</span>
+                                <h6>Murilo De Souza</h6>
+                                <span>Auriculoterapia, acupuntura, reiki...</span>
                             </div>
                         </div>
                     </div>
-
-                <div class="testimonial-content">
+                
                     <div class="single-testimonial">
                         <p>O curso é acessível e direto ao ponto, perfeito para quem está começando.
                             Achei incríveis as aulas sobre produção de conteúdo e aumento do engajamento.
-                            Já coloquei algumas estratégias em prática e notei um crescimento na interação com meu público.</p>
+                            Já coloquei algumas estratégias em prática e notei um crescimento na interação com meu público</p>
                         <div class="client-info">
                             <div class="client-pic">
-                                <a href="#">
-                                    <img src="imagens/Imagem do WhatsApp de 2025-01-29 à(s) 22.31.32_e7790b89.jpg" alt="user1">
-                                </a>
+                                <a href="#"><img src="imagens/anaximandro.jpg" alt="user1"></a>
                             </div>
                             <div class="client-details">
                                 <h6>Anaximandro Sobreira Da Silva</h6>
@@ -215,9 +206,25 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.owl-carousel').owlCarousel({
+                        loop:true,
+                        nav:false,
+                        dots:true,
+                        margin:10,
+                        responsive:{
+                            0:{ items:1 },
+                            600:{ items:1 },
+                            1000:{ items:2 }
+                        }
+                    });
+                });
+            </script>
         </section>
     </main>
     
