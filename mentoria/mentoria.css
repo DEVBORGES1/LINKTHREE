@@ -418,3 +418,32 @@ html {
     padding-right: 40px;
 
 }
+
+.owl-carousel .owl-stage-outer{
+    padding: 30px 50px;
+    margin-left: -35px;
+    width: calc(100% + 100px);
+}
+.single-testimonial{
+    border: 7px solid #fff;
+    text-align: center;
+    border-radius: 45px;
+    position: relative;
+    z-index: 2;
+}
+.single-testimonial p{
+    color: #fff;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 50px;
+    padding-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+.client-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding-bottom: 50px;
+}
