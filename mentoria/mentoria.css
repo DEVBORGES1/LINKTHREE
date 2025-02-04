@@ -447,3 +447,26 @@ html {
     text-align: left;
     padding-bottom: 50px;
 }
+.client-info .client-details h6{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+
+
+
+}
+.client-info .client-details span{  
+    display: inline-block;
+    color: #fff;
+    font-size: 13px;
+}
+.client-info .client-pic{
+    padding-right: 15px;
+
+}
+.client-info .client-pic img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+
+}
