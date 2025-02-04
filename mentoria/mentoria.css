@@ -488,5 +488,30 @@ html {
 
 .owl-dots button.active{
     width: 30px;
-    
+
+}
+.single-testimonial:before{
+    content: '\f10d';
+    position: absolute;
+    font-family: FontAwesome;
+    left: -35px;
+    top: -35px;
+    background: #000;
+    color: #ad1700;
+    font-size: 60px;
+    width: 126px;
+    height: 100px;
+
+}
+.single-testimonial::after{
+    content: '\f10e';
+    position: absolute;
+    font-family: FontAwesome;
+    right: -35px;
+    bottom: -35px;
+    background: #000;
+    color: #ad1700;
+    font-size: 60px;
+    width: 126px;
+    height: 100px;
 }
