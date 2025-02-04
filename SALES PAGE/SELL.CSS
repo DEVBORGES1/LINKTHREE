@@ -379,3 +379,74 @@ html {
     opacity: 1;
     transform: translateY(0);
 }
+
+.payclass {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.currency {
+    font-size: 20px;
+}
+
+.amount {
+    font-size: 50px;
+}
+
+.benefits {
+    list-style: none;
+    text-align: left;
+    margin: 20px auto;
+    max-width: 320px;
+}
+
+.benefits li {
+    font-size: 16px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.benefits li::before {
+    content: "✔";
+    color: #fc5d5d;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.renew {
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+}
+
+.cta {
+    background: linear-gradient(90deg, #ffffff, #c0c0c0);
+    color: #000;
+    font-size: 16px;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.cta:hover {
+    background: linear-gradient(90deg, #c0c0c0, #ffffff);
+    transform: scale(1.05);
+}
