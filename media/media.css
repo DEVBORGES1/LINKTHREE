@@ -496,35 +496,16 @@ footer {
     font-weight: 100;
 }
 
-#radio1:checked ~ .nav-auto .auto-btn1, #radio2:checked ~ .nav-auto .auto-btn2, #radio3:checked ~ .nav-auto .auto-btn3{
-    background-color: #ad1700;
-}
-
-#radio1:checked ~ .primeiro{
-    margin-left: 0%;
-}
-
-#radio2:checked ~ .primeiro{
-    margin-left: -25%;
-}
-
-#radio3:checked ~ .primeiro{
-    margin-left: -50%;
-}
-#radio4:checked ~ .primeiro{
-    margin-left: -75%;
-}
-
-@media screen and (max-width: 900px) {
-    .img-desktop{
-        display: none;
+@media screen and (max-width: 768px) {
+    #footer_content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
+}
 
-    .img-mobile{
-        display: block;
-    }
-
-    .nav-auto, .nav-manual{
-        margin-top: 60%;
+@media screen and (max-width: 426px) {
+    #footer_content {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 3rem 2rem;
     }
 }
