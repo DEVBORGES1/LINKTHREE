@@ -153,9 +153,14 @@ span {
 .telefone-botao:hover {
     background-color: #ad1700; /* Cor de fundo ao passar o mouse */
     color: #000; /* Cor do texto ao passar o mouse */
-    box-shadow: #ffffff; /* Cor da borda ao passar o mouse */
+    box-shadow: 0 0 8px #ffffff;
+    transform: scale(1.1);
+    transition: 0.5s;
 }
-
+.telefone-botao:hover span{
+    color: #c4c1c1;
+    transition: 0.2s;
+}
 html {
     scroll-behavior: smooth; /* Rolagem suave */
 }
@@ -514,4 +519,116 @@ html {
     font-size: 60px;
     width: 126px;
     height: 100px;
+}
+
+.contato {
+    display: flex;
+    justify-content: space-around; 
+    padding: 40px;
+    gap: 20px;
+}
+
+.fale-conosco {
+    width: 45%; 
+    padding: 20px;
+}
+
+.fale-conosco h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.fale-conosco h2 span {
+    color: #ad1700; 
+}
+
+.fale-conosco p {
+    line-height: 1.5; 
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: justify; 
+}
+
+section.formulario {
+    padding: 80px 4%;
+}
+
+form {
+    max-width: 600px; 
+    width: 100%; 
+    margin: 0 auto; 
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    margin-top: 20px; 
+}
+
+form h2 span {
+    color: #ad1700; 
+    
+}
+
+form input,
+form textarea {
+    width: 100%;
+    background-color: #242424;
+    border: 0;
+    outline: 0;
+    padding: 20px 25px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 18px;
+}
+
+form textarea {
+    resize: none;
+    max-height: 400px;
+}
+
+form .btn-enviar {
+    margin-top: 20px;
+    text-align: center;
+}
+
+form .btn-enviar input {
+    width: 150px; /* Aumenta o botão */
+    background-color: #ad1700;
+    color: #000;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover,
+form .btn-enviar input:hover {
+    box-shadow: 0px 0px 8px #ffffff;
+    transform: scale(1.05);
+}
+
+.btn-social {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-social button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ad1700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.btn-social button:hover {
+    box-shadow: 0 0 8px #ffffff;
+    transform: scale(1.1);
+    transition: 0.5s;
 }
