@@ -450,3 +450,105 @@ html {
     background: linear-gradient(90deg, #c0c0c0, #ffffff);
     transform: scale(1.05);
 }
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    align-items: start;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.option input {
+    accent-color: var(--button-color);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.option span {
+    flex: 1;
+}
+
+#checkboxes {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin: 40px auto;
+    text-align: center;
+    margin-top: 8rem;
+    max-width: 800px; 
+    padding: 3.5rem;
+    width: 90%; 
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.option {
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%; 
+    max-width: 1000px; 
+    padding: 15px 50;
+    font-size: 1.2rem; 
+}
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.option input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+.option input[type="checkbox"]:checked {
+    background: #ad1700;
+    border-color: #ad1700;
+}
+
+.option input[type="checkbox"]:checked::after {
+    content: "✔";
+    position: absolute;
+    left: 3px;
+    top: -1px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}

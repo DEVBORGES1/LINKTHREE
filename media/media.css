@@ -527,3 +527,19 @@ footer {
         padding: 3rem 2rem;
     }
 }
+
+html {
+    scroll-behavior: smooth;
+
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}

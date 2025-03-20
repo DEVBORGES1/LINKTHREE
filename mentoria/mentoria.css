@@ -39,7 +39,6 @@ header{
     width: 100%;
     background-color: transparent;
     z-index: 1000;
-    transition: transform 0.6s ease, opacity 0.6s ease;
 }  
 
 header > .interface{
