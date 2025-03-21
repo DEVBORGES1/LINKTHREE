@@ -62,6 +62,11 @@ h2.titulo span{
     color: #ad1700;
 
 }
+h1.titulo span{
+    color: #ad1700;
+
+}
+
 /* estilo do cabecalho*/
 header{
     padding: 20px 4%;
@@ -551,4 +556,148 @@ html {
     color: white;
     font-size: 16px;
     font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 480px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Btn-contato button, .cta-button {
+        font-size: 14px;
+        padding: 8px 30px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .container { 
+        display: flex;
+        flex-direction: column; /* Faz os elementos ficarem um em cima do outro */
+        align-items: center; /* Centraliza os itens */
+        text-align: center; /* Centraliza o texto */
+    }
+
+    .imagem {
+        width: 100%; /* Faz a imagem ocupar toda a largura */
+        max-width: 400px; /* Define um tamanho máximo */
+    }
+
+    .texto {
+        width: 90%;
+        padding: 10px;
+    }
+}
+@media screen and (max-width:1064px) {
+    .flex {
+        flex-direction: column-reverse;
+
+    }
+
+    h2.titulo {
+        font-size: 34px;
+        line-height: 30px;
+    }
+
+    .menu-desktop,
+    .Btn-contato {
+        display: none;
+    }
+
+    section.topo-do-site .flex {
+        gap: 40px;
+    }
+
+    section.topo-do-site {
+        padding: 20px 8%;
+    }
+
+    section.Especialidades {
+        padding: 40px 8%;
+    }
+
+    h2.titulo {
+        font-size: 34px;
+        line-height: 30px;
+
+    }
+
+    .topo-do-site h1 {
+        color: #fff;
+        font-size: 30px;
+    }
+
+    .topo-do-site .img-topo-site img {
+        width: 100%;
+    }
+
+    section.sobre {
+        padding: 80px 8%;
+
+    }
+
+    .sobre .txt-sobre h2 {
+        font-size: 34px;
+        line-height: 35px;
+        text-align: center;
+
+    }
+
+    .btn-social {
+        text-align: center;
+
+    }
+
+    .img-sobre img {
+        width: 100%;
+
+    }
+    
+    section.sobre {
+        padding: 80px 8%;
+    }
+
+    .sobre .txt-sobre h2 {
+        font-size: 34px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .btn-social {
+        text-align: center;
+    }
+
+    .img-sobre img {
+        width: 100%;
+    }
+
+    footer .flex {
+        flex-direction: column;
+
+    }
+
+    footer .line-footer {
+        text-align: center;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
 }
