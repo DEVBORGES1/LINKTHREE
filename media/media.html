@@ -1,230 +1,515 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media</title>
+    <meta name="description" content="Nathiara Borges Advocacia - Escritório especializado em Direito Civil, Penal, Família e TEA. Atendimento personalizado em Videira-SC.">
+    <meta name="keywords" content="advocacia, direito civil, direito penal, direito família, TEA, Videira, Nathiara Borges">
+    <meta name="author" content="Nathiara Borges">
+    <title>Nathiara Borges Advocacia - Especializada em Direito</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="media.css">
 </head>
 <body>
-    <header>
-        <div class="interface hidden">
-            <div class="logo">
-                <a href="#">
-                    <img src="/imagens/Imagem do WhatsApp de 2024-06-02 à(s) 14.23.36_62e6d080.jpg" alt="Logo da empresa" height="70">
-                </a>
-            </div><!--logo-->
-            <nav class="menu-desktop">
-                <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">História</a></li>
-                    <li><a href="#">Contatos</a></li>
-                    <li><a href="#">localização</a></li>
-                </ul>
-            </nav>
-            <div class="Btn-contato">
-                <a href="#"><button>Compre Agora</button></a>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/LINKTHREE/Home.html" aria-label="Voltar para página inicial">
+                        <img src="/imagens/Imagem do WhatsApp de 2024-06-02 à(s) 14.23.36_62e6d080.jpg" 
+                             alt="Logo Nathiara Borges Advocacia" height="70">
+                    </a>
+                </div>
+                
+                <nav class="nav-menu" role="navigation" aria-label="Menu principal">
+                    <ul class="nav-list">
+                        <li><a href="#inicio" class="nav-link">Início</a></li>
+                        <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                        <li><a href="#contato" class="nav-link">Contato</a></li>
+                        <li><a href="#localizacao" class="nav-link">Localização</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="#contato" class="btn-primary">
+                        <i class="fas fa-phone"></i>
+                        Consulta Gratuita
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Abrir menu mobile">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-        </div><!--interface-->
+        </div>
     </header>
-    <section class="slider hidden">
-        <div class="slider-content">
-            
-            <input type="radio" name="btn-radio" id="radio1">
-            <input type="radio" name="btn-radio" id="radio2">
-            <input type="radio" name="btn-radio" id="radio3">
-            <input type="radio" name="btn-radio" id="radio4">
 
-            <div class="slide-box primeiro">
-                <img class="img-desktop" src="imagens/1desk.png" alt="slide 1">
-                <img class="img-mobile" src="imagens/4mob (1).png" alt="slide 1">
-            </div>
-
-            <div class="slide-box">
-                <img class="img-desktop" src="imagens/2desk.png" alt="slide 2">
-                <img class="img-mobile" src="imagens/4mob (2).png" alt="slide 2">
-            </div>
-
-            <div class="slide-box">
-                <img class="img-desktop" src="imagens/3desk.png" alt="slide 3">
-                <img class="img-mobile" src="imagens/4mob (3).png" alt="slide 3">
-            </div>
-
-            <div class="slide-box">
-                <img class="img-desktop" src="imagens/4desk.png" alt="slide 4">
-                <img class="img-mobile" src="imagens/4mob (4).png" alt="slide 4">
-            </div>
-
-            <div class="nav-auto">
-                <div class="auto-btn1"></div>
-                <div class="auto-btn2"></div>
-                <div class="auto-btn3"></div>
-                <div class="auto-btn4"></div>
-            </div>
-
-            <div class="nav-manual">
-                <label for="radio1" class="manual-btn"></label>
-                <label for="radio2" class="manual-btn"></label>
-                <label for="radio3" class="manual-btn"></label>
-                <label for="radio4" class="manual-btn"></label>
-            </div>
-
-    </section>  
-    <br><br><br><br><br><br></h2><br><br><br><br><br></h2><br><br><br><br></h2><br><br><br><br>
-   
-    <div class="titulo hidden"><h2>Nossa <span>História</span></h2></div>
-    <section class="sobre" id="sobre">
-        <div class="interface">
-            <div class="flex">
-                <div class="txt-sobre">
-                    <h2>Nathiara Borges, <span>ADVOCACIA</span></h2>
-                    <p>
-                        O escritório Nathiara Borges Advocacia está há 3 anos atuando com diversos serviços jurídicos, dispondo de expertise em mais de 15 áreas do direito. Com uma equipe devidamente especializada, trabalhamos incessantemente para proteger o seu direito.
+    <!-- Hero Section -->
+    <section class="hero" id="inicio" role="banner">
+        <div class="hero-slider">
+            <div class="slide active" data-slide="1">
+                <div class="slide-content">
+                    <div class="slide-text">
+                        <h1 class="hero-title">
+                          Escritório Nathiara <span class="highlight">Borges</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Especialistas em Direito Civil, Penal e Família com mais de 3 anos de experiência em Videira-SC
                         </p>
-                    <p>Após um longo tempo de experiência, evoluímos os nossos serviços para um formato mais exclusivo e personalizado, atingindo um índice de satisfação comprovadamente elevado. Portanto, usufrua a segurança de ter um escritório completo lutando ao seu lado, assim como milhares de nossos clientes.
-                        Além disso, cuidando de nossos os clientes e visando a máxima compreensão.</p>
-                    <div class="btn-social">
-                        <a href="https://www.instagram.com/nathiaraborges/" target="_blank"><button> <img src="imagens/instagram.png" alt="Instagram" height="20"></button></a>
-                        <a href="https://www.facebook.com/nathiaraborges/" target="_blank"><button><img src="imagens/facebook.png" alt="Facebook" height="20"></button></a>
-                        <a href="https://contate.me/advnathiaraborges" target="_blank"><button><img src="imagens/whatsapp.png" alt="WhatsApp" height="20"></button></a>
+                        <div class="hero-actions">
+                            <a href="#contato" class="btn-primary btn-large">
+                                <i class="fas fa-phone"></i>
+                                Agende sua Consulta
+                            </a>
+                            <a href="#sobre" class="btn-secondary btn-large">
+                                <i class="fas fa-building"></i>
+                                Conheça Nosso Escritório
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slide-image">
+                        <img src="imagens/1desk.png" alt="Escritório Nathiara Borges Advocacia" class="desktop-img">
+                        <img src="imagens/4mob (1).png" alt="Escritório Nathiara Borges Advocacia" class="mobile-img">
                     </div>
                 </div>
-                <div class="img-sobre hidden">
-                    <img src="imagens/Foto 2 sobre.jpg" alt="Foto de Nathiara Borges">
+            </div>
+            
+            <div class="slide" data-slide="2">
+                <div class="slide-content">
+                    <div class="slide-text">
+                        <h2 class="hero-title">
+                            <span class="highlight">Direito Civil</span> Especializado
+                        </h2>
+                        <p class="hero-subtitle">
+                            Contratos, responsabilidade civil, direito do consumidor e muito mais. 
+                            Atendemos toda a região Sul do Brasil com excelência e dedicação.
+                        </p>
+                        <div class="hero-features">
+                            <div class="feature-item">
+                                <i class="fas fa-file-contract"></i>
+                                <span class="highlight">Contratos</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-balance-scale"></i>
+                                <span class="highlight">Responsabilidade Civil</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="highlight">Direito do Consumidor</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-image">
+                        <img src="imagens/2desk.png" alt="Área de Direito Civil" class="desktop-img">
+                        <img src="imagens/4mob (2).png" alt="Área de Direito Civil" class="mobile-img">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <br><br><br><br><br><br><br><br><br><br>
-    <div class="titulo hidden">  
-        <h2>MEIOS DE <span>CONTATOS</span></h2>
-    </div>
-    <br><br><br><br>
-    <section class="contato hidden">
-        <div class="fale-conosco">
-          <h2>FALE <span>COMIGO.</span></h2>
-          <p>
-            Nosso Escritório de Advocacia atende toda  a região Sul do país, priorizando a eficiência
-            no atendimento, onde o principal foco é obter as soluções jurídicas necessárias. Fique
-            à vontade para entrar em contato e conhecer todos os diferenciais que fazem do
-            nosso trabalho ser o destaque em nossa área de atuação.
-          </p>
-          <br>
-          <a href="tel:+5549999001230" class="telefone hidden">
-            <div class="telefone-botao">
-                <img src="imagens/telefone.png" alt="Ícone Telefone" height="24">
-                <span>(49) 99900-1230</span>
-            </div>
-        </a>
-        <br><br>
-          <p>ACOMPANHE NAS REDES SOCIAIS!</p>
-          <div class="btn-social hidden">
-            <a href="https://www.instagram.com/nathiaraborges/" target="_blank"><button> <img src="imagens/instagram.png" alt="" height="20"></button></a>
-            <a href="https://www.facebook.com/nathiaraborges/" target="_blank"><button><img src="imagens/facebook.png" alt="" height="20"></button></a>
-            <a href="https://contate.me/advnathiaraborges" target="_blank"><button><img src="imagens/whatsapp.png" alt="" height="20"></button></a>
-          </div><!--btn social-->
-
-        </div>
-        <div class="formulario-contato hidden">
-            <form id="formContato">
-                <h2>ENVIE UMA <span>MENSAGEM</span></h2>
-                <br>
-                <input type="text" name="nome" id="nome" placeholder="Seu nome completo:" required>
-                <input type="email" name="email" id="email" placeholder="Seu E-mail (para resposta):" required>
-                <input type="text" name="celular" id="celular" placeholder="Seu celular:" required>
-                <textarea name="mensagem" id="mensagem" placeholder="Sua mensagem" required></textarea>
-                <div class="btn-enviar">
-                    <input type="submit" value="ENVIAR">
+            
+            <div class="slide" data-slide="3">
+                <div class="slide-content">
+                    <div class="slide-text">
+                        <h2 class="hero-title">
+                          <span class="highlight">Direito Penal</span> Direito da sua Família
+                        </h2>
+                        <p class="hero-subtitle">
+                            Defesa penal especializada e soluções para questões familiares. 
+                            Nossa equipe está preparada para os casos mais complexos.
+                        </p>
+                        <div class="hero-features">
+                            <div class="feature-item">
+                                <i class="fas fa-gavel"></i>
+                                <span>Defesa Penal</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Direito de Família</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-users"></i>
+                                <span>Mediação Familiar</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-image">
+                        <img src="imagens/3desk.png" alt="Áreas de Direito Penal e Família" class="desktop-img">
+                        <img src="imagens/4mob (3).png" alt="Áreas de Direito Penal e Família" class="mobile-img">
+                    </div>
                 </div>
-            </form>
-        </div>
-      </section>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <div class="titulo"><h2>Aonde Nos <span>Localizamos</span></h2></div>
-      <br><br>
-      <section class="localizacao hidden">
-        <div class="box"> 
-            <h2>Escritório</h2>
-            <BR>
+            </div>
+            
+            <div class="slide" data-slide="4">
+                <div class="slide-content">
+                    <div class="slide-text">
+                        <h2 class="hero-title">
+                            Escritório em <span class="highlight">Videira-SC</span>
+                        </h2>
+                        <p class="hero-subtitle">
+                            Localizado estrategicamente na SC-355, nosso escritório oferece 
+                            ambiente acolhedor e profissional para atender você com comodidade.
+                        </p>
+                        <div class="hero-features">
+                            <div class="feature-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>SC-355, 1411 - Santa Tereza</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Segunda a Sexta: 8h às 18h</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-phone"></i>
+                                <span>(49) 99900-1230</span>
+                            </div>
+                        </div>
 
-            <p>SC-355, 1411 - Santa Tereza, Videira - SC, 89560-300</p>
-            <p>Referência em atendimento jurídico especializado. Oferecemos soluções personalizadas nas áreas de Direito Civil, 
-                Direito Penal, Direito de Família e defesa dos direitos de pessoas com Transtorno do Espectro Autista.
-                Com compromisso, ética e excelência, buscamos proteger os interesses de nossos clientes e
-                proporcionar a melhor orientação jurídica possível. 
-                Estamos prontos para atender você com profissionalismo e dedicação.</p>
-        </div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.7692290400387!2d-51.140255599999996!3d-27.005848899999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e14fcc97b6fdf3%3A0x77184063c015ee35!2sDra.%20Nathiara%20Borges!5e0!3m2!1spt-BR!2sbr!4v1736381764475!5m2!1spt-BR!2sbr"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        
-
-        </div>
-    </section>
-    <main></main>
-    
-    <footer class="hidden hidden">
-        <div id="footer_content">
-          <div id="footer_contacts ">
-            <h1> <img src="imagens/BS (500 x 200 px).png" alt="BSTECH" width="150" height="60"class="logo-image"></h1>
-            <p>Where technology meets innovative <br>
-              solutions to mediate your business!</p>
-    
-          </div>
-    
-          <ul class="footer-list hidden">
-            <li>
-              <h3>João Vitor</h3>
-            </li>
-            <li>
-              <a href="https://github.com/DEVBORGES1" class="footer-link" target="_blank">GitHub</a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/itsjvborges/" class="footer-link" target="_blank">Instagram</a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/joão-vitor-53875a1a1/" class="footer-link" target="_blank">LinkedIn</a>
-            </li>
-          </ul>
-    
-          <ul class="footer-list">
-            <li>
-              <h3>Pedro Dias</h3>
-            </li>
-            <li>
-              <a href="https://github.com/Devpdias" class="footer-link" target="_blank">GitHub</a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/pedro.hndias/" class="footer-link" target="_blank">Instagram</a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/pedro-henrique-7b54162a4/" class="footer-link"
-                target="_blank">LinkedIn</a>
-            </li>
-          </ul>
-    
-          <div id="footer_subscribe">
-            <h3>Are you interested?</h3>
-    
-            <p>
-              Get in touch so that your idea becomes reality, with your own website!
-            </p>
-            <form action="https://formsubmit.co/bstech.ti@gmail.com" method="POST">
-              <div id="input_group">
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-                <button type="submit" >
-                  <i class="fa-regular fa-envelope"></i>
+                        <br>
+                        <div class="hero-actions">
+                            <a href="#localizacao" class="btn-primary btn-large">
+                                <i class="fas fa-map"></i>
+                                Como Chegar
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slide-image">
+                        <img src="imagens/4desk.png" alt="Localização do escritório em Videira-SC" class="desktop-img">
+                        <img src="imagens/4mob (4).png" alt="Localização do escritório em Videira-SC" class="mobile-img">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slider Navigation -->
+            <div class="slider-nav">
+                <button class="slider-btn prev" aria-label="Slide anterior">
+                    <i class="fas fa-chevron-left"></i>
                 </button>
-              </div>
-            </form>
-          </div>
+                <button class="slider-btn next" aria-label="Próximo slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Slider Indicators -->
+            <div class="slider-indicators">
+                <button class="indicator active" data-slide="1" aria-label="Ir para slide 1"></button>
+                <button class="indicator" data-slide="2" aria-label="Ir para slide 2"></button>
+                <button class="indicator" data-slide="3" aria-label="Ir para slide 3"></button>
+                <button class="indicator" data-slide="4" aria-label="Ir para slide 4"></button>
+            </div>
         </div>
-    
-        <div id="footer_copyright">
-          &#169
-          2025 all rights reserved
+    </section>
+
+    <!-- Sobre Section -->
+    <section class="sobre" id="sobre" role="region" aria-labelledby="sobre-titulo">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="sobre-titulo" class="section-title">
+                    Nossa <span class="highlight">História</span>
+                </h2>
+                <p class="section-subtitle">
+                    Conheça a trajetória de excelência da Nathiara Borges Advocacia
+                </p>
+            </div>
+            
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <h3 class="sobre-nome">
+                        Nathiara Borges, <span class="highlight">ADVOCACIA</span>
+                    </h3>
+                    <p class="sobre-descricao">
+                        O escritório Nathiara Borges Advocacia está há mais de 3 anos atuando com diversos serviços jurídicos, 
+                        dispondo de expertise em mais de 15 áreas do direito. Com uma equipe devidamente especializada, 
+                        trabalhamos incessantemente para proteger o seu direito.
+                    </p>
+                    <p class="sobre-descricao">
+                        Após um longo tempo de experiência, evoluímos os nossos serviços para um formato mais exclusivo e 
+                        personalizado, atingindo um índice de satisfação comprovadamente elevado. Portanto, usufrua a segurança 
+                        de ter um escritório completo lutando ao seu lado, assim como milhares de nossos clientes.
+                    </p>
+                    
+                    <div class="sobre-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Anos de Experiência</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Áreas do Direito</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Compromisso</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sobre-actions">
+                        <a href="#contato" class="btn-primary">
+                            <i class="fas fa-phone"></i>
+                            Agende sua Consulta
+                        </a>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/nathiaraborges/" target="_blank" rel="noopener" 
+                               aria-label="Siga-nos no Instagram" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.facebook.com/nathiaraborges/" target="_blank" rel="noopener" 
+                               aria-label="Siga-nos no Facebook" class="social-link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://contate.me/advnathiaraborges" target="_blank" rel="noopener" 
+                               aria-label="Entre em contato via WhatsApp" class="social-link">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sobre-image">
+                    <img src="imagens/Foto 2 sobre.jpg" alt="Dra. Nathiara Borges - Advogada especializada" 
+                         class="sobre-img">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-balance-scale"></i>
+                            <h4>Justiça e Ética</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </footer>
-      
-<script src="scripts.js"></script>
+    </section>
+
+    <!-- Contato Section -->
+    <section class="contato" id="contato" role="region" aria-labelledby="contato-titulo">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="contato-titulo" class="section-title">
+                    Entre em <span class="highlight">Contato</span>
+                </h2>
+                <p class="section-subtitle">
+                    Estamos aqui para ajudar com suas questões jurídicas
+                </p>
+            </div>
+            
+            <div class="contato-content">
+                <div class="contato-info">
+                    <div class="contato-card">
+                        <div class="card-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Telefone</h3>
+                        <p>Atendimento direto e personalizado</p>
+                        <a href="tel:+5549999001230" class="contato-link">
+                            <i class="fas fa-phone"></i>
+                            (49) 99900-1230
+                        </a>
+                    </div>
+                    
+                    <div class="contato-card">
+                        <div class="card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Localização</h3>
+                        <p>Escritório em Videira-SC</p>
+                        <p class="endereco">SC-355, 1411 - Santa Tereza, Videira - SC</p>
+                    </div>
+                    
+                    <div class="contato-card">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Horário de Atendimento</h3>
+                        <p>Segunda a Sexta: 8h às 18h</p>
+                        <p>Sábado: 8h às 12h</p>
+                    </div>
+                </div>
+                
+                <div class="contato-form">
+                    <form id="formContato" class="form" role="form" aria-labelledby="form-titulo">
+                        <h3 id="form-titulo">Envie uma <span class="highlight">Mensagem</span></h3>
+                        
+                        <div class="form-group">
+                            <label for="nome" class="form-label">Nome Completo *</label>
+                            <input type="text" id="nome" name="nome" class="form-input" 
+                                   placeholder="Digite seu nome completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">E-mail *</label>
+                            <input type="email" id="email" name="email" class="form-input" 
+                                   placeholder="Digite seu e-mail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefone" class="form-label">Telefone *</label>
+                            <input type="tel" id="telefone" name="telefone" class="form-input" 
+                                   placeholder="Digite seu telefone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="assunto" class="form-label">Assunto *</label>
+                            <select id="assunto" name="assunto" class="form-select" required>
+                                <option value="">Selecione o assunto</option>
+                                <option value="direito-civil">Direito Civil</option>
+                                <option value="direito-penal">Direito Penal</option>
+                                <option value="direito-familia">Direito de Família</option>
+                                <option value="tea">Direitos TEA</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensagem" class="form-label">Mensagem *</label>
+                            <textarea id="mensagem" name="mensagem" class="form-textarea" 
+                                      placeholder="Descreva sua situação" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Localização Section -->
+    <section class="localizacao" id="localizacao" role="region" aria-labelledby="localizacao-titulo">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="localizacao-titulo" class="section-title">
+                    Onde Nos <span class="highlight">Localizamos</span>
+                </h2>
+                <p class="section-subtitle">
+                    Visite nosso escritório em Videira-SC
+                </p>
+            </div>
+            
+            <div class="localizacao-content">
+                <div class="localizacao-info">
+                    <div class="info-card">
+                        <div class="card-header">
+                            <i class="fas fa-building"></i>
+                            <h3>Escritório Principal</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="endereco-detalhado">
+                                <strong>Endereço:</strong><br>
+                                SC-355, 1411 - Santa Tereza<br>
+                                Videira - SC, 89560-300
+                            </p>
+                            <p class="descricao-escritorio">
+                                Referência em atendimento jurídico especializado. Oferecemos soluções personalizadas 
+                                nas áreas de Direito Civil, Direito Penal, Direito de Família e defesa dos direitos 
+                                de pessoas com Transtorno do Espectro Autista.
+                            </p>
+                            <p class="compromisso">
+                                Com compromisso, ética e excelência, buscamos proteger os interesses de nossos 
+                                clientes e proporcionar a melhor orientação jurídica possível.
+                            </p>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://maps.google.com/?q=SC-355,1411,Videira,SC" target="_blank" 
+                               class="btn-secondary" rel="noopener">
+                                <i class="fas fa-directions"></i>
+                                Como Chegar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="localizacao-mapa">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.7692290400387!2d-51.140255599999996!3d-27.005848899999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e14fcc97b6fdf3%3A0x77184063c015ee35!2sDra.%20Nathiara%20Borges!5e0!3m2!1spt-BR!2sbr!4v1736381764475!5m2!1spt-BR!2sbr" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Localização do escritório Nathiara Borges Advocacia em Videira-SC">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="imagens/BS (500 x 200 px).png" alt="BSTECH - Soluções em Tecnologia" 
+                             width="150" height="60">
+                    </div>
+                    <p class="footer-description">
+                        Onde a tecnologia encontra soluções inovadoras para mediar seu negócio!
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Desenvolvedores</h4>
+                    <div class="dev-info">
+                        <div class="dev-item">
+                            <h5>João Vitor</h5>
+                            <div class="dev-links">
+                                <a href="https://github.com/DEVBORGES1" target="_blank" rel="noopener" 
+                                   aria-label="GitHub de João Vitor">GitHub</a>
+                                <a href="https://www.instagram.com/itsjvborges/" target="_blank" rel="noopener" 
+                                   aria-label="Instagram de João Vitor">Instagram</a>
+                                <a href="https://www.linkedin.com/in/joão-vitor-53875a1a1/" target="_blank" rel="noopener" 
+                                   aria-label="LinkedIn de João Vitor">LinkedIn</a>
+                            </div>
+                        </div>
+                        
+                        <div class="dev-item">
+                            <h5>Pedro Dias</h5>
+                            <div class="dev-links">
+                                <a href="https://github.com/Devpdias" target="_blank" rel="noopener" 
+                                   aria-label="GitHub de Pedro Dias">GitHub</a>
+                                <a href="https://www.instagram.com/pedro.hndias/" target="_blank" rel="noopener" 
+                                   aria-label="Instagram de Pedro Dias">Instagram</a>
+                                <a href="https://www.linkedin.com/in/pedro-henrique-7b54162a4/" target="_blank" rel="noopener" 
+                                   aria-label="LinkedIn de Pedro Dias">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Receba novidades e atualizações jurídicas</p>
+                    <form class="newsletter-form" action="https://formsubmit.co/bstech.ti@gmail.com" method="POST">
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Seu e-mail" required 
+                                   aria-label="E-mail para newsletter">
+                            <button type="submit" aria-label="Inscrever-se na newsletter">
+                                <i class="fas fa-envelope"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nathiara Borges Advocacia - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts.js"></script>
 </body>
 </html>

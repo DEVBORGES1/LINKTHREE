@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Centralização</title>
+    <style>
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            margin-top: 7.5rem;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            min-height: 300px;
+        }
+        
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            object-position: 50% 40%;
+            border: 4px solid #ad1700;
+            box-shadow: 0 0 20px rgba(173, 23, 0, 0.3);
+            margin: 0 auto 1.5rem auto;
+            flex-shrink: 0;
+        }
+        
+        .titulo {
+            color: #d6d0d0;
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 0 0 0.75rem 0;
+            font-weight: 700;
+            width: 100%;
+            flex-shrink: 0;
+        }
+        
+        .titulo span {
+            color: #ad1700;
+        }
+        
+        .subtitle {
+            color: #a8a29e;
+            font-size: 1.1rem;
+            margin: 0 0 1rem 0;
+            text-align: center;
+            width: 100%;
+            flex-shrink: 0;
+        }
+        
+        .info {
+            background: #333;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .grid-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .grid-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .vertical-center {
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            transform: translateX(-50%);
+        }
+        
+        .horizontal-center {
+            top: 50%;
+            height: 1px;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Linhas de grade para visualizar o centro -->
+    <div class="grid-lines">
+        <div class="grid-line vertical-center"></div>
+        <div class="grid-line horizontal-center"></div>
+    </div>
+    
+    <header class="header">
+        <img src="foto-perfil.jpg" alt="Foto de perfil de Nathiara Borges" class="profile-pic">
+        <h1 class="titulo">Nathiara <span>Borges</span></h1>
+        <p class="subtitle">Profissional especializada em soluções digitais</p>
+    </header>
+    
+    <div class="info">
+        <h3>Teste de Centralização</h3>
+        <p>✅ A imagem deve estar perfeitamente centralizada</p>
+        <p>✅ O título "Nathiara Borges" deve estar centralizado</p>
+        <p>✅ O subtítulo deve estar centralizado</p>
+        <p>✅ As linhas de grade mostram o centro da tela</p>
+    </div>
+    
+    <script>
+        // Verificar se a imagem carregou
+        const img = document.querySelector('.profile-pic');
+        
+        img.addEventListener('load', () => {
+            console.log('✅ Imagem carregada e centralizada!');
+        });
+        
+        img.addEventListener('error', () => {
+            console.log('❌ Erro ao carregar imagem');
+        });
+        
+        // Verificar centralização
+        window.addEventListener('load', () => {
+            const header = document.querySelector('.header');
+            const rect = header.getBoundingClientRect();
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            console.log('📐 Centro da tela:', centerX, centerY);
+            console.log('📐 Centro do header:', rect.left + rect.width / 2, rect.top + rect.height / 2);
+        });
+    </script>
+</body>
+</html>

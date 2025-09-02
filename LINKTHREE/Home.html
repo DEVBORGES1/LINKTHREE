@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nathiara Borges</title>
+  <meta name="description" content="Página pessoal de Nathiara Borges - Portfólio, contatos e serviços profissionais">
+  <meta name="keywords" content="Nathiara Borges, portfólio, mentoria, marketing digital">
+  <title>Nathiara Borges - Profissional</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -12,29 +14,91 @@
 </head>
 
 <body>
-  <header class="header hidden">
-    <img src="../imagens/foto capa.jpg" width="700" height="700" alt="Foto de Nathiara Borges" class="profile-pic">
-    <h2 class="titulo">Nathiara <span>Borges</span></h2>
+  <header class="header hidden" role="banner">
+    <img src="foto-perfil.jpg" width="200" height="200" alt="Foto de perfil de Nathiara Borges" class="profile-pic">
+    <h1 class="titulo">Nathiara <span>Borges</span></h1>
+    <p class="subtitle">Profissional especializada em soluções digitais</p>
   </header>
 
-  <main class="Btn-contato hidden">
-    <h4>
-      <a href="/portifólio/index.html" class="button">PORTFÓLIO </a>
-      <a href="link2.html" class="button">MEIOS DE <span>CONTATO</span></a>
-      <a href="/media/media.html" class="button">PROGRAMA DE MENTORIA <span>ESPECIALIZADA</span></a>
-      <a href="/SALES PAGE/SELL.html" class="button">ESTRATÉGIAS DO <span>MARKETING</span> DIGITAL</a>
-      <a href="link5.html" class="button">EXPERIÊNCIAS DE <span>SUCESSO</span> COMPARTILHADAS</a>
-    </h4>
-  </main>
-<main></main>
-  <!--RODAPÉ-->
-  <footer class="hidden">
-    <div id="footer_content">
-      <div id="footer_contacts ">
-        <h1> <img src="BS (500 x 200 px).png" alt="BSTECH" width="150" height="60" class="logo-image"></h1>
-        <p>Where technology meets innovative <br>
-          solutions to mediate your business!</p>
+  <nav class="navigation hidden" role="navigation" aria-label="Menu principal">
+    <div class="Btn-contato">
+      <a href="/portifólio/index.html" class="button" aria-label="Ver portfólio completo">
+        <i class="fas fa-briefcase"></i>
+        PORTFÓLIO
+      </a>
+      <a href="#contatos" class="button" aria-label="Ver meios de contato">
+        <i class="fas fa-address-book"></i>
+        MEIOS DE <span>CONTATO</span>
+      </a>
+      <a href="/media/media.html" class="button" aria-label="Conhecer programa de mentoria">
+        <i class="fas fa-graduation-cap"></i>
+        PROGRAMA DE MENTORIA <span>ESPECIALIZADA</span>
+      </a>
+      <a href="/SALES PAGE/SELL.html" class="button" aria-label="Ver estratégias de marketing digital">
+        <i class="fas fa-chart-line"></i>
+        <div class="button-text">
+          ESTRATÉGIAS DO <span>MARKETING</span> DIGITAL
+        </div>
+      </a>
+      <a href="#experiencias" class="button" aria-label="Ver experiências de sucesso">
+        <i class="fas fa-star"></i>
+        <div class="button-text">
+          EXPERIÊNCIAS DE <span>SUCESSO</span> COMPARTILHADAS
+        </div>
+      </a>
+    </div>
+  </nav>
 
+  <section id="contatos" class="contatos-section hidden" role="region" aria-labelledby="contatos-titulo">
+    <h2 id="contatos-titulo">Meios de Contato</h2>
+    <div class="contatos-grid">
+      <a href="https://wa.me/5511999999999" class="contato-item" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp</span>
+      </a>
+      <a href="mailto:contato@nathiara.com" class="contato-item" aria-label="Email">
+        <i class="fas fa-envelope"></i>
+        <span>Email</span>
+      </a>
+      <a href="https://instagram.com/nathiara" class="contato-item" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+      <a href="https://linkedin.com/in/nathiara" class="contato-item" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="experiencias" class="experiencias-section hidden" role="region" aria-labelledby="experiencias-titulo">
+    <h2 id="experiencias-titulo">Experiências de Sucesso</h2>
+    <div class="experiencias-grid">
+      <div class="experiencia-card">
+        <i class="fas fa-trophy"></i>
+        <h3>Projetos Concluídos</h3>
+        <p>Mais de 50 projetos entregues com sucesso</p>
+      </div>
+      <div class="experiencia-card">
+        <i class="fas fa-users"></i>
+        <h3>Clientes Satisfeitos</h3>
+        <p>100% de satisfação dos clientes</p>
+      </div>
+      <div class="experiencia-card">
+        <i class="fas fa-clock"></i>
+        <h3>Anos de Experiência</h3>
+        <p>5+ anos no mercado digital</p>
+      </div>
+    </div>
+  </section>
+
+  <!--RODAPÉ-->
+  <footer class="hidden" role="contentinfo">
+    <div id="footer_content">
+      <div id="footer_contacts">
+        <h2><img src="BS (500 x 200 px).png" alt="BSTECH - Logo da empresa" width="150" height="60" class="logo-image"></h2>
+        <p>Onde a tecnologia encontra soluções <br>
+          inovadoras para mediar seu negócio!</p>
       </div>
 
       <ul class="footer-list">
@@ -42,13 +106,13 @@
           <h3>João Vitor</h3>
         </li>
         <li>
-          <a href="https://github.com/DEVBORGES1" class="footer-link" target="_blank">GitHub</a>
+          <a href="https://github.com/DEVBORGES1" class="footer-link" target="_blank" rel="noopener" aria-label="GitHub de João Vitor">GitHub</a>
         </li>
         <li>
-          <a href="https://www.instagram.com/itsjvborges/" class="footer-link" target="_blank">Instagram</a>
+          <a href="https://www.instagram.com/itsjvborges/" class="footer-link" target="_blank" rel="noopener" aria-label="Instagram de João Vitor">Instagram</a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/joão-vitor-53875a1a1/" class="footer-link" target="_blank">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/joão-vitor-53875a1a1/" class="footer-link" target="_blank" rel="noopener" aria-label="LinkedIn de João Vitor">LinkedIn</a>
         </li>
       </ul>
 
@@ -57,27 +121,25 @@
           <h3>Pedro Dias</h3>
         </li>
         <li>
-          <a href="https://github.com/Devpdias" class="footer-link" target="_blank">GitHub</a>
+          <a href="https://github.com/Devpdias" class="footer-link" target="_blank" rel="noopener" aria-label="GitHub de Pedro Dias">GitHub</a>
         </li>
         <li>
-          <a href="https://www.instagram.com/pedro.hndias/" class="footer-link" target="_blank">Instagram</a>
+          <a href="https://www.instagram.com/pedro.hndias/" class="footer-link" target="_blank" rel="noopener" aria-label="Instagram de Pedro Dias">Instagram</a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/pedro-henrique-7b54162a4/" class="footer-link"
-            target="_blank">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/pedro-henrique-7b54162a4/" class="footer-link" target="_blank" rel="noopener" aria-label="LinkedIn de Pedro Dias">LinkedIn</a>
         </li>
       </ul>
 
       <div id="footer_subscribe">
-        <h3>Are you interested?</h3>
-
+        <h3>Interessado?</h3>
         <p>
-          Get in touch so that your idea becomes reality, with your own website!
+          Entre em contato para que sua ideia se torne realidade, com seu próprio website!
         </p>
-        <form action="https://formsubmit.co/bstech.ti@gmail.com" method="POST">
+        <form action="https://formsubmit.co/bstech.ti@gmail.com" method="POST" role="form" aria-labelledby="newsletter-titulo">
           <div id="input_group">
-            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-            <button type="submit" >
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required aria-label="Seu email para newsletter">
+            <button type="submit" aria-label="Enviar email">
               <i class="fa-regular fa-envelope"></i>
             </button>
           </div>
@@ -86,10 +148,10 @@
     </div>
 
     <div id="footer_copyright">
-      &#169
-      2025 all rights reserved
+      <p>&copy; 2025 - Todos os direitos reservados</p>
     </div>
   </footer>
+
   <script src="index.js"></script>
 </body>
 
