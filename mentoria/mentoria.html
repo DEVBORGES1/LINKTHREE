@@ -1,358 +1,440 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coaching e Mentoria</title>
+    <meta name="description" content="Coaching e Mentoria para desenvolvimento pessoal e profissional. Transforme sua vida com estratégias comprovadas de sucesso.">
+    <meta name="keywords" content="coaching, mentoria, desenvolvimento pessoal, sucesso, estratégias">
+    <title>Coaching e Mentoria | Transforme sua Vida</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="imagens/logos/BS (500 x 200 px).png">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="mentoria.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"/>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Preload de fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 
 <body>
-    <!-- Header fixo com comportamento de sumir/reaparecer -->
-    <header class="show hidden">
-        <div class="interface hidden">
-            <div class="logo hidden">
-                <a href="/LINKTHREE/Home.html">
-                    <img src="imagens/logos/Imagem do WhatsApp de 2024-06-02 à(s) 14.23.36_62e6d080.jpg" alt="logo" height="70">
-                </a>
-            </div><!-- logo -->
-            <nav class="menu-desktop hidden">
-                <ul>
-                    <li><a href="#Inicio">Inicio</a></li>
-                    <li><a href="#especialidades">Mentorias</a></li>
-                    <li><a href="#sobre">Serviços</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                </ul>
-            </nav>
-            <div class="Btn-contato hidden">
-                <a href="#contato">
-                    <button>Contato</button>
-                </a>
+    <!-- Header com navegação fixa -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/LINKTHREE/Home.html" aria-label="Página inicial">
+                        <img src="imagens/logos/Imagem do WhatsApp de 2024-06-02 à(s) 14.23.36_62e6d080.jpg" alt="Logo da empresa" width="70" height="70">
+                    </a>
+                </div>
+                
+                <nav class="nav-menu" aria-label="Menu principal">
+                    <ul class="nav-list">
+                        <li><a href="#inicio" class="nav-link">Início</a></li>
+                        <li><a href="#mentorias" class="nav-link">Mentorias</a></li>
+                        <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
+                        <li><a href="#testemunhos" class="nav-link">Testemunhos</a></li>
+                        <li><a href="#contato" class="nav-link">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="#contato" class="btn btn-primary">
+                        <i class="fas fa-phone"></i>
+                        <span>Contato</span>
+                    </a>
+                    
+                    <button class="mobile-menu-toggle" aria-label="Abrir menu mobile" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
-        </div><!-- interface -->
+        </div>
     </header>
 
-    <!-- Imagem principal com slider -->
-    <div class="slider-content hidden">
-        <img class="img-desktop" src="imagens/logos/Design sem nome (1).png" alt="Imagem Desktop">
-    </div>
-    
-    <!-- Seções principais -->
-    <main class="coaching">
-        <section class="slider" id="inicio">
-            <div class="logotext hidden">
-                <br><br><br>
-                <h1>Coaching e <span>Mentoria</span></h1>
-            </div>
-            <br>
-            <div class="estrategia hidden">
-                <h1><span>Estratégias</span> para o Sucesso, <span>Evoluição</span> e o Desenvolvimento <span>Pessoal</span> .</h1>
-            </div>
-            <br><br>
-            <a href="tel:+5549999001230" class="telefone hidden">
-                <div class="telefone-botao">
-                    <i class="fa-brands fa-whatsapp" style="margin-right: 10px;"></i>
-                    <span>WhatsApp</span>
-                </div>
-            </a>
-        </section>  
-    </main>
-    <main>
-        <section class="CARDS hidden">
-            <div class="Card"> 
-                <i class="fa-solid fa-shop" style="color: #ad1700;"></i>
-                <div class="title">
-                    Mentoria de Negócios
-                </div>
-                <div class="detail">
-                    Nossa Mentoria Empresarial oferece suporte estratégico para empreendedores alcançarem resultados. Identificamos objetivos e competências para impulsionar seu negócio. Conte conosco para transformar ideias em sucesso.                </div>
-            </div>
-    
-            <div class="Card hidden"> 
-                <i class="fa-solid fa-handshake" style="color: #ad1700;"></i>
-                <div class="title">
-                    Coaching Executivo
-                </div>
-                <div class="detail">
-                    Se você busca apoio para crescer ou enfrentar mudanças, o Coaching Executivo é ideal! Oferecemos ferramentas para clareza, realinhamento de objetivos e uma visão estratégica, trazendo equilíbrio e melhores resultados.
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-background">
+            <img src="imagens/logos/Design sem nome (1).png" alt="Imagem de fundo" class="hero-bg-image">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Coaching e <span class="highlight">Mentoria</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="highlight">Estratégias</span> para o Sucesso, <span class="highlight">Evolução</span> e o Desenvolvimento <span class="highlight">Pessoal</span>
+                </p>
+                <div class="hero-actions">
+                    <a href="https://wa.me/5549999001230" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Fale Conosco</span>
+                    </a>
+                    <a href="#mentorias" class="btn btn-outline">
+                        <i class="fas fa-arrow-down"></i>
+                        <span>Saiba Mais</span>
+                    </a>
                 </div>
             </div>
-    
-            <div class="Card hidden"> 
-                <i class="fa-solid fa-award" style="color: #ad1700;"></i>
-                <div class="title">
-                    Mentoria de Carreira
-                </div>
-                <div class="detail">
-                    Em transição de carreira ou buscando desenvolvimento? O Coaching de Carreira oferece suporte para autoconhecimento, foco e confiança, ajudando você a assumir o protagonismo da sua trajetória profissional.
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!--BENEFICIOS-->
-    <main>
-        <section class="beneficios hidden">
-            <h1><span>Benefícios</span></h1>
-            <p>
-                Os benefícios do coaching e da mentoria são muitos e podem variar em função das suas necessidades individuais e dos desafios enfrentados no momento, sendo acima de tudo um processo de aprendizagem. Posso destacar como os principais resultados, relatados com maior frequência por meus clientes:
-            </p>
-            <div class="beneficios-grid hidden">
-                <div class="beneficio">
-                    <i class="fa-solid fa-brain" style="color: #ad1700;" ></i>
-                    <div>
-                        <h3><span>Autoconhecimento</span></h3>
+    <!-- Seção de Mentorias -->
+    <section class="mentorias" id="mentorias">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossas <span class="highlight">Mentorias</span></h2>
+                <p class="section-subtitle">Transforme sua vida com nossas metodologias comprovadas</p>
+            </div>
+            
+            <div class="mentorias-grid">
+                <div class="mentoria-card" data-aos="fade-up">
+                    <div class="card-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="card-title">Mentoria de Negócios</h3>
+                    <p class="card-description">
+                        Nossa Mentoria Empresarial oferece suporte estratégico para empreendedores alcançarem resultados extraordinários. Identificamos objetivos e competências para impulsionar seu negócio ao próximo nível.
+                    </p>
+                    <div class="card-features">
+                        <span class="feature-tag">Estratégia</span>
+                        <span class="feature-tag">Crescimento</span>
+                        <span class="feature-tag">Resultados</span>
+                    </div>
+                </div>
+
+                <div class="mentoria-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="card-title">Coaching Executivo</h3>
+                    <p class="card-description">
+                        Se você busca apoio para crescer ou enfrentar mudanças, o Coaching Executivo é ideal! Oferecemos ferramentas para clareza, realinhamento de objetivos e uma visão estratégica.
+                    </p>
+                    <div class="card-features">
+                        <span class="feature-tag">Liderança</span>
+                        <span class="feature-tag">Desenvolvimento</span>
+                        <span class="feature-tag">Transformação</span>
+                    </div>
+                </div>
+
+                <div class="mentoria-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="card-title">Mentoria de Carreira</h3>
+                    <p class="card-description">
+                        Em transição de carreira ou buscando desenvolvimento? O Coaching de Carreira oferece suporte para autoconhecimento, foco e confiança, ajudando você a assumir o protagonismo.
+                    </p>
+                    <div class="card-features">
+                        <span class="feature-tag">Carreira</span>
+                        <span class="feature-tag">Transição</span>
+                        <span class="feature-tag">Sucesso</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Benefícios -->
+    <section class="beneficios" id="beneficios">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Principais <span class="highlight">Benefícios</span></h2>
+                <p class="section-subtitle">
+                    Os benefícios do coaching e da mentoria são muitos e podem variar em função das suas necessidades individuais e dos desafios enfrentados no momento, sendo acima de tudo um processo de aprendizagem contínua.
+                </p>
+            </div>
+            
+            <div class="beneficios-grid">
+                <div class="beneficio-item" data-aos="zoom-in">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="beneficio-title">Autoconhecimento</h3>
+                    <p class="beneficio-description">Descubra seus pontos fortes e áreas de melhoria para maximizar seu potencial.</p>
+                </div>
+
+                <div class="beneficio-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="beneficio-title">Clareza e Foco</h3>
+                    <p class="beneficio-description">Defina objetivos claros e mantenha o foco necessário para alcançá-los.</p>
+                </div>
+
+                <div class="beneficio-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="beneficio-title">Planejamento e Ação</h3>
+                    <p class="beneficio-description">Transforme ideias em planos executáveis com estratégias comprovadas.</p>
+                </div>
+
+                <div class="beneficio-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3 class="beneficio-title">Desenvolvimento de Habilidades</h3>
+                    <p class="beneficio-description">Adquira novas competências e aprimore as que já possui.</p>
+                </div>
+
+                <div class="beneficio-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="beneficio-title">Autoestima e Autoconfiança</h3>
+                    <p class="beneficio-description">Construa uma base sólida de confiança para enfrentar qualquer desafio.</p>
+                </div>
+            </div>
+            
+            <div class="beneficios-cta" data-aos="fade-up">
+                <a href="#contato" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i>
+                    <span>Quero Começar Agora</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Testemunhos -->
+    <section class="testemunhos" id="testemunhos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">O que nossos <span class="highlight">Clientes</span> Dizem</h2>
+                <p class="section-subtitle">Histórias reais de transformação e sucesso</p>
+            </div>
+            
+            <div class="testemunhos-carousel owl-carousel">
+                <div class="testemunho-item">
+                    <div class="testemunho-content">
+                        <div class="testemunho-text">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>O curso é prático e direto, ótimo para quem está começando. As aulas de criação de conteúdo e engajamento foram as melhores. Já usei algumas ideias e vi mais interação com meu público. Recomendo!</p>
+                        </div>
+                        <div class="testemunho-author">
+                            <img src="imagens/pessoas/Lucas consorte.png" alt="Cleudemir Consorte" class="author-avatar">
+                            <div class="author-info">
+                                <h4 class="author-name">Cleudemir Consorte</h4>
+                                <p class="author-role">Designer Automotivo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testemunho-item">
+                    <div class="testemunho-content">
+                        <div class="testemunho-text">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>O curso transformou meu negócio! Aprendi a criar e gerenciar campanhas de anúncios e vi um aumento de 30% nas vendas em menos de um mês. Totalmente recomendável!</p>
+                        </div>
+                        <div class="testemunho-author">
+                            <img src="imagens/pessoas/MARIA E.png" alt="Maria Eduarda" class="author-avatar">
+                            <div class="author-info">
+                                <h4 class="author-name">Maria Eduarda</h4>
+                                <p class="author-role">Estudante de Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testemunho-item">
+                    <div class="testemunho-content">
+                        <div class="testemunho-text">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>Como estudante de psicologia, meu principal objetivo ao fazer este curso era aprender a divulgar meu futuro trabalho de forma estratégica e já conseguir minha primeira vaga na área.</p>
+                        </div>
+                        <div class="testemunho-author">
+                            <img src="imagens/pessoas/Mariane.png" alt="Mariane Paini" class="author-avatar">
+                            <div class="author-info">
+                                <h4 class="author-name">Mariane Paini</h4>
+                                <p class="author-role">Estudante de Psicologia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testemunho-item">
+                    <div class="testemunho-content">
+                        <div class="testemunho-text">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>O curso é prático e fácil de entender, ideal para iniciantes. Adorei as aulas sobre criação de conteúdo e engajamento. Meu negócio começou a faturar o dobro depois desse curso!</p>
+                        </div>
+                        <div class="testemunho-author">
+                            <img src="imagens/pessoas/MURILO.png" alt="Murilo De Souza" class="author-avatar">
+                            <div class="author-info">
+                                <h4 class="author-name">Murilo De Souza</h4>
+                                <p class="author-role">Auriculoterapia, Acupuntura, Reiki</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testemunho-item">
+                    <div class="testemunho-content">
+                        <div class="testemunho-text">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>O curso é acessível e direto ao ponto, perfeito para quem está começando. Achei incríveis as aulas sobre produção de conteúdo e aumento do engajamento. Já coloquei algumas estratégias em prática!</p>
+                        </div>
+                        <div class="testemunho-author">
+                            <img src="imagens/pessoas/anaximandro.png" alt="Anaximandro Sobreira Da Silva" class="author-avatar">
+                            <div class="author-info">
+                                <h4 class="author-name">Anaximandro Sobreira Da Silva</h4>
+                                <p class="author-role">Micro-Empresário</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato -->
+    <section class="contato" id="contato">
+        <div class="container">
+            <div class="contato-content">
+                <div class="contato-info">
+                    <div class="contato-header">
+                        <h2 class="contato-title">FALE <span class="highlight">COMIGO</span></h2>
+                        <p class="contato-description">
+                            Estou aqui para ajudar você a transformar sua vida através do coaching e mentoria. 
+                            Entre em contato e descubra como podemos trabalhar juntos para alcançar seus objetivos.
+                        </p>
                     </div>
                     
-                </div>
-                <div class="beneficio hidden">
-                    <i class="fa-solid fa-bullseye" style="color: #ad1700;"></i>
-                    <div>
-                    <h3><span>Clareza e Foco</span></h3>
-                    </div>
-                </div>
-                <div class="beneficio hidden">
-                    <i class="fa-regular fa-lightbulb" style="color: #ad1700;"></i>
-                    <div>
-                    <h3><span>Planejamento e Ação</span></h3>
-                    </div>
-                    </div>
-                <div class="beneficio hidden">
-                    <i class="fa-solid fa-puzzle-piece" style="color: #ad1700;"></i>
-                    <div>
-                    <h3><span>Desenvolvimento de Habilidades</span></h3>
-                    </div>
-                    </div>
-                <div class="beneficio hidden">
-                    <i class="fa-solid fa-trophy" style="color: #ad1700;"></i>
-                    <div>
-                    <h3><span>Autoestima e Autoconfiança</span></h3>
-                    </div>
-                </div>
-            </div>
-            <a href="#contato" class="btn-saber-mais">Quero Saber Mais</a>
-        </section>
-    </main>
-    <!--testemunhos sobre o curso-->
-    <main>
-        <section class="testimonial-area hidden">
-            <div class="container">
-                <div class="sec-title">
-                    <h2>Nossos <span>Testemunhos</span></h2>
-                    <p>O que meus clientes estão achando?</p>
-                </div>
-               
-                <div class="testimonial-content owl-carousel">
-                    <div class="single-testimonial">
-                        <p>O curso é prático e direto, ótimo para quem está começando. As aulas de criação de conteúdo e
-                            engajamento foram as melhores. Já usei algumas ideias e vi mais interação com meu público.
-                            Recomendo!</p>
-                        <div class="client-info">
-                            <div class="client-pic">
-                                <a href="#"><img src="imagens/pessoas/Lucas consorte.png" alt="user1"></a>
+                    <div class="contato-detalhes">
+                        <div class="contato-item">
+                            <div class="contato-icon">
+                                <i class="fab fa-whatsapp"></i>
                             </div>
-                            <div class="client-details">
-                                <h6>Cleudemir Consorte</h6>
-                                <span>Designer automotivo</span>
+                            <div class="contato-text">
+                                <h4>WhatsApp</h4>
+                                <a href="https://wa.me/5549999001230" target="_blank" rel="noopener">(49) 99900-1230</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contato-item">
+                            <div class="contato-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contato-text">
+                                <h4>E-mail</h4>
+                                <a href="mailto:contato@exemplo.com">contato@exemplo.com</a>
                             </div>
                         </div>
                     </div>
-                
-                    <div class="single-testimonial">
-                        <p>O curso transformou meu negócio! Aprendi a criar e gerenciar campanhas de anúncios
-                            e vi um aumento de 30% nas vendas em menos de um mês. Totalmente recomendável!</p>
-                        <div class="client-info">
-                            <div class="client-pic">
-                                <a href="#"><img src="imagens/pessoas/MARIA E.png" alt="user1"></a>
-                            </div>
-                            <div class="client-details">
-                                <h6>Maria Eduarda</h6>
-                                <span>Estudante de Designer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-testimonial">
-                        <p>Como estudante de psicologia, meu principal objetivo ao 
-                            fazer este curso de marketing digitalera aprender a divulgar
-                             meu futuro trabalho de forma estratégica e já conseguir minha primeira vaga na área.</p>
-                        <div class="client-info">
-                            <div class="client-pic">
-                                <a href="#"><img src="imagens/pessoas/Mariane.png" alt="user1"></a>
-                            </div>
-                            <div class="client-details">
-                                <h6>Mariane Paini</h6>
-                                <span>Estudante de Psicologia</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="single-testimonial">
-                        <p>O curso é prático e fácil de entender, ideal para iniciantes.
-                            Adorei as aulas sobre criação de conteúdo e engajamento.
-                            Já apliquei algumas ideias e percebi mais interação com meu público meu negócio começou a faturar o
-                            dobro depois desse curso. Recomendo!</p>
-                        <div class="client-info">
-                            <div class="client-pic">
-                                <a href="#"><img src="imagens/pessoas/MURILO.png" alt="user1"></a>
-                            </div>
-                            <div class="client-details">
-                                <h6>Murilo De Souza</h6>
-                                <span>Auriculoterapia, acupuntura, reiki...</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="single-testimonial">
-                        <p>O curso é acessível e direto ao ponto, perfeito para quem está começando.
-                            Achei incríveis as aulas sobre produção de conteúdo e aumento do engajamento.
-                            Já coloquei algumas estratégias em prática e notei um crescimento na interação com meu público</p>
-                        <div class="client-info">
-                            <div class="client-pic">
-                                <a href="#"><img src="imagens/pessoas/anaximandro.png" alt="user1"></a>
-                            </div>
-                            <div class="client-details">
-                                <h6>Anaximandro Sobreira Da Silva</h6>
-                                <span>Micro-Empresário</span>
-                            </div>
+                    
+                    <div class="redes-sociais">
+                        <h4>Acompanhe nas Redes Sociais</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.facebook.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://contate.me/advnathiaraborges" target="_blank" rel="noopener" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-            </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $('.owl-carousel').owlCarousel({
-                        loop:true,
-                        nav:false,
-                        dots:true,
-                        margin:50,
-                        responsive:{
-                            0:{ items:1 },
-                            600:{ items:1 },
-                            1000:{ items:2 }
-                        }
-                    });
-                });
-            </script>
-        </section>
-    </main>
-    <!--PARTE DO FORMULARIO-->
-    <main>
-    <section class="contato hidden">
-        <section class="contato">
-            <div class="fale-conosco">
-              <h2>FALE <span>COMIGO.</span></h2>
-              <p>
-                Nosso Escritório de Advocacia atende toda  a região Sul do país, priorizando a eficiência
-                no atendimento, onde o principal foco é obter as soluções jurídicas necessárias. Fique
-                à vontade para entrar em contato e conhecer todos os diferenciais que fazem do
-                nosso trabalho ser o destaque em nossa área de atuação.
-              </p>
-              <br>
-              <a href="tel:+5549999001230" class="telefone">
-                <div class="telefone-botao">
-                    <img src="imagens/logos/telefone.png" alt="Ícone Telefone" height="24">
-                    <span>(49) 99900-1230</span>
+                <div class="contato-formulario">
+                    <form id="formContato" class="formulario">
+                        <h3 class="formulario-title">ENVIE UMA <span class="highlight">MENSAGEM</span></h3>
+                        
+                        <div class="form-group">
+                            <label for="nome" class="form-label">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" class="form-input" placeholder="Digite seu nome completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Digite seu e-mail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="celular" class="form-label">Celular</label>
+                            <input type="tel" id="celular" name="celular" class="form-input" placeholder="Digite seu celular" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensagem" class="form-label">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" class="form-textarea" placeholder="Digite sua mensagem" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Enviar Mensagem</span>
+                        </button>
+                    </form>
                 </div>
-            </a>
-            <br><br>
-              <p>ACOMPANHE NAS REDES SOCIAIS!</p>
-              <div class="btn-social hidden">
-                <a href="https://www.instagram.com/nathiaraborges/" target="_blank"><button> <img src="imagens/logos/instagram.png" alt="" height="20"></button></a>
-                <a href="https://www.facebook.com/nathiaraborges/" target="_blank"><button><img src="imagens/logos/facebook.png" alt="" height="20"></button></a>
-                <a href="https://contate.me/advnathiaraborges" target="_blank"><button><img src="imagens/logos/whatsapp.png" alt="" height="20"></button></a>
-              </div><!--btn social-->
-    
             </div>
-            <div class="formulario-contato hidden">
-                <form id="formContato">
-                    <h2>ENVIE UMA <span>MENSAGEM</span></h2>
-                    <br>
-                    <input type="text" name="nome" id="nome" placeholder="Seu nome completo:" required>
-                    <input type="email" name="email" id="email" placeholder="Seu E-mail (para resposta):" required>
-                    <input type="text" name="celular" id="celular" placeholder="Seu celular:" required>
-                    <textarea name="mensagem" id="mensagem" placeholder="Sua mensagem" required></textarea>
-                    <div class="btn-enviar">
-                        <input type="submit" value="ENVIAR">
-                    </div>
-                </form>
-            </div>
-          </section>
+        </div>
     </section>
-    <main>
-    </main>
-    <footer class="hidden">
-        <div id="footer_content">
-          <div id="footer_contacts ">
-            <h1> <img src="imagens/logos/BS (500 x 200 px).png" alt="BSTECH"width="150" height="60" class="logo-image"></h1>
-            <p>Where technology meets innovative <br>
-              solutions to mediate your business!</p>
-    
-          </div>
-    
-          <ul class="footer-list">
-            <li>
-              <h3>João Vitor</h3>
-            </li>
-            <li>
-              <a href="https://github.com/DEVBORGES1" class="footer-link" target="_blank">GitHub</a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/itsjvborges/" class="footer-link" target="_blank">Instagram</a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/joão-vitor-53875a1a1/" class="footer-link" target="_blank">LinkedIn</a>
-            </li>
-          </ul>
-    
-          <ul class="footer-list">
-            <li>
-              <h3>Pedro Dias</h3>
-            </li>
-            <li>
-              <a href="https://github.com/Devpdias" class="footer-link" target="_blank">GitHub</a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/pedro.hndias/" class="footer-link" target="_blank">Instagram</a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/pedro-henrique-7b54162a4/" class="footer-link"
-                target="_blank">LinkedIn</a>
-            </li>
-          </ul>
-    
-          <div id="footer_subscribe">
-            <h3>Are you interested?</h3>
-    
-            <p>
-              Get in touch so that your idea becomes reality, with your own website!
-            </p>
-            <form action="https://formsubmit.co/bstech.ti@gmail.com" method="POST">
-              <div id="input_group">
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-                <button type="submit" >
-                  <i class="fa-regular fa-envelope"></i>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-    
-        <div id="footer_copyright">
-          &#169
-          2025 all rights reserved
-        </div>
-      </footer> 
 
-    <!-- Script para funcionalidades -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="imagens/logos/BS (500 x 200 px).png" alt="BSTECH" class="footer-logo" width="150" height="60">
+                    <p>Where technology meets innovative solutions to mediate your business!</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>João Vitor</h4>
+                        <ul>
+                            <li><a href="https://github.com/DEVBORGES1" target="_blank" rel="noopener">GitHub</a></li>
+                            <li><a href="https://www.instagram.com/itsjvborges/" target="_blank" rel="noopener">Instagram</a></li>
+                            <li><a href="https://www.linkedin.com/in/joão-vitor-53875a1a1/" target="_blank" rel="noopener">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Pedro Dias</h4>
+                        <ul>
+                            <li><a href="https://github.com/Devpdias" target="_blank" rel="noopener">GitHub</a></li>
+                            <li><a href="https://www.instagram.com/pedro.hndias/" target="_blank" rel="noopener">Instagram</a></li>
+                            <li><a href="https://www.linkedin.com/in/pedro-henrique-7b54162a4/" target="_blank" rel="noopener">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Interessado?</h4>
+                    <p>Entre em contato para que sua ideia se torne realidade com seu próprio website!</p>
+                    <form action="https://formsubmit.co/bstech.ti@gmail.com" method="POST" class="newsletter-form">
+                        <div class="newsletter-input-group">
+                            <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                            <button type="submit" aria-label="Inscrever-se">
+                                <i class="fas fa-envelope"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="mentoria.js"></script>
-   
-
 </body>
-
 </html>
