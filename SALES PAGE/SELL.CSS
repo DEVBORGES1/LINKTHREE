@@ -1729,3 +1729,162 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-red-dark);
 }
+
+/* ===== FOOTER MODERNIZADO ===== */
+footer {
+    padding: 30px 4%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(173, 23, 0, 0.3);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(173, 23, 0, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.interface {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+footer .flex {
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.borda {
+    border-top: 1px solid rgba(173, 23, 0, 0.5);
+    margin-top: 15px;
+}
+
+footer .line-footer {
+    padding: 15px 0;
+    color: #fff;
+}
+
+footer .line-footer p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+footer .line-footer p a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+footer .line-footer p a:hover {
+    color: #ff4444;
+    text-decoration: underline;
+}
+
+.btn-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-social button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(45deg, #ad1700, #ff4444);
+    font-size: 22px;
+    cursor: pointer;
+    margin: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-social button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #ff4444, #ad1700);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.btn-social button:hover::before {
+    opacity: 1;
+}
+
+.btn-social button img {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.btn-social button:hover img {
+    transform: scale(1.1);
+}
+
+.btn-social button:hover {
+    box-shadow: 0 10px 30px rgba(173, 23, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsividade do Footer */
+@media screen and (max-width: 768px) {
+    footer {
+        padding: 25px 4%;
+    }
+
+    footer .flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    footer .line-footer {
+        text-align: center;
+    }
+
+    footer .line-footer p {
+        font-size: 14px;
+    }
+
+    .btn-social button {
+        width: 50px;
+        height: 50px;
+        margin: 0;
+    }
+}

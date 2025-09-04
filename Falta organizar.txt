@@ -1,0 +1,3 @@
+Falta organizar o footer da mentoria
+media adaptar a cor do footer a pagina
+linkthree faltou fazer uns efeito nos botões de contatos
