@@ -1,53 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page</title>
+    <title>Nathiara borges - Marketing Digital</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="overlay"></div>
-        <img class="backgroundImage" src="/page/images/BANNER NATHIARA.png">
+        <img class="backgroundImage" src="images/BANNER NATHIARA.png" alt="Banner Principal">
+        
         <div class="content">
-            <h2 class="hidden">THIAGO FINCH STORIES</h2>
-            <h1 class="hidden">Descubra como transformar<br> o seu celular numa máquina de<br> imprimir dinheiro <span class="highlight">mesmo começando do zero!</span></h1>
-            <p class="hidden">Você vai descobrir os <strong>SEGREDOS</strong> que fazem parte da <strong>CAIXA PRETA</strong> do meu negócio, sem papo furado. Aqui, você aprende a construir riqueza através da internet.</p>
+            <div class="header-section hidden">
+                <h2 class="brand">Nathiara Borges</h2>
+                <div class="badge">
+                    <i class="fas fa-star"></i>
+                    <span>Método 100% Comprovado</span>
+                </div>
+            </div>
+
+            <h1 class="main-title hidden">
+                Descubra como transformar o seu celular numa máquina de imprimir dinheiro <span class="highlight">mesmo começando do zero!</span>
+            </h1>
+            <h2 class="subtitle hidden">mesmo começando do zero!</h2>
             
-            <section class="CARDS hidden">
-                <div class="Card"> 
-                    <i class="fa-solid fa-shop" style="color: #ad1700;"></i>
-                    <div class="title">
-                        Sem criar produtos
+            <p class="description hidden">
+                Você vai descobrir os <strong>SEGREDOS</strong> que fazem parte da <strong>CAIXA PRETA</strong> do meu negócio, sem papo furado. Aqui, você aprende a construir riqueza através da internet.
+            </p>
+            
+            <section class="benefits-cards hidden">
+                <div class="benefit-card"> 
+                    <div class="card-icon">
+                        <i class="fas fa-store"></i>
+
                     </div>
-                    <div class="detail">
-                       </div>
+                    <h3>Sem criar produtos</h3>
+                    <p>Monte seu negócio sem precisar desenvolver produtos próprios</p>
                 </div>
             
-                <div class="Card hidden"> 
-                    <i class="fa-solid fa-handshake" style="color: #ad1700;"></i>
-                    <div class="title">
-                        Sem gastar em anúncios
+                <div class="benefit-card"> 
+                    <div class="card-icon">
+                        <i class="fas fa-handshake"></i>
                     </div>
-                    <div class="detail">
-                       
-                    </div>
+                    <h3>Sem gastar em anúncios</h3>
+                    <p>Estratégias que não dependem de orçamentos altos para marketing</p>
                 </div>
             
-                <div class="Card hidden"> 
-                    <i class="fa-solid fa-award" style="color: #ad1700;"></i>
-                    <div class="title">
-                    Sem mostrar o rosto
+                <div class="benefit-card"> 
+                    <div class="card-icon">
+                        <i class="fas fa-user-secret"></i>
                     </div>
-                    <div class="detail">
-                        
-                    </div>
+                    <h3>Sem mostrar o rosto</h3>
+                    <p>Construa sua marca sem exposição pessoal</p>
                 </div>
             </section>
-            <button class="btn hidden">QUERO MEU ACESSO!</button>
+
+            <div class="cta-section hidden">
+                <div class="guarantee">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Garantia de 30 dias ou seu dinheiro de volta</span>
+                </div>
+                
+                <a href="../SALES PAGE/SELL.html" class="cta-button">
+                    <span>QUERO MEU ACESSO AGORA!</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                
+                <p class="limited-offer">
+                    <i class="fas fa-clock"></i>
+                    <span>Oferta por tempo limitado - Vagas limitadas</span>
+                </p>
+            </div>
         </div>
     </div>
+
     <script src="index.js"></script>
 </body>
 </html>

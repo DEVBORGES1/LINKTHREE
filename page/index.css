@@ -1,10 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-@media (max-width: 768px) {
-    .container {
-        background-position: center;
-        background-size: cover;
-    }
+/* Reset e configurações base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {
@@ -14,91 +12,285 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: white;
-    text-align: center;
+    overflow-x: hidden;
+    background: #000;
 }
 
+/* Container principal */
 .container {
     position: relative;
-    height: 100vh;
-    background: url('image.png') no-repeat center center;
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 10%;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
 }
 
+/* Imagem de fundo */
 .backgroundImage {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%; 
-    max-width: 200rem; 
-    z-index: 1; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.8;
 }
 
+/* Overlay escuro */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.6) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: 2;
 }
 
+/* Conteúdo principal */
 .content {
     position: relative;
-    z-index: 2;
-    max-width: 600px;
+    z-index: 3;
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
 }
 
-.right-align {
-    text-align: right;
+/* Header section */
+.header-section {
+    margin-bottom: 3rem;
 }
 
-h1 {
-    font-size: 28px;
+.brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ad1700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(173, 23, 0, 0.2);
+    border: 1px solid #ad1700;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.badge i {
+    color: #ad1700;
+    font-size: 0.8rem;
+}
+
+/* Título principal */
+.main-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .highlight {
     color: #ad1700;
+    text-shadow: 0 0 20px rgba(173, 23, 0, 0.5);
 }
 
-.benefits span {
-    display: block;
-    margin: 10px 0;
+.subtitle {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 400;
+    opacity: 0.9;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    color: #ad1700;
+    text-shadow: 0 0 10px rgba(173, 23, 0, 0.3);
 }
 
-.btn {
-    background: #ad1700;
-    color: #000;
-    padding: 15px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: 0.3s;
+/* Descrição */
+.description {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    line-height: 1.6;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
 }
 
-.btn:hover {
-    background: #f53c23;
+.description strong {
+    color: #ad1700;
+    font-weight: 600;
 }
 
-html {
-    scroll-behavior: smooth;
-
+/* Cards de benefícios */
+.benefits-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.benefit-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(173, 23, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.benefit-card:hover::before {
+    left: 100%;
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(173, 23, 0, 0.5);
+    box-shadow: 0 20px 40px rgba(173, 23, 0, 0.2);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ad1700, #f53c23);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover .card-icon {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(173, 23, 0, 0.4);
+}
+
+.card-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.benefit-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #ad1700;
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* Seção CTA */
+.cta-section {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.guarantee i {
+    color: #ad1700;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, #ad1700, #f53c23);
+    color: white;
+    text-decoration: none;
+    padding: 1.5rem 3rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(173, 23, 0, 0.3);
+    margin-bottom: 1.5rem;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(173, 23, 0, 0.4);
+    background: linear-gradient(135deg, #f53c23, #ad1700);
+}
+
+.cta-button i {
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover i {
+    transform: translateX(5px);
+}
+
+.limited-offer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+.limited-offer i {
+    color: #ad1700;
+}
+
+/* Animações */
 .hidden {
     opacity: 0;
-    transform: translateY(20px); 
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
 }
 
 .show {
@@ -106,116 +298,152 @@ html {
     transform: translateY(0);
 }
 
-.section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    min-height: 100vh;
-    background-color: #111;
-}
-
-.CARDS {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 20px; 
-    padding: 20px;
-    max-width: 100%;
-}
-
-.Card {
-    --color: #ad1700;
-    --border-size: 1rem;
-    --bg-color: #252525;
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
     
-    position: relative;
-    background-color: var(--bg-color);
-    width: 300px; 
-    max-width: 100%; 
-    border-radius: var(--border-size);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    isolation: isolate;
-    overflow: hidden;
-}
-
-
-.Card::before,.Card::after{
-    content: "";
-    position: absolute;
-
-}
-.Card::before{
-    width: 200%;
-    height: 200%;
-    background-image: conic-gradient( var(--color) 0deg,
-        transparent 60deg,
-        transparent 180deg, 
-        var(--color) 180deg,
-        transparent 240deg);
-    inset: -50%;
-    z-index: -2;
-    animation: border 8s linear infinite;
-
-
-}
-
-.Card:hover::before{
-    animation-play-state: paused;
-}
-
-@keyframes border{
-    to{
-        transform: rotateZ(-360deg);
+    .content {
+        padding: 1rem;
+    }
+    
+    .main-title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+    
+    .description {
+        font-size: 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .benefits-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .benefit-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .cta-button {
+        padding: 1.2rem 2rem;
+        font-size: 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .header-section {
+        margin-bottom: 2rem;
+    }
+    
+    .brand {
+        font-size: 1rem;
+        letter-spacing: 2px;
     }
 }
 
-.Card::after{
-    --inset: 0.25rem;
-    background-color: #111;
-    inset: var(--inset);
-    border-radius: calc(
-        var(--border-size) - var(--inset)
-    );
-    z-index: -1;
-    transition: all 0.35s linear;
-
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+    }
+    
+    .content {
+        padding: 0.5rem;
+    }
+    
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .benefit-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .card-icon i {
+        font-size: 1.5rem;
+    }
 }
 
-.Card:hover::after {
-    background-color: var(--bg-color);
-
+/* Animações de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.Card i {
-    font-size: 4rem;
-    margin-inline: auto;
-    color: transparent;
-    -webkit-text-stroke: thin var(--color);
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.Card:hover i {
-    color: var(--color);
-    -webkit-text-stroke-width: 0;
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.Card .title{
-    text-align: center;
-    font-size: 1.5rem;
-    line-height: 1.875rem;
-    margin-block: 2.5rem 1.5rem;
-    color: var(--color);
+/* Efeitos de hover adicionais */
+.benefit-card:hover .card-icon i {
+    animation: pulse 1s infinite;
 }
 
-.Card .detail{
-    line-height: 1.5rem;
-    text-align: center;
-    opacity: 0.75;
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Partículas flutuantes */
+.floating-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(173, 23, 0, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+        opacity: 0.3; 
+    }
+    50% { 
+        transform: translateY(-20px) rotate(180deg); 
+        opacity: 0.8; 
+    }
+}
+
+/* Estado de carregamento */
+.loaded .content {
+    animation: fadeInUp 1s ease-out;
 }
 
