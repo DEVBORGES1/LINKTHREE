@@ -597,6 +597,31 @@ section {
     background: var(--gray-900);
 }
 
+/* Garantir que as imagens dos testemunhos sejam exibidas */
+.testemunho-author .author-avatar {
+    min-width: 60px;
+    min-height: 60px;
+    flex-shrink: 0;
+}
+
+/* Fallback para imagens que não carregam */
+.author-avatar:not([src]),
+.author-avatar[src=""] {
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.author-avatar:not([src])::before,
+.author-avatar[src=""]::before {
+    content: '\f007';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: white;
+    font-size: 24px;
+}
+
 .testemunhos-carousel {
     margin-top: 3rem;
 }
@@ -654,6 +679,14 @@ section {
     border-radius: var(--border-radius-full);
     object-fit: cover;
     border: 3px solid var(--primary-color);
+    display: block;
+    background: var(--gray-700);
+    transition: all var(--transition-normal);
+}
+
+.author-avatar:hover {
+    transform: scale(1.05);
+    border-color: var(--primary-light);
 }
 
 .author-info {

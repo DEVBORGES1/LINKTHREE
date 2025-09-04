@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     initSmoothScrolling();
     initMobileMenu();
     initLazyLoading();
+    initFooter();
     
     // Adicionar listener para scroll
     window.addEventListener('scroll', handleScroll);
@@ -396,6 +397,36 @@ function initLazyLoading() {
             imageObserver.observe(img);
         });
     }
+    
+    // Verificar e corrigir imagens dos testemunhos
+    initTestimonialImages();
+}
+
+// ===== IMAGENS DOS TESTEMUNHOS =====
+function initTestimonialImages() {
+    const testimonialImages = document.querySelectorAll('.author-avatar');
+    
+    testimonialImages.forEach(img => {
+        // Adicionar evento de erro para imagens que não carregam
+        img.addEventListener('error', function() {
+            console.warn('Imagem não carregou:', this.src);
+            // Adicionar um placeholder ou ícone
+            this.style.background = 'var(--primary-color)';
+            this.style.display = 'flex';
+            this.style.alignItems = 'center';
+            this.style.justifyContent = 'center';
+            this.innerHTML = '<i class="fas fa-user" style="color: white; font-size: 24px;"></i>';
+        });
+        
+        // Adicionar evento de carregamento bem-sucedido
+        img.addEventListener('load', function() {
+            this.style.opacity = '1';
+        });
+        
+        // Inicialmente definir opacidade baixa para animação
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.3s ease';
+    });
 }
 
 // ===== NOTIFICAÇÕES =====
@@ -590,6 +621,29 @@ if ('serviceWorker' in navigator) {
 function trackEvent(eventName, eventData = {}) {
     // Implementar tracking de eventos se necessário
     console.log('Event tracked:', eventName, eventData);
+}
+
+// ===== FOOTER =====
+function initFooter() {
+    const footer = document.querySelector('footer .interface');
+    if (!footer) return;
+    
+    // Adicionar animação de entrada quando o footer estiver visível
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                entry.target.classList.remove('hidden');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Inicialmente esconder o footer
+    footer.classList.add('hidden');
+    observer.observe(footer);
 }
 
 // ===== EXPORTAR FUNÇÕES PARA USO GLOBAL =====
