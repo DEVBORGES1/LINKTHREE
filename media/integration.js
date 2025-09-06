@@ -6,7 +6,7 @@
 class AdvocaciaIntegration {
     constructor() {
         this.config = {
-            whatsapp: '5549999001230',
+            whatsapp: '554999001230',
             email: 'nathiara.borges@gmail.com',
             apiEndpoint: '/api/leads', // Substituir por sua API real
             autoOpenDelay: 10000, // 10 segundos
@@ -465,7 +465,7 @@ class AdvocaciaIntegration {
             
             'autista': 'Excelente! Sou especializada em Direito dos Autistas (TEA). 🧩\n\nPosso ajudar com:\n• Direitos educacionais\n• Benefícios sociais\n• Inclusão no mercado de trabalho\n• Direitos à saúde\n\nTem alguma situação específica que gostaria de discutir?',
             
-            'default': 'Obrigada pelo contato! 😊\n\nPara um atendimento mais personalizado, recomendo:\n\n1️⃣ Agendar uma consulta\n2️⃣ Enviar detalhes por WhatsApp\n3️⃣ Preencher nosso formulário online\n\nComo posso ajudá-lo melhor?'
+            'default': 'Para um atendimento mais personalizado, uma duvida que não foi esclarecida, recomendamos:\n\n1️⃣ Agendar uma consulta\n2️⃣ Enviar detalhes por WhatsApp\n3️⃣ Preencher nosso formulário online\n\nPara que possamos te ajudar melhor!!'
         };
 
         for (const [key, response] of Object.entries(responses)) {
