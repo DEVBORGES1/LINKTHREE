@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Consultas - Nathiara Borges Advocacia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #ad1700;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        .agendamento-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendario-section {
+            border-right: 1px solid #e9ecef;
+            padding-right: 40px;
+        }
+
+        .form-section {
+            padding-left: 40px;
+        }
+
+        .section-title {
+            color: #ad1700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calendar {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-nav {
+            background: #ad1700;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .calendar-nav:hover {
+            background: #c41a00;
+        }
+
+        .calendar-month {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid transparent;
+        }
+
+        .calendar-day.other-month {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.today {
+            background: #e3f2fd;
+            color: #1976d2;
+            font-weight: 600;
+        }
+
+                .calendar-day.selected {
+                    background: #ad1700 !important;
+                    color: white !important;
+                    transform: scale(1.1);
+                    box-shadow: 0 0 10px rgba(173, 23, 0, 0.5);
+                    border: 2px solid #c41a00;
+                    font-weight: bold;
+                }
+
+        .calendar-day.available {
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .calendar-day.available:hover {
+            background: #e9ecef;
+        }
+
+        .calendar-day.unavailable {
+            background: #f5f5f5;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .time-slots {
+            margin-top: 20px;
+        }
+
+        .time-slots h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .time-slot:hover {
+            background: #e9ecef;
+        }
+
+        .time-slot.selected {
+            background: #ad1700 !important;
+            color: white !important;
+            border-color: #ad1700 !important;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(173, 23, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .time-slot.unavailable {
+            background: #f5f5f5;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #ad1700;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .service-option {
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-option:hover {
+            border-color: #ad1700;
+        }
+
+        .service-option.selected {
+            border-color: #ad1700;
+            background: #fff5f5;
+        }
+
+        .service-option h4 {
+            color: #ad1700;
+            margin-bottom: 5px;
+        }
+
+        .service-option p {
+            color: #6c757d;
+            font-size: 12px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ad1700, #c41a00);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(173, 23, 0, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .confirmation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .confirmation-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .modal-title {
+            color: #ad1700;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-text {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn-primary {
+            background: #ad1700;
+            color: white;
+        }
+
+        .modal-btn-secondary {
+            background: #e9ecef;
+            color: #333;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .agendamento-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .calendario-section {
+                border-right: none;
+                border-bottom: 1px solid #e9ecef;
+                padding-right: 0;
+                padding-bottom: 20px;
+            }
+
+            .form-section {
+                padding-left: 0;
+            }
+
+            .time-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-calendar-alt"></i> Agendamento de Consultas</h1>
+            <p>Agende sua consulta jurídica de forma rápida e segura</p>
+        </div>
+
+        <div class="agendamento-container">
+            <!-- Seção do Calendário -->
+            <div class="calendario-section">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar"></i>
+                    Selecione a Data
+                </h2>
+                
+                <div class="calendar" id="calendar">
+                    <div class="calendar-header">
+                        <button class="calendar-nav" id="prevMonth">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="calendar-month" id="currentMonth"></div>
+                        <button class="calendar-nav" id="nextMonth">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                </div>
+
+                <div class="time-slots" id="timeSlots" style="display: none;">
+                    <h4>Horários Disponíveis</h4>
+                    <div class="time-grid" id="timeGrid"></div>
+                </div>
+            </div>
+
+            <!-- Seção do Formulário -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-user"></i>
+                    Dados da Consulta
+                </h2>
+
+                <form id="agendamentoForm">
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Serviço *</label>
+                        <div class="service-options">
+                            <div class="service-option" data-service="consulta-inicial">
+                                <h4>Consulta Inicial</h4>
+                                <p>R$ 200</p>
+                            </div>
+                            <div class="service-option" data-service="direito-civil">
+                                <h4>Direito Civil</h4>
+                                <p>A partir de R$ 500</p>
+                            </div>
+                            <div class="service-option" data-service="direito-penal">
+                                <h4>Direito Penal</h4>
+                                <p>A partir de R$ 800</p>
+                            </div>
+                            <div class="service-option" data-service="direito-tea">
+                                <h4>Direito TEA</h4>
+                                <p>Consulta gratuita</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="telefone">Telefone/WhatsApp *</label>
+                        <input type="tel" id="telefone" name="telefone" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="assunto">Assunto da Consulta *</label>
+                        <select id="assunto" name="assunto" class="form-select" required>
+                            <option value="">Selecione o assunto</option>
+                            <option value="direito-civil">Direito Civil</option>
+                            <option value="direito-penal">Direito Penal</option>
+                            <option value="direito-familia">Direito de Família</option>
+                            <option value="direito-tea">Direito dos Autistas (TEA)</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="descricao">Descrição do Caso</label>
+                        <textarea id="descricao" name="descricao" class="form-textarea" 
+                                  placeholder="Descreva brevemente sua situação jurídica..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <div class="loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            Enviando...
+                        </div>
+                        <div class="text">
+                            <i class="fas fa-calendar-check"></i>
+                            Agendar Consulta
+                        </div>
+                    </button>
+                    
+                    <div class="debug-info" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 12px; color: #666;">
+                        <strong>Debug:</strong><br>
+                        <span id="debugStatus">Aguardando preenchimento...</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="modal-title">Consulta Agendada!</h3>
+            <p class="modal-text">
+                Sua consulta foi agendada com sucesso. Você receberá uma confirmação por e-mail e WhatsApp.
+            </p>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-primary" onclick="window.location.href='https://wa.me/5549999001230'">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal()">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class AgendamentoSistema {
+            constructor() {
+                this.currentDate = new Date();
+                this.selectedDate = null;
+                this.selectedTime = null;
+                this.selectedService = null;
+                this.init();
+            }
+
+            init() {
+                this.renderCalendar();
+                this.bindEvents();
+                this.loadUnavailableDates();
+            }
+
+            bindEvents() {
+                // Navegação do calendário
+                document.getElementById('prevMonth').addEventListener('click', () => {
+                    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+                    this.renderCalendar();
+                });
+
+                document.getElementById('nextMonth').addEventListener('click', () => {
+                    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+                    this.renderCalendar();
+                });
+
+                // Seleção de serviço
+                document.querySelectorAll('.service-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        document.querySelectorAll('.service-option').forEach(o => o.classList.remove('selected'));
+                        option.classList.add('selected');
+                        this.selectedService = option.getAttribute('data-service');
+                    });
+                });
+
+                // Formulário
+                document.getElementById('agendamentoForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.submitForm();
+                });
+            }
+
+            renderCalendar() {
+                const monthNames = [
+                    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                ];
+
+                document.getElementById('currentMonth').textContent = 
+                    `${monthNames[this.currentDate.getMonth()]} ${this.currentDate.getFullYear()}`;
+
+                const firstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
+                const lastDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 0);
+                const startDate = new Date(firstDay);
+                startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+                const calendarGrid = document.getElementById('calendarGrid');
+                calendarGrid.innerHTML = '';
+
+                // Cabeçalho dos dias da semana
+                const dayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+                dayNames.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day';
+                    dayHeader.style.fontWeight = 'bold';
+                    dayHeader.style.color = '#ad1700';
+                    dayHeader.textContent = day;
+                    calendarGrid.appendChild(dayHeader);
+                });
+
+                // Dias do calendário
+                for (let i = 0; i < 42; i++) {
+                    const date = new Date(startDate);
+                    date.setDate(startDate.getDate() + i);
+
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    dayElement.textContent = date.getDate();
+
+                    if (date.getMonth() !== this.currentDate.getMonth()) {
+                        dayElement.classList.add('other-month');
+                    } else if (this.isToday(date)) {
+                        dayElement.classList.add('today');
+                    } else if (this.isUnavailable(date)) {
+                        dayElement.classList.add('unavailable');
+                    } else {
+                        dayElement.classList.add('available');
+                        dayElement.addEventListener('click', () => this.selectDate(date));
+                    }
+
+                    calendarGrid.appendChild(dayElement);
+                }
+            }
+
+            selectDate(date) {
+                this.selectedDate = date;
+                
+                // Remover seleção anterior
+                document.querySelectorAll('.calendar-day').forEach(day => {
+                    day.classList.remove('selected');
+                });
+                
+                // Encontrar e marcar o dia correto
+                const dayElements = document.querySelectorAll('.calendar-day');
+                dayElements.forEach(day => {
+                    // Verificar se é o dia correto (considerando que pode haver dias de outros meses)
+                    const dayNumber = parseInt(day.textContent);
+                    const isCurrentMonth = !day.classList.contains('other-month');
+                    const isAvailable = !day.classList.contains('unavailable');
+                    const isToday = day.classList.contains('today');
+                    
+                    // Marcar o dia se for o dia correto do mês atual e disponível
+                    if (dayNumber === date.getDate() && isCurrentMonth && (isAvailable || isToday)) {
+                        day.classList.add('selected');
+                        console.log(`Data selecionada: ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`);
+                    }
+                });
+                
+                this.showTimeSlots();
+            }
+
+            showTimeSlots() {
+                const timeSlots = document.getElementById('timeSlots');
+                const timeGrid = document.getElementById('timeGrid');
+                
+                timeSlots.style.display = 'block';
+                timeGrid.innerHTML = '';
+
+                // Adicionar título com a data selecionada
+                const titleElement = document.createElement('h4');
+                titleElement.innerHTML = `Horários Disponíveis - <span style="color: #ad1700; font-weight: bold;">${this.selectedDate.toLocaleDateString('pt-BR', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                })}</span>`;
+                timeSlots.insertBefore(titleElement, timeGrid);
+
+                const availableTimes = this.getAvailableTimes();
+                availableTimes.forEach(time => {
+                    const timeSlot = document.createElement('div');
+                    timeSlot.className = 'time-slot';
+                    timeSlot.textContent = time;
+                    timeSlot.addEventListener('click', () => this.selectTime(time, timeSlot));
+                    timeGrid.appendChild(timeSlot);
+                });
+            }
+
+            selectTime(time, element) {
+                this.selectedTime = time;
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.classList.remove('selected');
+                });
+                element.classList.add('selected');
+            }
+
+            getAvailableTimes() {
+                // Horários disponíveis (exemplo)
+                const allTimes = ['08:00', '09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
+                const unavailableTimes = this.getUnavailableTimes();
+                return allTimes.filter(time => !unavailableTimes.includes(time));
+            }
+
+            getUnavailableTimes() {
+                // Simular horários indisponíveis
+                return ['10:00', '15:00'];
+            }
+
+            isToday(date) {
+                const today = new Date();
+                return date.toDateString() === today.toDateString();
+            }
+
+            isUnavailable(date) {
+                // Simular datas indisponíveis (fins de semana e feriados)
+                const day = date.getDay();
+                return day === 0 || day === 6; // Domingo ou Sábado
+            }
+
+            loadUnavailableDates() {
+                // Carregar datas indisponíveis do servidor (implementar conforme necessário)
+            }
+
+            async submitForm() {
+                const submitBtn = document.getElementById('submitBtn');
+                const debugStatus = document.getElementById('debugStatus');
+                
+                // Mostrar loading
+                submitBtn.classList.add('loading');
+                submitBtn.querySelector('.loading').style.display = 'block';
+                submitBtn.querySelector('.text').style.display = 'none';
+                submitBtn.disabled = true;
+                
+                debugStatus.textContent = 'Validando formulário...';
+                
+                if (!this.validateForm()) {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.querySelector('.loading').style.display = 'none';
+                    submitBtn.querySelector('.text').style.display = 'block';
+                    submitBtn.disabled = false;
+                    debugStatus.textContent = 'Erro na validação. Verifique os campos.';
+                    return;
+                }
+
+                debugStatus.textContent = 'Coletando dados do formulário...';
+
+                const formData = new FormData(document.getElementById('agendamentoForm'));
+                const data = {
+                    nome: formData.get('nome'),
+                    email: formData.get('email'),
+                    telefone: formData.get('telefone'),
+                    assunto: formData.get('assunto'),
+                    descricao: formData.get('descricao'),
+                    servico: this.selectedService,
+                    data: this.selectedDate,
+                    horario: this.selectedTime
+                };
+
+                debugStatus.textContent = `Dados coletados: ${data.nome} - ${data.data?.toLocaleDateString()} - ${data.horario}`;
+
+                try {
+                    debugStatus.textContent = 'Enviando dados...';
+                    await this.sendToServer(data);
+                    debugStatus.textContent = 'Sucesso! Redirecionando para WhatsApp...';
+                    this.showConfirmation();
+                } catch (error) {
+                    console.error('Erro no agendamento:', error);
+                    debugStatus.textContent = `Erro: ${error.message}`;
+                    alert('Erro ao agendar consulta. Tente novamente.');
+                } finally {
+                    // Restaurar botão
+                    submitBtn.classList.remove('loading');
+                    submitBtn.querySelector('.loading').style.display = 'none';
+                    submitBtn.querySelector('.text').style.display = 'block';
+                    submitBtn.disabled = false;
+                }
+            }
+
+            validateForm() {
+                if (!this.selectedDate) {
+                    alert('Por favor, selecione uma data.');
+                    return false;
+                }
+                if (!this.selectedTime) {
+                    alert('Por favor, selecione um horário.');
+                    return false;
+                }
+                if (!this.selectedService) {
+                    alert('Por favor, selecione um tipo de serviço.');
+                    return false;
+                }
+                return true;
+            }
+
+            async sendToServer(data) {
+                // Simular delay de rede
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Aqui você integraria com sua API real
+                console.log('Dados do agendamento:', data);
+                
+                // Salvar no localStorage (temporário)
+                const agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+                agendamentos.push({
+                    ...data,
+                    id: Date.now(),
+                    status: 'pendente'
+                });
+                localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
+                
+                // Enviar para WhatsApp
+                const message = this.formatWhatsAppMessage(data);
+                const whatsappUrl = `https://wa.me/5549999001230?text=${encodeURIComponent(message)}`;
+                
+                // Abrir WhatsApp automaticamente
+                window.open(whatsappUrl, '_blank');
+                
+                console.log('WhatsApp URL:', whatsappUrl);
+                console.log('Mensagem formatada:', message);
+            }
+
+            formatWhatsAppMessage(data) {
+                return `🕐 *Nova Consulta Agendada*
+
+👤 *Cliente:* ${data.nome}
+📧 *Email:* ${data.email}
+📱 *Telefone:* ${data.telefone}
+⚖️ *Assunto:* ${data.assunto}
+📅 *Data:* ${data.data.toLocaleDateString('pt-BR')}
+🕐 *Horário:* ${data.horario}
+💼 *Serviço:* ${data.servico}
+
+📝 *Descrição:*
+${data.descricao || 'Não informado'}
+
+---
+*Agendamento realizado através do site*`;
+            }
+
+            showConfirmation() {
+                document.getElementById('confirmationModal').classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('confirmationModal').classList.remove('active');
+        }
+
+        // Inicializar sistema
+        document.addEventListener('DOMContentLoaded', () => {
+            const sistema = new AgendamentoSistema();
+            
+            // Adicionar listener para atualizar debug em tempo real
+            const form = document.getElementById('agendamentoForm');
+            const inputs = form.querySelectorAll('input, select, textarea');
+            const debugStatus = document.getElementById('debugStatus');
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    updateDebugStatus();
+                });
+            });
+            
+            function updateDebugStatus() {
+                const formData = new FormData(form);
+                const nome = formData.get('nome') || '';
+                const email = formData.get('email') || '';
+                const telefone = formData.get('telefone') || '';
+                const assunto = formData.get('assunto') || '';
+                
+                let status = `Nome: ${nome ? '✓' : '✗'} | Email: ${email ? '✓' : '✗'} | Telefone: ${telefone ? '✓' : '✗'} | Assunto: ${assunto ? '✓' : '✗'}`;
+                
+                if (sistema.selectedDate) {
+                    status += ` | Data: ✓ ${sistema.selectedDate.toLocaleDateString('pt-BR')} (${sistema.selectedDate.toLocaleDateString('pt-BR', { weekday: 'long' })})`;
+                } else {
+                    status += ' | Data: ✗';
+                }
+                
+                if (sistema.selectedTime) {
+                    status += ` | Horário: ✓ ${sistema.selectedTime}`;
+                } else {
+                    status += ' | Horário: ✗';
+                }
+                
+                if (sistema.selectedService) {
+                    status += ` | Serviço: ✓ ${sistema.selectedService}`;
+                } else {
+                    status += ' | Serviço: ✗';
+                }
+                
+                debugStatus.textContent = status;
+            }
+            
+            // Atualizar status inicial
+            updateDebugStatus();
+        });
+    </script>
+</body>
+</html>

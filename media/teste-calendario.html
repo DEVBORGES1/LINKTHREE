@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Calendário - Seleção de Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .calendar {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .calendar-nav {
+            background: #ad1700;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        .calendar-nav:hover {
+            background: #c41a00;
+        }
+        .calendar-month {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid transparent;
+        }
+        .calendar-day.other-month {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        .calendar-day.today {
+            background: #e3f2fd;
+            color: #1976d2;
+            font-weight: 600;
+        }
+        .calendar-day.selected {
+            background: #ad1700 !important;
+            color: white !important;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(173, 23, 0, 0.5);
+            border: 2px solid #c41a00;
+            font-weight: bold;
+        }
+        .calendar-day.available {
+            background: #f8f9fa;
+            color: #333;
+        }
+        .calendar-day.available:hover {
+            background: #e9ecef;
+        }
+        .calendar-day.unavailable {
+            background: #f5f5f5;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        .status {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #ad1700;
+        }
+        .selected-info {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>📅 Teste de Seleção de Data</h1>
+        <p>Clique em uma data para testar a seleção visual.</p>
+        
+        <div class="calendar" id="calendar">
+            <div class="calendar-header">
+                <button class="calendar-nav" id="prevMonth">‹</button>
+                <div class="calendar-month" id="currentMonth"></div>
+                <button class="calendar-nav" id="nextMonth">›</button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+        
+        <div class="status" id="status">
+            <strong>Status:</strong> Nenhuma data selecionada
+        </div>
+        
+        <div class="selected-info" id="selectedInfo" style="display: none;">
+            <strong>✅ Data Selecionada:</strong>
+            <div id="selectedDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        class CalendarTest {
+            constructor() {
+                this.currentDate = new Date();
+                this.selectedDate = null;
+                this.init();
+            }
+
+            init() {
+                this.renderCalendar();
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                document.getElementById('prevMonth').addEventListener('click', () => {
+                    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+                    this.renderCalendar();
+                });
+
+                document.getElementById('nextMonth').addEventListener('click', () => {
+                    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+                    this.renderCalendar();
+                });
+            }
+
+            renderCalendar() {
+                const monthNames = [
+                    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                ];
+
+                document.getElementById('currentMonth').textContent = 
+                    `${monthNames[this.currentDate.getMonth()]} ${this.currentDate.getFullYear()}`;
+
+                const firstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
+                const lastDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 0);
+                const startDate = new Date(firstDay);
+                startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+                const calendarGrid = document.getElementById('calendarGrid');
+                calendarGrid.innerHTML = '';
+
+                // Cabeçalho dos dias da semana
+                const dayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+                dayNames.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day';
+                    dayHeader.style.fontWeight = 'bold';
+                    dayHeader.style.color = '#ad1700';
+                    dayHeader.textContent = day;
+                    calendarGrid.appendChild(dayHeader);
+                });
+
+                // Dias do calendário
+                for (let i = 0; i < 42; i++) {
+                    const date = new Date(startDate);
+                    date.setDate(startDate.getDate() + i);
+
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    dayElement.textContent = date.getDate();
+
+                    if (date.getMonth() !== this.currentDate.getMonth()) {
+                        dayElement.classList.add('other-month');
+                    } else if (this.isToday(date)) {
+                        dayElement.classList.add('today');
+                    } else if (this.isUnavailable(date)) {
+                        dayElement.classList.add('unavailable');
+                    } else {
+                        dayElement.classList.add('available');
+                        dayElement.addEventListener('click', () => this.selectDate(date, dayElement));
+                    }
+
+                    calendarGrid.appendChild(dayElement);
+                }
+            }
+
+            selectDate(date, element) {
+                this.selectedDate = date;
+                
+                // Remover seleção anterior
+                document.querySelectorAll('.calendar-day').forEach(day => {
+                    day.classList.remove('selected');
+                });
+                
+                // Marcar o dia selecionado
+                element.classList.add('selected');
+                
+                // Atualizar status
+                this.updateStatus();
+                
+                console.log(`Data selecionada: ${date.toLocaleDateString('pt-BR')}`);
+            }
+
+            updateStatus() {
+                const statusDiv = document.getElementById('status');
+                const selectedInfoDiv = document.getElementById('selectedInfo');
+                const selectedDetailsDiv = document.getElementById('selectedDetails');
+                
+                if (this.selectedDate) {
+                    statusDiv.innerHTML = `<strong>Status:</strong> Data selecionada com sucesso!`;
+                    statusDiv.style.borderLeftColor = '#28a745';
+                    statusDiv.style.background = '#d4edda';
+                    statusDiv.style.color = '#155724';
+                    
+                    selectedInfoDiv.style.display = 'block';
+                    selectedDetailsDiv.innerHTML = `
+                        <p><strong>Data:</strong> ${this.selectedDate.toLocaleDateString('pt-BR')}</p>
+                        <p><strong>Dia da semana:</strong> ${this.selectedDate.toLocaleDateString('pt-BR', { weekday: 'long' })}</p>
+                        <p><strong>Mês:</strong> ${this.selectedDate.toLocaleDateString('pt-BR', { month: 'long' })}</p>
+                        <p><strong>Ano:</strong> ${this.selectedDate.getFullYear()}</p>
+                    `;
+                } else {
+                    statusDiv.innerHTML = `<strong>Status:</strong> Nenhuma data selecionada`;
+                    statusDiv.style.borderLeftColor = '#ad1700';
+                    statusDiv.style.background = '#f8f9fa';
+                    statusDiv.style.color = '#333';
+                    
+                    selectedInfoDiv.style.display = 'none';
+                }
+            }
+
+            isToday(date) {
+                const today = new Date();
+                return date.toDateString() === today.toDateString();
+            }
+
+            isUnavailable(date) {
+                const day = date.getDay();
+                return day === 0 || day === 6; // Domingo ou Sábado
+            }
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new CalendarTest();
+        });
+    </script>
+</body>
+</html>

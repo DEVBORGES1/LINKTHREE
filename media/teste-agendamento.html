@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Agendamento - Nathiara Borges</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-form {
+            display: grid;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .test-btn {
+            background: #ad1700;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .test-btn:hover {
+            background: #c41a00;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #ad1700;
+        }
+        .success {
+            background: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Teste de Agendamento</h1>
+        <p>Este é um teste simples para verificar se o sistema de agendamento está funcionando.</p>
+        
+        <form class="test-form" id="testForm">
+            <div class="form-group">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" value="João Silva" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" value="joao@teste.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" value="(49) 99999-9999" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="assunto">Assunto:</label>
+                <select id="assunto" name="assunto" required>
+                    <option value="direito-civil">Direito Civil</option>
+                    <option value="direito-penal">Direito Penal</option>
+                    <option value="direito-familia">Direito de Família</option>
+                    <option value="direito-tea">Direito dos Autistas (TEA)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" rows="3">Este é um teste do sistema de agendamento.</textarea>
+            </div>
+            
+            <button type="submit" class="test-btn">🚀 Testar Agendamento</button>
+        </form>
+        
+        <div id="result" class="result" style="display: none;">
+            <h3>Resultado do Teste:</h3>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                nome: formData.get('nome'),
+                email: formData.get('email'),
+                telefone: formData.get('telefone'),
+                assunto: formData.get('assunto'),
+                descricao: formData.get('descricao'),
+                servico: 'consulta-inicial',
+                data: new Date(),
+                horario: '14:00'
+            };
+            
+            // Simular dados do agendamento
+            const agendamentoData = {
+                ...data,
+                id: Date.now(),
+                status: 'pendente',
+                timestamp: new Date().toISOString()
+            };
+            
+            // Salvar no localStorage
+            const agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+            agendamentos.push(agendamentoData);
+            localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
+            
+            // Formatar mensagem para WhatsApp
+            const message = `🕐 *Nova Consulta Agendada*
+
+👤 *Cliente:* ${data.nome}
+📧 *Email:* ${data.email}
+📱 *Telefone:* ${data.telefone}
+⚖️ *Assunto:* ${data.assunto}
+📅 *Data:* ${data.data.toLocaleDateString('pt-BR')}
+🕐 *Horário:* ${data.horario}
+💼 *Serviço:* ${data.servico}
+
+📝 *Descrição:*
+${data.descricao}
+
+---
+*Agendamento realizado através do site*`;
+
+            const whatsappUrl = `https://wa.me/5549999001230?text=${encodeURIComponent(message)}`;
+            
+            // Mostrar resultado
+            const resultDiv = document.getElementById('result');
+            const resultContent = document.getElementById('resultContent');
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result success';
+            
+            resultContent.innerHTML = `
+                <p><strong>✅ Teste realizado com sucesso!</strong></p>
+                <p><strong>Dados salvos:</strong></p>
+                <ul>
+                    <li>Nome: ${data.nome}</li>
+                    <li>Email: ${data.email}</li>
+                    <li>Telefone: ${data.telefone}</li>
+                    <li>Assunto: ${data.assunto}</li>
+                    <li>Data: ${data.data.toLocaleDateString('pt-BR')}</li>
+                    <li>Horário: ${data.horario}</li>
+                </ul>
+                <p><strong>WhatsApp URL:</strong></p>
+                <textarea readonly style="width: 100%; height: 100px; font-size: 12px;">${whatsappUrl}</textarea>
+                <p><strong>Mensagem formatada:</strong></p>
+                <textarea readonly style="width: 100%; height: 150px; font-size: 12px;">${message}</textarea>
+                <br><br>
+                <button onclick="window.open('${whatsappUrl}', '_blank')" class="test-btn">
+                    📱 Abrir WhatsApp
+                </button>
+                <button onclick="testarLocalStorage()" class="test-btn" style="background: #28a745; margin-left: 10px;">
+                    💾 Ver Dados Salvos
+                </button>
+            `;
+        });
+        
+        function testarLocalStorage() {
+            const agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+            alert(`Total de agendamentos salvos: ${agendamentos.length}\n\nÚltimo agendamento:\n${JSON.stringify(agendamentos[agendamentos.length - 1], null, 2)}`);
+        }
+        
+        // Verificar se há dados salvos
+        window.addEventListener('load', function() {
+            const agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+            if (agendamentos.length > 0) {
+                console.log('Agendamentos encontrados:', agendamentos);
+            }
+        });
+    </script>
+</body>
+</html>

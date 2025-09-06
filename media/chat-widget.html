@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Widget - Nathiara Borges Advocacia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Chat Widget Styles */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-size: 24px;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .chat-toggle.pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .chat-container {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-container.active {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #ad1700, #c41a00);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ad1700;
+            font-weight: bold;
+        }
+
+        .chat-info h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .chat-info p {
+            margin: 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .chat-status {
+            width: 8px;
+            height: 8px;
+            background: #25D366;
+            border-radius: 50%;
+            margin-left: auto;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ad1700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .message.user .message-avatar {
+            background: #25D366;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e9ecef;
+        }
+
+        .message.user .message-content {
+            background: #25D366;
+            color: white;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .chat-input {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .chat-input input:focus {
+            border-color: #ad1700;
+        }
+
+        .send-button {
+            width: 40px;
+            height: 40px;
+            background: #ad1700;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .send-button:hover {
+            background: #c41a00;
+        }
+
+        .quick-actions {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .quick-action {
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-action:hover {
+            background: #ad1700;
+            color: white;
+            border-color: #ad1700;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .chat-container {
+                width: calc(100vw - 40px);
+                height: calc(100vh - 120px);
+                bottom: 90px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-toggle pulse" id="chatToggle">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+        
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <div class="chat-avatar">NB</div>
+                <div class="chat-info">
+                    <h4>Nathiara Borges</h4>
+                    <p>Advocacia Especializada</p>
+                </div>
+                <div class="chat-status"></div>
+                <button class="close-chat" id="closeChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-avatar">NB</div>
+                    <div class="message-content">
+                        Olá! 👋 Sou a Dra. Nathiara Borges. Como posso ajudá-lo hoje?
+                        <div class="message-time">Agora</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <div class="quick-action" data-message="Quero agendar uma consulta">📅 Agendar Consulta</div>
+                <div class="quick-action" data-message="Preciso de informações sobre preços">💰 Preços</div>
+                <div class="quick-action" data-message="Tenho uma dúvida jurídica">❓ Dúvida Jurídica</div>
+                <div class="quick-action" data-message="Falar sobre Direito dos Autistas">🧩 Direito TEA</div>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Digite sua mensagem...">
+                <button class="send-button" id="sendButton">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class ChatWidget {
+            constructor() {
+                this.isOpen = false;
+                this.messages = [];
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.loadMessages();
+            }
+
+            bindEvents() {
+                const toggle = document.getElementById('chatToggle');
+                const close = document.getElementById('closeChat');
+                const sendBtn = document.getElementById('sendButton');
+                const input = document.getElementById('messageInput');
+                const quickActions = document.querySelectorAll('.quick-action');
+
+                toggle.addEventListener('click', () => this.toggleChat());
+                close.addEventListener('click', () => this.closeChat());
+                sendBtn.addEventListener('click', () => this.sendMessage());
+                
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.sendMessage();
+                    }
+                });
+
+                quickActions.forEach(action => {
+                    action.addEventListener('click', () => {
+                        const message = action.getAttribute('data-message');
+                        this.sendQuickMessage(message);
+                    });
+                });
+            }
+
+            toggleChat() {
+                this.isOpen = !this.isOpen;
+                const container = document.getElementById('chatContainer');
+                const toggle = document.getElementById('chatToggle');
+                
+                if (this.isOpen) {
+                    container.classList.add('active');
+                    toggle.classList.remove('pulse');
+                    document.getElementById('messageInput').focus();
+                } else {
+                    container.classList.remove('active');
+                }
+            }
+
+            closeChat() {
+                this.isOpen = false;
+                document.getElementById('chatContainer').classList.remove('active');
+            }
+
+            sendMessage() {
+                const input = document.getElementById('messageInput');
+                const message = input.value.trim();
+                
+                if (message) {
+                    this.addMessage(message, 'user');
+                    input.value = '';
+                    this.handleBotResponse(message);
+                }
+            }
+
+            sendQuickMessage(message) {
+                this.addMessage(message, 'user');
+                this.handleBotResponse(message);
+            }
+
+            addMessage(content, sender) {
+                const messagesContainer = document.getElementById('chatMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}`;
+                
+                const avatar = sender === 'user' ? 'Você' : 'NB';
+                const time = new Date().toLocaleTimeString('pt-BR', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+
+                messageDiv.innerHTML = `
+                    <div class="message-avatar">${avatar}</div>
+                    <div class="message-content">
+                        ${content}
+                        <div class="message-time">${time}</div>
+                    </div>
+                `;
+
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                this.messages.push({ content, sender, time });
+            }
+
+            handleBotResponse(userMessage) {
+                // Simular delay de resposta
+                setTimeout(() => {
+                    const response = this.getBotResponse(userMessage.toLowerCase());
+                    this.addMessage(response, 'bot');
+                }, 1000);
+            }
+
+            getBotResponse(message) {
+                const responses = {
+                    'agendar': 'Perfeito! Para agendar uma consulta, você pode:\n\n📞 Ligar: (49) 99900-1230\n📱 WhatsApp: https://wa.me/5549999001230\n📧 Email: nathiara.borges@gmail.com\n\nOu preencher nosso formulário de agendamento online. Qual prefere?',
+                    
+                    'preço': 'Nossos honorários variam conforme o tipo de serviço:\n\n• Consulta inicial: R$ 200\n• Direito Civil: A partir de R$ 500\n• Direito Penal: A partir de R$ 800\n• Direito TEA: A partir de R$ 400\n\n💡 Oferecemos consulta gratuita para casos de Direito dos Autistas!',
+                    
+                    'dúvida': 'Estou aqui para esclarecer suas dúvidas jurídicas! 🧑‍⚖️\n\nPode me contar mais detalhes sobre sua situação? Quanto mais informações você fornecer, melhor poderei orientá-lo.',
+                    
+                    'autista': 'Excelente! Sou especializada em Direito dos Autistas (TEA). 🧩\n\nPosso ajudar com:\n• Direitos educacionais\n• Benefícios sociais\n• Inclusão no mercado de trabalho\n• Direitos à saúde\n\nTem alguma situação específica que gostaria de discutir?',
+                    
+                    'default': 'Obrigada pelo contato! 😊\n\nPara um atendimento mais personalizado, recomendo:\n\n1️⃣ Agendar uma consulta\n2️⃣ Enviar detalhes por WhatsApp\n3️⃣ Preencher nosso formulário online\n\nComo posso ajudá-lo melhor?'
+                };
+
+                for (const [key, response] of Object.entries(responses)) {
+                    if (message.includes(key)) {
+                        return response;
+                    }
+                }
+
+                return responses.default;
+            }
+
+            loadMessages() {
+                // Carregar mensagens salvas (opcional)
+                const saved = localStorage.getItem('chatMessages');
+                if (saved) {
+                    this.messages = JSON.parse(saved);
+                }
+            }
+
+            saveMessages() {
+                localStorage.setItem('chatMessages', JSON.stringify(this.messages));
+            }
+        }
+
+        // Inicializar chat quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new ChatWidget();
+        });
+
+        // Auto-abrir chat após 10 segundos (opcional)
+        setTimeout(() => {
+            const toggle = document.getElementById('chatToggle');
+            if (toggle && !document.getElementById('chatContainer').classList.contains('active')) {
+                toggle.click();
+            }
+        }, 10000);
+    </script>
+</body>
+</html>

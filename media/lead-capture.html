@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Leads - Nathiara Borges Advocacia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ad1700 0%, #c41a00 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lead-capture-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lead-capture-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ad1700, #c41a00, #ad1700);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ad1700, #c41a00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .header h1 {
+            color: #ad1700;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .urgency-banner {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .urgency-banner h3 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .urgency-banner p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #ad1700;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(173, 23, 0, 0.1);
+        }
+
+        .form-input.error {
+            border-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+
+        .checkbox-group a {
+            color: #ad1700;
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ad1700, #c41a00);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(173, 23, 0, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-btn .loading {
+            display: none;
+        }
+
+        .submit-btn.loading .loading {
+            display: inline-block;
+        }
+
+        .submit-btn.loading .text {
+            display: none;
+        }
+
+        .benefits {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+
+        .benefits h4 {
+            color: #ad1700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .benefit-item i {
+            color: #25D366;
+            font-size: 16px;
+        }
+
+        .social-proof {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .social-proof p {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            color: #ffc107;
+            font-size: 18px;
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-style: italic;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .testimonial-author {
+            text-align: right;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #ad1700;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 32px;
+        }
+
+        .success-message h2 {
+            color: #ad1700;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .lead-capture-container {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lead-capture-container">
+        <div class="header">
+            <div class="icon">
+                <i class="fas fa-gavel"></i>
+            </div>
+            <h1>Consulta Jurídica Gratuita</h1>
+            <p>Preencha o formulário e receba orientação especializada</p>
+        </div>
+
+        <div class="urgency-banner">
+            <h3><i class="fas fa-clock"></i> Oferta Limitada</h3>
+            <p>Consultas gratuitas apenas para os primeiros 10 clientes do mês</p>
+        </div>
+
+        <form id="leadForm" class="lead-form">
+            <div class="form-group">
+                <label class="form-label" for="nome">Nome Completo *</label>
+                <input type="text" id="nome" name="nome" class="form-input" required>
+                <div class="error-message" id="nomeError">Por favor, digite seu nome completo</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="email">E-mail *</label>
+                <input type="email" id="email" name="email" class="form-input" required>
+                <div class="error-message" id="emailError">Por favor, digite um e-mail válido</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="telefone">WhatsApp *</label>
+                <input type="tel" id="telefone" name="telefone" class="form-input" required>
+                <div class="error-message" id="telefoneError">Por favor, digite seu WhatsApp</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="assunto">Qual sua necessidade jurídica? *</label>
+                <select id="assunto" name="assunto" class="form-select" required>
+                    <option value="">Selecione uma opção</option>
+                    <option value="direito-civil">Direito Civil</option>
+                    <option value="direito-penal">Direito Penal</option>
+                    <option value="direito-familia">Direito de Família</option>
+                    <option value="direito-tea">Direito dos Autistas (TEA)</option>
+                    <option value="duvida-geral">Dúvida Geral</option>
+                </select>
+                <div class="error-message" id="assuntoError">Por favor, selecione uma opção</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="urgencia">Nível de Urgência</label>
+                <select id="urgencia" name="urgencia" class="form-select">
+                    <option value="baixa">Baixa - Posso aguardar alguns dias</option>
+                    <option value="media">Média - Preciso de orientação em breve</option>
+                    <option value="alta">Alta - Situação urgente</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="aceito" name="aceito" required>
+                <label for="aceito">
+                    Aceito receber informações sobre serviços jurídicos e concordo com a 
+                    <a href="#" target="_blank">Política de Privacidade</a>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Enviando...
+                </div>
+                <div class="text">
+                    <i class="fas fa-paper-plane"></i>
+                    Quero Minha Consulta Gratuita
+                </div>
+            </button>
+        </form>
+
+        <div class="benefits">
+            <h4><i class="fas fa-shield-alt"></i> O que você recebe:</h4>
+            <div class="benefit-item">
+                <i class="fas fa-check"></i>
+                <span>Análise gratuita do seu caso</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-check"></i>
+                <span>Orientação jurídica especializada</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-check"></i>
+                <span>Estratégia personalizada</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-check"></i>
+                <span>Resposta em até 24 horas</span>
+            </div>
+        </div>
+
+        <div class="social-proof">
+            <p>Mais de 500 clientes já foram atendidos</p>
+            <div class="rating">
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <span style="margin-left: 10px; color: #333; font-weight: 600;">4.9/5</span>
+            </div>
+            
+            <div class="testimonial">
+                "A Dra. Nathiara me ajudou com um caso complexo de Direito dos Autistas. 
+                Profissional excepcional e muito atenciosa!"
+                <div class="testimonial-author">- Maria S., Cliente</div>
+            </div>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>Sucesso!</h2>
+            <p>Sua solicitação foi enviada com sucesso. Você receberá uma resposta em até 24 horas.</p>
+            <a href="https://wa.me/5549999001230" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                Falar no WhatsApp Agora
+            </a>
+        </div>
+    </div>
+
+    <script>
+        class LeadCapture {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.setupPhoneMask();
+            }
+
+            bindEvents() {
+                const form = document.getElementById('leadForm');
+                form.addEventListener('submit', (e) => this.handleSubmit(e));
+
+                // Validação em tempo real
+                const inputs = form.querySelectorAll('input, select');
+                inputs.forEach(input => {
+                    input.addEventListener('blur', () => this.validateField(input));
+                    input.addEventListener('input', () => this.clearError(input));
+                });
+            }
+
+            setupPhoneMask() {
+                const phoneInput = document.getElementById('telefone');
+                phoneInput.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length <= 11) {
+                        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                        if (value.length < 14) {
+                            value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                        }
+                    }
+                    e.target.value = value;
+                });
+            }
+
+            validateField(field) {
+                const value = field.value.trim();
+                const fieldName = field.name;
+                let isValid = true;
+                let errorMessage = '';
+
+                switch (fieldName) {
+                    case 'nome':
+                        if (value.length < 2) {
+                            isValid = false;
+                            errorMessage = 'Nome deve ter pelo menos 2 caracteres';
+                        }
+                        break;
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Digite um e-mail válido';
+                        }
+                        break;
+                    case 'telefone':
+                        if (value.length < 14) {
+                            isValid = false;
+                            errorMessage = 'Digite um telefone válido';
+                        }
+                        break;
+                    case 'assunto':
+                        if (!value) {
+                            isValid = false;
+                            errorMessage = 'Selecione uma opção';
+                        }
+                        break;
+                }
+
+                this.showFieldError(field, isValid, errorMessage);
+                return isValid;
+            }
+
+            showFieldError(field, isValid, message) {
+                const errorElement = document.getElementById(field.name + 'Error');
+                
+                if (isValid) {
+                    field.classList.remove('error');
+                    errorElement.style.display = 'none';
+                } else {
+                    field.classList.add('error');
+                    errorElement.textContent = message;
+                    errorElement.style.display = 'block';
+                }
+            }
+
+            clearError(field) {
+                field.classList.remove('error');
+                const errorElement = document.getElementById(field.name + 'Error');
+                errorElement.style.display = 'none';
+            }
+
+            async handleSubmit(e) {
+                e.preventDefault();
+
+                const form = e.target;
+                const formData = new FormData(form);
+                
+                // Validar todos os campos
+                const inputs = form.querySelectorAll('input[required], select[required]');
+                let isFormValid = true;
+
+                inputs.forEach(input => {
+                    if (!this.validateField(input)) {
+                        isFormValid = false;
+                    }
+                });
+
+                // Verificar checkbox
+                const checkbox = document.getElementById('aceito');
+                if (!checkbox.checked) {
+                    alert('Por favor, aceite os termos de uso');
+                    isFormValid = false;
+                }
+
+                if (!isFormValid) {
+                    return;
+                }
+
+                // Mostrar loading
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+
+                try {
+                    // Simular envio (substituir por API real)
+                    await this.sendLead(formData);
+                    this.showSuccess();
+                } catch (error) {
+                    alert('Erro ao enviar formulário. Tente novamente.');
+                } finally {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                }
+            }
+
+            async sendLead(formData) {
+                // Simular delay de rede
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                const data = {
+                    nome: formData.get('nome'),
+                    email: formData.get('email'),
+                    telefone: formData.get('telefone'),
+                    assunto: formData.get('assunto'),
+                    urgencia: formData.get('urgencia'),
+                    timestamp: new Date().toISOString(),
+                    source: 'lead-capture-form'
+                };
+
+                // Salvar no localStorage (temporário)
+                const leads = JSON.parse(localStorage.getItem('leads') || '[]');
+                leads.push(data);
+                localStorage.setItem('leads', JSON.stringify(leads));
+
+                // Enviar para WhatsApp
+                const message = this.formatWhatsAppMessage(data);
+                const whatsappUrl = `https://wa.me/5549999001230?text=${encodeURIComponent(message)}`;
+                
+                // Aqui você integraria com sua API real
+                console.log('Lead capturado:', data);
+            }
+
+            formatWhatsAppMessage(data) {
+                return `🆕 *NOVO LEAD CAPTURADO*
+
+👤 *Nome:* ${data.nome}
+📧 *Email:* ${data.email}
+📱 *WhatsApp:* ${data.telefone}
+⚖️ *Assunto:* ${data.assunto}
+🚨 *Urgência:* ${data.urgencia}
+📅 *Data:* ${new Date().toLocaleString('pt-BR')}
+
+---
+*Lead capturado através do formulário do site*`;
+            }
+
+            showSuccess() {
+                document.querySelector('.lead-form').style.display = 'none';
+                document.getElementById('successMessage').classList.add('active');
+                
+                // Scroll para o topo
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new LeadCapture();
+        });
+
+        // Analytics (exemplo)
+        function trackEvent(eventName, properties = {}) {
+            // Integrar com Google Analytics, Facebook Pixel, etc.
+            console.log('Event tracked:', eventName, properties);
+        }
+
+        // Rastrear visualização da página
+        trackEvent('lead_capture_page_viewed');
+    </script>
+</body>
+</html>
