@@ -117,6 +117,8 @@ function initCarousel() {
         autoplay: true,
         autoplayTimeout: 5000,
         autoplayHoverPause: true,
+        lazyLoad: true,
+        lazyLoadEager: 1,
         responsive: {
             0: {
                 items: 1,
@@ -134,11 +136,44 @@ function initCarousel() {
         navText: [
             '<i class="fas fa-chevron-left"></i>',
             '<i class="fas fa-chevron-right"></i>'
-        ]
+        ],
+        onInitialized: function() {
+            // Garantir que as imagens sejam visíveis após inicialização
+            $('.testemunhos-carousel .owl-item').each(function() {
+                $(this).find('img').css('opacity', '1');
+            });
+        },
+        onChanged: function() {
+            // Garantir que as imagens sejam visíveis após mudança de slide
+            $('.testemunhos-carousel .owl-item').each(function() {
+                $(this).find('img').css({
+                    'opacity': '1',
+                    'visibility': 'visible',
+                    'display': 'block'
+                });
+            });
+            
+            // Forçar visibilidade após mudança
+            setTimeout(() => {
+                forceImageVisibility();
+            }, 50);
+        }
     });
     
     // Adicionar controles de navegação personalizados
     addCustomCarouselControls();
+    
+    // Forçar visibilidade das imagens após inicialização
+    setTimeout(() => {
+        forceImageVisibility();
+    }, 100);
+    
+    // Adicionar listener para mudanças de slide
+    $('.testemunhos-carousel').on('changed.owl.carousel', function() {
+        setTimeout(() => {
+            forceImageVisibility();
+        }, 100);
+    });
 }
 
 function addCustomCarouselControls() {
@@ -168,6 +203,34 @@ function addCustomCarouselControls() {
             indicators.querySelectorAll('.indicator').forEach(ind => ind.classList.remove('active'));
             e.target.classList.add('active');
         }
+    });
+}
+
+// ===== FORÇAR VISIBILIDADE DAS IMAGENS =====
+function forceImageVisibility() {
+    const carouselImages = document.querySelectorAll('.testemunhos-carousel .author-avatar');
+    
+    carouselImages.forEach(img => {
+        // Forçar visibilidade
+        img.style.opacity = '1';
+        img.style.visibility = 'visible';
+        img.style.display = 'block';
+        
+        // Se a imagem não carregou, tentar recarregar
+        if (!img.complete || img.naturalHeight === 0) {
+            const originalSrc = img.src;
+            img.src = '';
+            setTimeout(() => {
+                img.src = originalSrc;
+            }, 50);
+        }
+    });
+    
+    // Também forçar visibilidade dos itens do carrossel
+    const carouselItems = document.querySelectorAll('.testemunhos-carousel .owl-item');
+    carouselItems.forEach(item => {
+        item.style.opacity = '1';
+        item.style.visibility = 'visible';
     });
 }
 
@@ -416,16 +479,25 @@ function initTestimonialImages() {
             this.style.alignItems = 'center';
             this.style.justifyContent = 'center';
             this.innerHTML = '<i class="fas fa-user" style="color: white; font-size: 24px;"></i>';
+            this.style.opacity = '1';
         });
         
         // Adicionar evento de carregamento bem-sucedido
         img.addEventListener('load', function() {
             this.style.opacity = '1';
+            this.style.visibility = 'visible';
         });
         
-        // Inicialmente definir opacidade baixa para animação
-        img.style.opacity = '0';
-        img.style.transition = 'opacity 0.3s ease';
+        // Garantir que a imagem seja visível
+        img.style.opacity = '1';
+        img.style.visibility = 'visible';
+        img.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+        
+        // Forçar carregamento da imagem se ela já estiver em cache
+        if (img.complete && img.naturalHeight !== 0) {
+            img.style.opacity = '1';
+            img.style.visibility = 'visible';
+        }
     });
 }
 
