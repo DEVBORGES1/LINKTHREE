@@ -12,7 +12,7 @@ Linktree Personalizado: Página única que centraliza links para todas as demais
 
 O objetivo é criar uma experiência clara, acessível e informativa para usuários que buscam orientação e serviços jurídicos nessa área.
 
-🛠️ Tecnologias Utilizadas
+ <h2>Tecnologias Utilizadas</h2>
 
 HTML5 – Estrutura e marcação semântica
 
@@ -26,6 +26,6 @@ JSON – Estruturação e manipulação de dados
 
 APIs – Integração com recursos externos para ampliar funcionalidades
 
-🎯 Objetivo
+<h2>Objetivo</h2>
 
 Oferecer uma plataforma web moderna e acessível, que reflita o compromisso do escritório com a defesa dos direitos das pessoas com deficiência, especialmente autistas, e facilite o acesso a informações, mentorias e serviços.
