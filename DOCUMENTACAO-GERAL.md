@@ -325,7 +325,7 @@ transitionDuration: 500    // 0.5 segundos de transição
 ## 📞 **CONTATOS E SUPORTE**
 
 ### **Informações do Projeto:**
-- **Desenvolvedor:** Sistema automatizado
+- **Desenvolvedor:** BSTECH
 - **Cliente:** Nathiara Borges
 - **Tipo:** Plataforma digital completa
 - **Status:** Ativo e funcional
