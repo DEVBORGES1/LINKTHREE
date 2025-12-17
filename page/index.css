@@ -9,7 +9,8 @@
     display: none;
 }
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
@@ -48,12 +49,10 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.8) 0%,
-        rgba(0, 0, 0, 0.6) 50%,
-        rgba(0, 0, 0, 0.8) 100%
-    );
+    background: linear-gradient(135deg,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.6) 50%,
+            rgba(0, 0, 0, 0.8) 100%);
     z-index: 2;
 }
 
@@ -303,41 +302,41 @@ body, html {
     .container {
         padding: 1rem;
     }
-    
+
     .content {
         padding: 1rem;
     }
-    
+
     .main-title {
         font-size: clamp(1.8rem, 8vw, 2.5rem);
     }
-    
+
     .description {
         font-size: 1rem;
         margin-bottom: 3rem;
     }
-    
+
     .benefits-cards {
         grid-template-columns: 1fr;
         gap: 1.5rem;
         margin-bottom: 3rem;
     }
-    
+
     .benefit-card {
         padding: 2rem 1.5rem;
     }
-    
+
     .cta-button {
         padding: 1.2rem 2rem;
         font-size: 1rem;
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .header-section {
         margin-bottom: 2rem;
     }
-    
+
     .brand {
         font-size: 1rem;
         letter-spacing: 2px;
@@ -348,24 +347,24 @@ body, html {
     .container {
         padding: 0.5rem;
     }
-    
+
     .content {
         padding: 0.5rem;
     }
-    
+
     .main-title {
         font-size: 1.8rem;
     }
-    
+
     .benefit-card {
         padding: 1.5rem 1rem;
     }
-    
+
     .card-icon {
         width: 60px;
         height: 60px;
     }
-    
+
     .card-icon i {
         font-size: 1.5rem;
     }
@@ -377,6 +376,7 @@ body, html {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -388,6 +388,7 @@ body, html {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -399,6 +400,7 @@ body, html {
         opacity: 0;
         transform: translateX(30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -411,9 +413,12 @@ body, html {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.1);
     }
@@ -432,13 +437,16 @@ body, html {
 }
 
 @keyframes float {
-    0%, 100% { 
-        transform: translateY(0px) rotate(0deg); 
-        opacity: 0.3; 
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.3;
     }
-    50% { 
-        transform: translateY(-20px) rotate(180deg); 
-        opacity: 0.8; 
+
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.8;
     }
 }
 
@@ -520,7 +528,7 @@ footer .line-footer p a:hover {
     margin-top: 30px;
 }
 
-.btn-social button {
+.btn-social a {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -537,7 +545,7 @@ footer .line-footer p a:hover {
     justify-content: center;
 }
 
-.btn-social button::before {
+.btn-social a::before {
     content: '';
     position: absolute;
     top: 0;
@@ -550,21 +558,21 @@ footer .line-footer p a:hover {
     border-radius: 50%;
 }
 
-.btn-social button:hover::before {
+.btn-social a:hover::before {
     opacity: 1;
 }
 
-.btn-social button img {
+.btn-social a img {
     position: relative;
     z-index: 2;
     transition: transform 0.3s ease;
 }
 
-.btn-social button:hover img {
+.btn-social a:hover img {
     transform: scale(1.1);
 }
 
-.btn-social button:hover {
+.btn-social a:hover {
     box-shadow: 0 10px 30px rgba(173, 23, 0, 0.4);
     transform: translateY(-5px);
 }
@@ -599,10 +607,9 @@ footer .line-footer p a:hover {
         font-size: 14px;
     }
 
-    .btn-social button {
+    .btn-social a {
         width: 50px;
         height: 50px;
         margin: 0;
     }
 }
-

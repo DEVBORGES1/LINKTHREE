@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("show");
-                
+
                 // Adiciona delay escalonado para cards
                 if (entry.target.classList.contains('benefit-card')) {
                     const cards = document.querySelectorAll('.benefit-card');
@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Efeito de hover para o botão CTA
     const ctaButton = document.querySelector('.cta-button');
     if (ctaButton) {
-        ctaButton.addEventListener('mouseenter', function() {
+        ctaButton.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-3px) scale(1.02)';
         });
 
-        ctaButton.addEventListener('mouseleave', function() {
+        ctaButton.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
         });
     }
@@ -69,11 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Efeito de hover para os cards
     const cards = document.querySelectorAll('.benefit-card');
     cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-10px) scale(1.02)';
         });
 
-        card.addEventListener('mouseleave', function() {
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
@@ -156,6 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Aplica efeito de digitação ao título principal (opcional)
     const mainTitle = document.querySelector('.main-title');
     if (mainTitle && window.innerWidth > 768) {
+        // Fix for layout shift: Lock the height before clearing content
+        const height = mainTitle.offsetHeight;
+        mainTitle.style.minHeight = `${height}px`;
+
         const originalText = mainTitle.innerHTML;
         setTimeout(() => {
             typeWriterHTML(mainTitle, originalText, 50);
@@ -224,7 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.documentElement.style.scrollBehavior = 'smooth';
 
 // Previne comportamento padrão de links para melhor controle
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     if (e.target.closest('.cta-button')) {
         // Adiciona efeito de clique
         e.target.closest('.cta-button').style.transform = 'scale(0.95)';
