@@ -719,10 +719,47 @@ function initFooter() {
     observer.observe(footer);
 }
 
+// ===== FAQ ACCORDION =====
+function initFAQ() {
+    console.log('MentoriaApp: initFAQ starting');
+    const faqItems = document.querySelectorAll('.faq-item');
+    console.log('MentoriaApp: Found FAQ items:', faqItems.length);
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        if (!question) return;
+
+        question.addEventListener('click', () => {
+            console.log('MentoriaApp: FAQ clicked');
+            const isActive = item.classList.contains('active');
+
+            // Fechar todos os outros
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                const otherAnswer = otherItem.querySelector('.faq-answer');
+                if (otherAnswer) {
+                    otherAnswer.style.maxHeight = null;
+                }
+            });
+
+            // Abrir ou fechar o atual
+            if (!isActive) {
+                item.classList.add('active');
+                const answer = item.querySelector('.faq-answer');
+                if (answer) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            }
+        });
+    });
+}
+
 // ===== EXPORTAR FUNÇÕES PARA USO GLOBAL =====
 window.MentoriaApp = {
     showNotification,
     trackEvent,
     validateField,
-    initAnimations
+    initAnimations,
+    initFAQ
 };
