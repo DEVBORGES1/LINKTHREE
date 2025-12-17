@@ -1,5 +1,93 @@
+
 document.addEventListener("DOMContentLoaded", () => {
-    // Intersection Observer para animações
+
+    // --- Mobile Menu Logic ---
+    let btnMenu = document.getElementById('btn-menu');
+    let menu = document.getElementById('menu-mobile');
+    let overlay = document.getElementById('overlay-menu');
+    let btnFechar = document.getElementById('btn-fechar');
+
+    function openMenu() {
+        menu.classList.add('abrir-menu');
+        overlay.style.display = 'block';
+    }
+
+    function closeMenu() {
+        menu.classList.remove('abrir-menu');
+        overlay.style.display = 'none';
+    }
+
+    if (btnMenu) btnMenu.addEventListener('click', openMenu);
+    if (btnFechar) btnFechar.addEventListener('click', closeMenu);
+    if (overlay) overlay.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.menu-mobile nav ul li a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // --- FAQ Logic ---
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.faq-answer').style.maxHeight = null;
+            });
+
+            // If it wasn't active before, open it
+            if (!isActive) {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+
+    // --- Typewriter Effect ---
+    const titleElement = document.querySelector('.topo-do-site h1');
+    if (titleElement) {
+        // Backup original content including span
+        const originalHTML = titleElement.innerHTML;
+        const originalText = titleElement.textContent; // Simple text if needed
+
+        // We want to type: "Advogada | Direito dos Autistas"
+        // But keep styling for "Direito dos Autistas" ideally.
+        // Simplified approach: Type just the text, then restore innerHTML or type with spans logic (complex).
+        // Let's do a simple clean text typing for the main title part.
+
+        // Better: Use a dedicated typed element so we don't mess strict HTML structure?
+        // Let's try typing the whole text content.
+
+        titleElement.innerHTML = ''; // Clear
+        const textToType = "Advogada | Direito dos Autistas";
+        let i = 0;
+
+        const typeWriter = () => {
+            if (i < textToType.length) {
+                // If we hit the pipe, wrap next part in span? 
+                // Too complex for simple script without breaking layout mid-type.
+                // Let's just type plain text for the effect, then swap to formatted HTML at the end.
+
+                titleElement.textContent += textToType.charAt(i);
+                i++;
+                setTimeout(typeWriter, 80);
+            } else {
+                // Restore formatted HTML to get colors back
+                titleElement.innerHTML = 'Advogada <span>|</span> Direito dos Autistas';
+            }
+        };
+
+        // Start after a delay
+        setTimeout(typeWriter, 500);
+    }
+
+
+    // --- Intersection Observer for Animations ---
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -16,108 +104,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const hiddenElements = document.querySelectorAll(".hidden");
     hiddenElements.forEach((el) => observer.observe(el));
 
-    // Efeito de parallax suave (apenas no topo)
-    const parallaxElements = document.querySelectorAll('.img-topo-site'); // removida .img-sobre
+    // --- Header Scroll Effect ---
+    const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        parallaxElements.forEach(element => {
-            const rate = scrolled * -0.5;
-            element.style.transform = `translateY(${rate}px)`;
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // --- Smooth Scroll for anchors ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                const headerOffset = 100;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
         });
     });
 
-    // Efeito de typing no título principal
-    const titleElement = document.querySelector('.topo-do-site h1');
-    if (titleElement) {
-        const text = titleElement.textContent;
-        titleElement.textContent = '';
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                titleElement.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 150);
-            }
-        };
-        setTimeout(typeWriter, 1500);
-    }
-
-    // Animação dos cards de especialidades
-    const cards = document.querySelectorAll('.especialidades-box');
-    cards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.3}s`;
-    });
-});
-
-// Header scroll effect
-let lastScrollY = window.scrollY;
-const header = document.querySelector('header');
-
-window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-
-    // Adicionar classe scrolled quando rolar
-    if (currentScrollY > 100) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-
-    // Esconder/mostrar header baseado na direção do scroll
-    if (currentScrollY > lastScrollY && currentScrollY > 200) {
-        header.style.transform = 'translateY(-100%)';
-    } else {
-        header.style.transform = 'translateY(0)';
-    }
-
-    lastScrollY = currentScrollY;
-});
-
-// Mostrar header no hover
-header.addEventListener('mouseenter', () => {
-    header.style.transform = 'translateY(0)';
-});
-
-header.addEventListener('mouseleave', () => {
-    if (window.scrollY > lastScrollY && window.scrollY > 200) {
-        header.style.transform = 'translateY(-100%)';
-    }
-});
-
-// Smooth scroll para links de navegação
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Efeito de hover nos botões sociais
-document.querySelectorAll('.btn-social button').forEach(button => {
-    button.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-5px) scale(1.1)';
-    });
-    
-    button.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// Animação de entrada para elementos do formulário
-const formElements = document.querySelectorAll('form input, form textarea');
-formElements.forEach((element, index) => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(20px)';
-    
-    setTimeout(() => {
-        element.style.transition = 'all 0.8s ease';
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0)';
-    }, index * 150);
 });
