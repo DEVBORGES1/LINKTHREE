@@ -669,8 +669,8 @@ window.addEventListener('resize', debouncedResizeHandler);
 function preloadResources() {
     // Preload de imagens importantes
     const importantImages = [
-        'imagens/logos/Design sem nome (1).png',
-        'imagens/logos/BS (500 x 200 px).png'
+        'imagens/logos/logo_advogada.png',
+        'imagens/logos/logo_simbolo.png'
     ];
 
     importantImages.forEach(src => {

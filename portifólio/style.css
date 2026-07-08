@@ -71,6 +71,10 @@ header.scrolled {
     padding: 15px 4%;
 }
 
+header.scrolled .logo img {
+    height: 90px;
+}
+
 header>.interface {
     display: flex;
     align-items: center;
@@ -80,8 +84,8 @@ header>.interface {
 }
 
 .logo img {
-    height: 60px;
-    transition: transform 0.3s ease;
+    height: 180px;
+    transition: height 0.3s ease, transform 0.3s ease;
 }
 
 .menu-desktop ul {
@@ -253,7 +257,7 @@ header>.interface {
 
 /* --- Hero Section --- */
 section.topo-do-site {
-    padding: 140px 4% 80px;
+    padding: 240px 4% 80px;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -751,7 +755,7 @@ section.timeline-section {
     }
 
     .logo img {
-        height: 50px;
+        height: 100px;
     }
 
     .especialidades-box {

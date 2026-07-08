@@ -145,8 +145,13 @@ body {
 }
 
 .logo-img {
-    height: 45px;
+    height: 180px;
+    transition: height 0.3s ease;
     filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+.header-modern.scrolled .logo-img {
+    height: 90px;
 }
 
 .nav-list {
@@ -241,7 +246,7 @@ body {
 /* Hero Section High Impact */
 .hero-section {
     min-height: 100vh;
-    padding-top: 80px;
+    padding-top: 240px;
     display: flex;
     align-items: center;
     position: relative;
@@ -1049,9 +1054,9 @@ footer {
 }
 
 .logo-footer img {
-    height: 60px;
+    height: 150px;
     margin-bottom: 1.5rem;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .btn-social {

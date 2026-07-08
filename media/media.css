@@ -199,8 +199,13 @@ p {
 }
 
 .logo img {
-    height: 70px;
+    height: 180px;
+    transition: height 0.3s ease;
     width: auto;
+}
+
+.header.scrolled .logo img {
+    height: 90px;
 }
 
 .nav-menu {
@@ -266,7 +271,7 @@ p {
 
 /* ===== HERO SECTION ===== */
 .hero {
-    padding-top: 120px;
+    padding-top: 240px;
     min-height: 100vh;
     display: flex;
     align-items: center;

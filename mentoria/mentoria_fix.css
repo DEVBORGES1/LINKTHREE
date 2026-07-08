@@ -141,7 +141,13 @@ h6 {
 }
 
 .logo img {
+    height: 120px;
+    transition: height 0.3s ease;
     border-radius: var(--border-radius-md);
+}
+
+.header.scrolled .logo img {
+    height: 80px;
 }
 
 .nav-menu {
@@ -156,15 +162,23 @@ h6 {
 }
 
 .nav-link {
-    color: var(--gray-300);
+    color: #333333;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.95rem;
     transition: all var(--transition-fast);
     position: relative;
 }
 
 .nav-link:hover {
+    color: var(--primary-color);
+}
+
+.header.scrolled .nav-link {
+    color: var(--gray-300);
+}
+
+.header.scrolled .nav-link:hover {
     color: var(--white);
 }
 
@@ -278,7 +292,7 @@ h6 {
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    padding-top: 80px;
+    padding-top: 170px;
     /* Compensar o header fixo */
 }
 

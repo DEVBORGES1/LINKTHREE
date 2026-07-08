@@ -157,6 +157,61 @@ body::before {
     font-weight: bold;
 }
 
+/* Estilo de Destaque Especial (Salário Maternidade) */
+.button.button-highlight {
+    border: 2px solid var(--color-accent);
+    background: linear-gradient(135deg, #2a1513 0%, #171717 100%);
+    box-shadow: 0 0 15px rgba(173, 23, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.button.button-highlight::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 30%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.13);
+    transform: rotate(30deg);
+    transition: none;
+    animation: shine-effect 4s infinite ease-in-out;
+}
+
+@keyframes shine-effect {
+    0% {
+        left: -60%;
+    }
+    15% {
+        left: 140%;
+    }
+    100% {
+        left: 140%;
+    }
+}
+
+.button.button-highlight:hover {
+    background: linear-gradient(135deg, #3d1b18 0%, #222 100%);
+    box-shadow: 0 0 25px rgba(173, 23, 0, 0.7);
+    border-color: #ff4444;
+}
+
+.button.button-highlight i {
+    animation: pulse-icon 2s infinite ease-in-out;
+}
+
+@keyframes pulse-icon {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 2px rgba(173, 23, 0, 0.5));
+    }
+    50% {
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 8px rgba(173, 23, 0, 0.9));
+    }
+}
+
 /* Estilos específicos para botões com texto longo */
 .button[href*="SELL.html"],
 .button[href*="experiencias"] {
