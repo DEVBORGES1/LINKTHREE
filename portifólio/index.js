@@ -51,34 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Typewriter Effect ---
     const titleElement = document.querySelector('.topo-do-site h1');
     if (titleElement) {
-        // Backup original content including span
-        const originalHTML = titleElement.innerHTML;
-        const originalText = titleElement.textContent; // Simple text if needed
-
-        // We want to type: "Advogada | Direito dos Autistas"
-        // But keep styling for "Direito dos Autistas" ideally.
-        // Simplified approach: Type just the text, then restore innerHTML or type with spans logic (complex).
-        // Let's do a simple clean text typing for the main title part.
-
-        // Better: Use a dedicated typed element so we don't mess strict HTML structure?
-        // Let's try typing the whole text content.
-
         titleElement.innerHTML = ''; // Clear
-        const textToType = "Advogada | Direito dos Autistas";
+        const textToType = "Advocacia especializada em Direito dos Autistas e das Pessoas com Deficiência";
         let i = 0;
 
         const typeWriter = () => {
             if (i < textToType.length) {
-                // If we hit the pipe, wrap next part in span? 
-                // Too complex for simple script without breaking layout mid-type.
-                // Let's just type plain text for the effect, then swap to formatted HTML at the end.
-
                 titleElement.textContent += textToType.charAt(i);
                 i++;
-                setTimeout(typeWriter, 80);
+                setTimeout(typeWriter, 40);
             } else {
-                // Restore formatted HTML to get colors back
-                titleElement.innerHTML = 'Advogada <span>|</span> Direito dos Autistas';
+                titleElement.innerHTML = 'Advocacia especializada em <br><span>Direito dos Autistas</span> e das <span>Pessoas com Deficiência</span>';
             }
         };
 

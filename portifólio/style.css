@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --primary-color: #8a0000;
-    --primary-light: #c50000;
-    --dark-bg: #0a0a0a;
-    --card-bg: rgba(20, 20, 20, 0.6);
-    --text-color: #e0e0e0;
+    --primary-color: #1a365d;       /* Deep Navy Blue */
+    --primary-light: #2b6cb0;       /* Royal Blue */
+    --accent-color: #c5a059;        /* Warm Gold */
+    --accent-light: #dfcbb5;        /* Soft Champagne Gold */
+    --dark-bg: #f5f7fa;             /* Aconchegante Off-white */
+    --card-bg: rgba(255, 255, 255, 0.75); /* Translucent light card bg */
+    --text-color: #2d3748;          /* Charcoal text for smooth reading */
+    --text-muted: #5a6578;          /* Muted description text */
     --white: #ffffff;
-    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(26, 54, 93, 0.07);
 }
 
 * {
@@ -41,8 +44,8 @@ html {
 body {
     background-color: var(--dark-bg);
     background-image:
-        radial-gradient(circle at 15% 50%, rgba(138, 0, 0, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 85% 30%, rgba(197, 0, 0, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 15% 50%, rgba(43, 108, 176, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(197, 160, 89, 0.06) 0%, transparent 50%);
     padding-top: 0;
     /* Changed from 100px due to fixed header handling */
     color: var(--text-color);
@@ -57,14 +60,14 @@ header {
     width: 100%;
     z-index: 1000;
     transition: all 0.4s ease;
-    background: rgba(10, 10, 10, 0.8);
+    background: rgba(245, 247, 250, 0.8);
     backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 header.scrolled {
-    background: rgba(10, 10, 10, 0.95);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background: rgba(245, 247, 250, 0.95);
+    box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05);
     padding: 15px 4%;
 }
 
@@ -109,7 +112,7 @@ header>.interface {
 }
 
 .menu-desktop ul li a:hover {
-    color: var(--white);
+    color: var(--primary-light);
 }
 
 .menu-desktop ul li a:hover::after {
@@ -129,7 +132,7 @@ header>.interface {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(138, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(26, 54, 93, 0.15);
     position: relative;
     overflow: hidden;
     border: none;
@@ -137,7 +140,7 @@ header>.interface {
 
 .Btn-contato a:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(197, 0, 0, 0.4);
+    box-shadow: 0 8px 25px rgba(26, 54, 93, 0.25);
     filter: brightness(1.1);
 }
 
@@ -146,11 +149,11 @@ header>.interface {
     display: none;
     cursor: pointer;
     font-size: 30px;
-    color: var(--white);
+    color: var(--primary-color);
 }
 
 .menu-mobile {
-    background-color: #111;
+    background-color: var(--white);
     height: 100vh;
     position: fixed;
     top: 0;
@@ -163,7 +166,7 @@ header>.interface {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.8);
+    box-shadow: -5px 0 30px rgba(26, 54, 93, 0.05);
 }
 
 .menu-mobile.abrir-menu {
@@ -179,7 +182,7 @@ header>.interface {
 }
 
 .menu-mobile nav ul li a {
-    color: #fff;
+    color: var(--text-color);
     font-size: 24px;
     font-weight: 400;
     text-decoration: none;
@@ -189,7 +192,7 @@ header>.interface {
 }
 
 .menu-mobile nav ul li a:hover {
-    background: #222;
+    background: var(--dark-bg);
     color: var(--primary-light);
 }
 
@@ -203,11 +206,11 @@ header>.interface {
 }
 
 .btn-abrir-menu i {
-    color: var(--primary-light);
+    color: var(--primary-color);
 }
 
 .overlay-menu {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
     height: 100%;
     position: fixed;
@@ -222,7 +225,7 @@ header>.interface {
 .linha-menu {
     width: 30px;
     height: 3px;
-    background-color: var(--white);
+    background-color: var(--primary-color);
     margin: 6px 0;
     transition: 0.3s;
     border-radius: 2px;
@@ -232,7 +235,7 @@ header>.interface {
 .linha-fechar-2 {
     width: 30px;
     height: 3px;
-    background-color: var(--white);
+    background-color: var(--primary-color);
     position: absolute;
     top: 50%;
     right: 0;
@@ -269,7 +272,7 @@ section.topo-do-site {
 
 .img-topo-site img {
     border-radius: 20px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 45px rgba(26, 54, 93, 0.12);
     filter: grayscale(20%);
     transition: all 0.5s ease;
     max-height: 600px;
@@ -286,11 +289,11 @@ section.topo-do-site {
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 25px;
-    color: var(--white);
+    color: var(--primary-color);
 }
 
 .txt-topo-site h1 span {
-    color: var(--primary-light);
+    color: var(--accent-color);
     display: inline-block;
     position: relative;
 }
@@ -298,8 +301,8 @@ section.topo-do-site {
 .txt-topo-site p {
     font-size: 18px;
     line-height: 1.7;
-    color: #ccc;
-    margin-bottom: 40px;
+    color: var(--text-color);
+    margin-bottom: 30px;
     max-width: 600px;
 }
 
@@ -312,15 +315,15 @@ section.Especialidades {
     font-size: 42px;
     text-align: center;
     margin-bottom: 60px;
-    color: var(--white);
+    color: var(--primary-color);
 }
 
 .titulo span {
-    color: var(--primary-light);
+    color: var(--accent-color);
 }
 
 .especialidades-box {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--card-bg);
     padding: 50px 30px;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
@@ -332,39 +335,49 @@ section.Especialidades {
 
 .especialidades-box:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(138, 0, 0, 0.3);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    background: var(--white);
+    border-color: rgba(26, 54, 93, 0.15);
+    box-shadow: 0 20px 45px rgba(26, 54, 93, 0.08);
 }
 
-.especialidades-box img {
-    width: 70px;
-    height: 70px;
+.especialidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.especialidades-box i.fas {
+    font-size: 55px;
     margin-bottom: 25px;
-    filter: brightness(0) invert(1);
-    transition: transform 0.4s ease;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.4s ease;
+    display: inline-block;
 }
 
-.especialidades-box:hover img {
-    transform: scale(1.1) rotate(5deg);
-    filter: drop-shadow(0 0 10px rgba(197, 0, 0, 0.5));
+.especialidades-box:hover i.fas {
+    transform: scale(1.15) rotate(5deg);
+    filter: drop-shadow(0 0 15px rgba(43, 108, 176, 0.35));
 }
 
 .especialidades-box h3 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: var(--white);
+    color: var(--primary-color);
 }
 
 .especialidades-box p {
-    color: #aaa;
+    color: var(--text-muted);
     line-height: 1.6;
 }
 
 /* --- About (Sobre) --- */
 section.sobre {
     padding: 100px 4%;
-    background: linear-gradient(180deg, transparent, rgba(10, 10, 10, 0.8), transparent);
+    background: linear-gradient(180deg, transparent, rgba(26, 54, 93, 0.02), transparent);
 }
 
 .flex .img-sobre {
@@ -378,7 +391,7 @@ section.sobre {
     height: auto;
     object-fit: cover;
     border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 45px rgba(26, 54, 93, 0.1);
     display: block;
 }
 
@@ -387,7 +400,7 @@ section.sobre {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    background: linear-gradient(transparent, rgba(26, 54, 93, 0.85));
     color: var(--white);
     padding: 40px 20px 20px;
     border-radius: 0 0 20px 20px;
@@ -400,7 +413,7 @@ section.sobre {
 
 .overlay-content i {
     font-size: 2rem;
-    color: var(--primary-light);
+    color: var(--accent-color);
     margin-bottom: 10px;
 }
 
@@ -412,16 +425,16 @@ section.sobre {
 .txt-sobre h2 {
     font-size: 42px;
     margin-bottom: 30px;
-    color: var(--white);
+    color: var(--primary-color);
 }
 
 .txt-sobre h2 span {
-    color: var(--primary-light);
+    color: var(--accent-color);
 }
 
 .txt-sobre p {
     margin-bottom: 20px;
-    color: #ccc;
+    color: var(--text-color);
     font-size: 16px;
     line-height: 1.8;
 }
@@ -436,7 +449,7 @@ section.sobre {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(26, 54, 93, 0.04);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -447,14 +460,19 @@ section.sobre {
 .btn-social a:hover {
     background: var(--primary-color);
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(138, 0, 0, 0.4);
+    box-shadow: 0 5px 15px rgba(26, 54, 93, 0.15);
 }
 
 .btn-social img {
-    filter: brightness(0) invert(1);
+    filter: brightness(0.2);
     width: 22px;
     height: 22px;
     object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.btn-social a:hover img {
+    filter: brightness(0) invert(1);
 }
 
 /* --- Contact Form --- */
@@ -465,7 +483,7 @@ section.formulario {
 form {
     max-width: 600px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--card-bg);
     padding: 50px;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
@@ -477,19 +495,26 @@ form textarea {
     width: 100%;
     padding: 18px;
     margin-bottom: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--glass-border);
+    background: rgba(26, 54, 93, 0.03);
+    border: 1px solid rgba(26, 54, 93, 0.1);
     border-radius: 10px;
-    color: var(--white);
+    color: var(--text-color);
     font-size: 16px;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: #8892b0;
+    opacity: 0.8;
 }
 
 form input:focus,
 form textarea:focus {
-    border-color: var(--primary-color);
-    background: rgba(0, 0, 0, 0.5);
+    border-color: var(--primary-light);
+    background: var(--white);
+    box-shadow: 0 5px 15px rgba(43, 108, 176, 0.05);
 }
 
 form textarea {
@@ -505,17 +530,20 @@ form .btn-enviar input {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0;
+    color: var(--white);
+    box-shadow: 0 5px 15px rgba(26, 54, 93, 0.15);
 }
 
 form .btn-enviar input:hover {
     filter: brightness(1.1);
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(26, 54, 93, 0.25);
 }
 
 /* --- Footer --- */
 footer {
     padding: 40px 4%;
-    background: #050505;
+    background: var(--primary-color);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -525,19 +553,38 @@ footer .flex {
 }
 
 footer .line-footer p {
-    color: #888;
+    color: #a0aec0;
     text-align: center;
     font-size: 14px;
 }
 
 footer .line-footer a {
-    color: #ccc;
+    color: var(--white);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 footer .line-footer a:hover {
-    color: var(--primary-light);
+    color: var(--accent-color);
+}
+
+footer .btn-social a {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+footer .btn-social a:hover {
+    background: var(--accent-color);
+}
+
+footer .btn-social img {
+    filter: brightness(0) invert(1);
+}
+
+footer .line-footer img {
+    filter: brightness(0) invert(1);
+    vertical-align: middle;
+    margin-right: 8px;
 }
 
 /* --- Timeline Section --- */
@@ -569,7 +616,7 @@ section.timeline-section {
 .timeline-step {
     flex: 1;
     min-width: 250px;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--card-bg);
     padding: 30px 20px;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
@@ -582,8 +629,8 @@ section.timeline-section {
 
 .timeline-step:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(138, 0, 0, 0.3);
+    background: var(--white);
+    border-color: rgba(26, 54, 93, 0.15);
 }
 
 .step-icon {
@@ -597,24 +644,24 @@ section.timeline-section {
     justify-content: center;
     margin: 0 auto 20px;
     font-size: 32px;
-    color: var(--primary-light);
-    box-shadow: 0 0 20px rgba(138, 0, 0, 0.2);
+    color: var(--accent-color);
+    box-shadow: 0 5px 15px rgba(26, 54, 93, 0.08);
 }
 
 .timeline-step:hover .step-icon {
     background: var(--primary-color);
     color: var(--white);
-    box-shadow: 0 0 30px rgba(197, 0, 0, 0.5);
+    box-shadow: 0 8px 25px rgba(26, 54, 93, 0.2);
 }
 
 .step-content h3 {
-    color: var(--white);
+    color: var(--primary-color);
     font-size: 20px;
     margin-bottom: 10px;
 }
 
 .step-content p {
-    color: #aaa;
+    color: var(--text-muted);
     font-size: 15px;
     line-height: 1.6;
 }
@@ -778,7 +825,7 @@ section.faq-section {
 }
 
 .faq-item {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--card-bg);
     border: 1px solid var(--glass-border);
     margin-bottom: 20px;
     border-radius: 15px;
@@ -788,12 +835,12 @@ section.faq-section {
 }
 
 .faq-item:hover {
-    border-color: rgba(138, 0, 0, 0.3);
+    border-color: rgba(26, 54, 93, 0.15);
 }
 
 .faq-item.active {
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: var(--white);
+    box-shadow: 0 10px 30px rgba(26, 54, 93, 0.05);
     border-color: var(--primary-color);
 }
 
@@ -808,12 +855,12 @@ section.faq-section {
 .faq-question h3 {
     font-size: 18px;
     font-weight: 500;
-    color: var(--white);
+    color: var(--primary-color);
     margin-bottom: 0;
 }
 
 .faq-question i {
-    color: var(--primary-light);
+    color: var(--accent-color);
     font-size: 18px;
     transition: transform 0.3s ease;
 }
@@ -837,7 +884,7 @@ section.faq-section {
 }
 
 .faq-answer p {
-    color: #ccc;
+    color: var(--text-color);
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 0;
