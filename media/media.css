@@ -198,14 +198,27 @@ p {
     padding: var(--spacing-md) 0;
 }
 
-.logo img {
-    height: 180px;
+.logo-full {
+    display: block;
+    height: 120px;
     transition: height 0.3s ease;
     width: auto;
 }
 
-.header.scrolled .logo img {
-    height: 90px;
+.logo-symbol {
+    display: none;
+    height: 80px;
+    transition: height 0.3s ease;
+    width: auto;
+}
+
+.header.scrolled .logo-full {
+    display: none;
+}
+
+.header.scrolled .logo-symbol {
+    display: block;
+    height: 80px;
 }
 
 .nav-menu {
@@ -271,7 +284,7 @@ p {
 
 /* ===== HERO SECTION ===== */
 .hero {
-    padding-top: 240px;
+    padding-top: 170px;
     min-height: 100vh;
     display: flex;
     align-items: center;

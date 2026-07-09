@@ -118,6 +118,9 @@ function initCarousel() {
         autoplay: true,
         autoplayTimeout: 5000,
         autoplayHoverPause: true,
+        mouseDrag: false,
+        touchDrag: true,
+        pullDrag: false,
         lazyLoad: true,
         lazyLoadEager: 1,
         responsive: {

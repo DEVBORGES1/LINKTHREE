@@ -6,7 +6,7 @@
 class AdvocaciaIntegration {
     constructor() {
         this.config = {
-            whatsapp: '554999001230',
+            whatsapp: '5549999894224',
             email: 'nathiara.borges@gmail.com',
             apiEndpoint: '/api/leads', // Substituir por sua API real
             autoOpenDelay: 10000, // 10 segundos
@@ -457,7 +457,7 @@ class AdvocaciaIntegration {
 
     getBotResponse(message) {
         const responses = {
-            'agendar': 'Perfeito! Para agendar uma consulta, você pode:\n\n📞 Ligar: (49) 99900-1230\n📱 WhatsApp: https://wa.me/5549999001230\n📧 Email: nathiara.borges@gmail.com\n\nOu acessar nosso sistema de agendamento online. Qual prefere?',
+            'agendar': 'Perfeito! Para agendar uma consulta, você pode:\n\n📞 Ligar: (49) 99900-1230\n📱 WhatsApp: https://wa.me/5549999894224\n📧 Email: nathiara.borges@gmail.com\n\nOu acessar nosso sistema de agendamento online. Qual prefere?',
             
             'preço': 'Nossos honorários variam conforme o tipo de serviço:\n\n• Consulta inicial: R$ 200\n• Direito Civil: A partir de R$ 500\n• Direito Penal: A partir de R$ 800\n• Direito TEA: Consulta gratuita\n\n💡 Oferecemos consulta gratuita para casos de Direito dos Autistas!',
             

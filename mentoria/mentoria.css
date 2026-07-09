@@ -128,13 +128,26 @@ h6 {
     transform: scale(1.05);
 }
 
-.logo img {
+.logo-full {
+    display: block;
     height: 120px;
     transition: height 0.3s ease;
     border-radius: var(--border-radius-md);
 }
 
-.header.scrolled .logo img {
+.logo-symbol {
+    display: none;
+    height: 80px;
+    transition: height 0.3s ease;
+    border-radius: var(--border-radius-md);
+}
+
+.header.scrolled .logo-full {
+    display: none;
+}
+
+.header.scrolled .logo-symbol {
+    display: block;
     height: 80px;
 }
 

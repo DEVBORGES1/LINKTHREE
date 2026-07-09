@@ -2,12 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-    --color-neutral-0: #0e0c0c;
-    --color-neutral-10: #171717;
-    --color-neutral-30: #a8a29e;
-    --color-neutral-40: #f5f5f5;
-    --color-accent: #ad1700;
-    --color-accent-hover: #c41a00;
+    --color-neutral-0: #f8fafc;
+    --color-neutral-10: #ffffff;
+    --color-neutral-30: #475569;
+    --color-neutral-40: #0f172a;
+    --color-accent: #b89765;
+    --color-accent-hover: #9c7c4c;
+    --color-accent-text: #856430;
 }
 
 ::-webkit-scrollbar {
@@ -24,9 +25,9 @@
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
-    color: #fff;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f1f5f9 0%, #f8fafc 50%, #ffffff 100%);
+    color: var(--color-neutral-40);
     text-align: center;
     line-height: 1.6;
 }
@@ -37,11 +38,32 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 80%, rgba(173, 23, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 68, 68, 0.1) 0%, transparent 50%);
+    background: radial-gradient(circle at 10% 20%, rgba(184, 151, 101, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(184, 151, 101, 0.08) 0%, transparent 40%);
     pointer-events: none;
     z-index: -1;
 }
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    height: 90vw;
+    max-width: 700px;
+    max-height: 700px;
+    background-image: url('logo_simbolo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.09;
+    filter: blur(10px);
+    pointer-events: none;
+    z-index: -2;
+}
+
 /* Header Styles */
 .header {
     margin-top: 7.5rem;
@@ -63,7 +85,7 @@ body::before {
     border-radius: 50%;
     object-position: 50% 40%;
     border: 4px solid var(--color-accent);
-    box-shadow: 0 0 20px rgba(173, 23, 0, 0.3);
+    box-shadow: 0 0 20px rgba(197, 168, 128, 0.3);
     opacity: 1 !important;
     display: block !important;
     visibility: visible !important;
@@ -72,7 +94,7 @@ body::before {
 }
 
 .titulo {
-    color: #d6d0d0;
+    color: var(--color-neutral-40);
     font-size: 2.5rem;
     text-align: center;
     margin: 0 0 0.75rem 0;
@@ -123,23 +145,25 @@ body::before {
     font-weight: 600;
     text-decoration: none;
     text-align: center;
-    color: #fff;
-    background-color: #222121;
-    border: 2px solid transparent;
-    border-radius: 8px;
+    color: var(--color-neutral-40);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(184, 151, 101, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
     transition: all 0.3s ease;
     margin: 0;
     position: relative;
     overflow: hidden;
     min-height: 80px;
     line-height: 1.3;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .button:hover {
-    box-shadow: 0px 0px 20px var(--color-accent);
-    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(184, 151, 101, 0.15);
+    transform: translateY(-3px);
     border-color: var(--color-accent);
-    background-color: #2a2a2a;
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 .button:active {
@@ -153,15 +177,15 @@ body::before {
 }
 
 .button span {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     font-weight: bold;
 }
 
 /* Estilo de Destaque Especial (Salário Maternidade) */
 .button.button-highlight {
     border: 2px solid var(--color-accent);
-    background: linear-gradient(135deg, #2a1513 0%, #171717 100%);
-    box-shadow: 0 0 15px rgba(173, 23, 0, 0.4);
+    background: linear-gradient(135deg, #fdfbf7 0%, #f5eadd 100%);
+    box-shadow: 0 4px 20px rgba(184, 151, 101, 0.2);
     position: relative;
     overflow: hidden;
 }
@@ -173,7 +197,7 @@ body::before {
     left: -60%;
     width: 30%;
     height: 200%;
-    background: rgba(255, 255, 255, 0.13);
+    background: rgba(255, 255, 255, 0.25);
     transform: rotate(30deg);
     transition: none;
     animation: shine-effect 4s infinite ease-in-out;
@@ -192,9 +216,9 @@ body::before {
 }
 
 .button.button-highlight:hover {
-    background: linear-gradient(135deg, #3d1b18 0%, #222 100%);
-    box-shadow: 0 0 25px rgba(173, 23, 0, 0.7);
-    border-color: #ff4444;
+    background: linear-gradient(135deg, #ffffff 0%, #fae6d0 100%);
+    box-shadow: 0 10px 30px rgba(184, 151, 101, 0.4);
+    border-color: var(--color-accent-hover);
 }
 
 .button.button-highlight i {
@@ -229,7 +253,7 @@ body::before {
 
 .contatos-section h2,
 .experiencias-section h2 {
-    color: #d6d0d0;
+    color: var(--color-neutral-40);
     font-size: 2rem;
     margin-bottom: 2rem;
     font-weight: 600;
@@ -250,15 +274,16 @@ body::before {
     align-items: center;
     gap: 0.75rem;
     padding: 1.5rem;
-    background: linear-gradient(145deg, #222121, #2a2a2a);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     text-decoration: none;
-    color: #fff;
+    color: var(--color-neutral-40);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid transparent;
+    border: 1px solid rgba(184, 151, 101, 0.2);
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
 .contato-item::before {
@@ -268,7 +293,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(173, 23, 0, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(184, 151, 101, 0.1), transparent);
     transition: left 0.6s ease;
 }
 
@@ -283,7 +308,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(173, 23, 0, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(184, 151, 101, 0.05) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -295,8 +320,8 @@ body::before {
 .contato-item:hover {
     transform: translateY(-8px) scale(1.02);
     border-color: var(--color-accent);
-    box-shadow: 0 15px 40px rgba(173, 23, 0, 0.3), 0 0 20px rgba(173, 23, 0, 0.1);
-    background: linear-gradient(145deg, #2a2a2a, #333333);
+    box-shadow: 0 15px 30px rgba(184, 151, 101, 0.15), 0 0 20px rgba(184, 151, 101, 0.05);
+    background: rgba(255, 255, 255, 0.85);
 }
 
 .contato-item:active {
@@ -313,7 +338,7 @@ body::before {
 
 .contato-item:hover i {
     transform: scale(1.1) rotate(5deg);
-    filter: drop-shadow(0 0 10px rgba(173, 23, 0, 0.5));
+    filter: drop-shadow(0 0 10px rgba(184, 151, 101, 0.4));
 }
 
 .contato-item span {
@@ -325,8 +350,7 @@ body::before {
 }
 
 .contato-item:hover span {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(173, 23, 0, 0.3);
+    color: var(--color-neutral-40);
 }
 
 /* Experiências Grid */
@@ -339,14 +363,15 @@ body::before {
 }
 
 .experiencia-card {
-    background: linear-gradient(145deg, #222121, #2a2a2a);
+    background: rgba(255, 255, 255, 0.5);
     padding: 2rem;
     border-radius: 20px;
-    border: 2px solid transparent;
+    border: 1px solid rgba(184, 151, 101, 0.2);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
 .experiencia-card::before {
@@ -356,7 +381,7 @@ body::before {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--color-accent), #ff4444, var(--color-accent));
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover), var(--color-accent));
     background-size: 200% 100%;
     transform: scaleX(0);
     transition: transform 0.4s ease;
@@ -379,7 +404,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(173, 23, 0, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(184, 151, 101, 0.08) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -391,8 +416,8 @@ body::before {
 .experiencia-card:hover {
     transform: translateY(-10px) scale(1.03);
     border-color: var(--color-accent);
-    box-shadow: 0 20px 50px rgba(173, 23, 0, 0.25), 0 0 30px rgba(173, 23, 0, 0.1);
-    background: linear-gradient(145deg, #2a2a2a, #333333);
+    box-shadow: 0 20px 40px rgba(184, 151, 101, 0.15), 0 0 30px rgba(184, 151, 101, 0.05);
+    background: rgba(255, 255, 255, 0.85);
 }
 
 .experiencia-card:active {
@@ -406,12 +431,12 @@ body::before {
     transition: all 0.4s ease;
     position: relative;
     z-index: 2;
-    filter: drop-shadow(0 0 5px rgba(173, 23, 0, 0.3));
+    filter: drop-shadow(0 0 5px rgba(184, 151, 101, 0.2));
 }
 
 .experiencia-card:hover i {
     transform: scale(1.15) rotate(10deg);
-    filter: drop-shadow(0 0 15px rgba(173, 23, 0, 0.6));
+    filter: drop-shadow(0 0 15px rgba(184, 151, 101, 0.5));
     animation: pulse 2s ease-in-out infinite;
 }
 
@@ -421,7 +446,7 @@ body::before {
 }
 
 .experiencia-card h3 {
-    color: #d6d0d0;
+    color: var(--color-neutral-40);
     font-size: 1.3rem;
     margin-bottom: 0.75rem;
     font-weight: 600;
@@ -431,8 +456,7 @@ body::before {
 }
 
 .experiencia-card:hover h3 {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(173, 23, 0, 0.3);
+    color: var(--color-neutral-40);
     transform: translateY(-2px);
 }
 
@@ -446,18 +470,19 @@ body::before {
 }
 
 .experiencia-card:hover p {
-    color: #e0e0e0;
+    color: var(--color-neutral-30);
     transform: translateY(-1px);
 }
 
 /* Footer Styles Modernizado */
 footer {
     padding: 30px 4%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(173, 23, 0, 0.3);
+    border-top: 1px solid rgba(184, 151, 101, 0.25);
     position: relative;
     margin-top: 3rem;
+    color: var(--color-neutral-30);
 }
 
 footer::before {
@@ -467,7 +492,7 @@ footer::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(173, 23, 0, 0.05) 0%, transparent 50%);
+    background: radial-gradient(circle at 50% 0%, rgba(184, 151, 101, 0.05) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -488,13 +513,13 @@ footer .flex {
 }
 
 .borda {
-    border-top: 1px solid rgba(173, 23, 0, 0.5);
+    border-top: 1px solid rgba(184, 151, 101, 0.25);
     margin-top: 15px;
 }
 
 footer .line-footer {
     padding: 15px 0;
-    color: #fff;
+    color: var(--color-neutral-30);
 }
 
 footer .line-footer p {
@@ -506,13 +531,13 @@ footer .line-footer p {
 }
 
 footer .line-footer p a {
-    color: #fff;
+    color: var(--color-neutral-30);
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 footer .line-footer p a:hover {
-    color: #ff4444;
+    color: var(--color-accent-text);
     text-decoration: underline;
 }
 
@@ -529,7 +554,7 @@ footer .line-footer p a:hover {
     height: 60px;
     border-radius: 50%;
     border: none;
-    background: linear-gradient(45deg, #ad1700, #ff4444);
+    background: linear-gradient(45deg, var(--color-accent), var(--color-accent-hover));
     font-size: 22px;
     cursor: pointer;
     margin: 0;
@@ -548,7 +573,7 @@ footer .line-footer p a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, #ff4444, #ad1700);
+    background: linear-gradient(45deg, #d4af37, #c5a880);
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 50%;
@@ -569,7 +594,7 @@ footer .line-footer p a:hover {
 }
 
 .btn-social button:hover {
-    box-shadow: 0 10px 30px rgba(173, 23, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(197, 168, 128, 0.4);
     transform: translateY(-5px);
 }
 
@@ -817,7 +842,7 @@ html {
 }
 
 .button-text span {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     font-weight: bold;
     display: inline;
 }

@@ -84,7 +84,7 @@ header>.interface {
 }
 
 .logo img {
-    height: 180px;
+    height: 120px;
     transition: height 0.3s ease, transform 0.3s ease;
 }
 
@@ -257,7 +257,7 @@ header>.interface {
 
 /* --- Hero Section --- */
 section.topo-do-site {
-    padding: 240px 4% 80px;
+    padding: 170px 4% 80px;
     min-height: 100vh;
     display: flex;
     align-items: center;
