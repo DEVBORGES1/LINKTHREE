@@ -71,7 +71,12 @@ header.scrolled {
     padding: 15px 4%;
 }
 
-header.scrolled .logo img {
+header.scrolled .logo-full {
+    display: none;
+}
+
+header.scrolled .logo-symbol {
+    display: block;
     height: 90px;
 }
 
@@ -83,9 +88,18 @@ header>.interface {
     margin: 0 auto;
 }
 
-.logo img {
+.logo-full {
+    display: block;
     height: 120px;
     transition: height 0.3s ease, transform 0.3s ease;
+    width: auto;
+}
+
+.logo-symbol {
+    display: none;
+    height: 80px;
+    transition: height 0.3s ease, transform 0.3s ease;
+    width: auto;
 }
 
 .menu-desktop ul {

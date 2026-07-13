@@ -174,6 +174,29 @@ document.addEventListener("DOMContentLoaded", () => {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         revealObserver.observe(el);
     });
+
+    // Copiar e-mail ao clicar no Linktree e dar feedback visual
+    const emailBtn = document.getElementById('btn-email-linktree');
+    if (emailBtn) {
+        emailBtn.addEventListener('click', (e) => {
+            const email = 'nathiara.borges@outlook.com';
+            navigator.clipboard.writeText(email).then(() => {
+                const span = emailBtn.querySelector('span');
+                const originalText = span.textContent;
+                span.textContent = 'Copiado!';
+                emailBtn.style.backgroundColor = '#28a745';
+                emailBtn.style.color = '#fff';
+                
+                setTimeout(() => {
+                    span.textContent = originalText;
+                    emailBtn.style.backgroundColor = '';
+                    emailBtn.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Erro ao copiar e-mail: ', err);
+            });
+        });
+    }
 });
 
 // Adicionar estilos CSS dinâmicos para animações

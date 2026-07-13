@@ -184,9 +184,14 @@ class ScrollAnimations {
 
                 // Adicionar delay para elementos em sequência
                 if (entry.target.classList.contains('contato-card') ||
-                    entry.target.classList.contains('stat-item')) {
+                    entry.target.classList.contains('stat-item') ||
+                    entry.target.classList.contains('area-card') ||
+                    entry.target.classList.contains('diferencial-card') ||
+                    entry.target.classList.contains('depoimento-card')) {
                     const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
-                    entry.target.style.animationDelay = `${index * 0.1}s`;
+                    const delay = `${index * 0.15}s`;
+                    entry.target.style.animationDelay = delay;
+                    entry.target.style.transitionDelay = delay;
                 }
             }
         });
