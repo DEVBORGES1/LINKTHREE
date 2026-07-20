@@ -403,11 +403,30 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Botão de retorno */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ad1700;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: #c41a00;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
+            <a href="media.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Voltar para o site
+            </a>
             <h1><i class="fas fa-calendar-alt"></i> Agendamento de Consultas</h1>
             <p>Agende sua consulta jurídica de forma rápida e segura</p>
         </div>
@@ -513,7 +532,7 @@
                         </div>
                     </button>
                     
-                    <div class="debug-info" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 12px; color: #666;">
+                    <div class="debug-info" style="display: none; margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 12px; color: #666;">
                         <strong>Debug:</strong><br>
                         <span id="debugStatus">Aguardando preenchimento...</span>
                     </div>

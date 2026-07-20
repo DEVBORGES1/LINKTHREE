@@ -114,7 +114,7 @@ function initCarousel() {
         loop: true,
         margin: 30,
         nav: true,
-        dots: true,
+        dots: false,
         autoplay: true,
         autoplayTimeout: 5000,
         autoplayHoverPause: true,
@@ -192,7 +192,6 @@ function addCustomCarouselControls() {
         <button class="indicator" data-slide="1"></button>
         <button class="indicator" data-slide="2"></button>
         <button class="indicator" data-slide="3"></button>
-        <button class="indicator" data-slide="4"></button>
     `;
 
     carousel.parentNode.appendChild(indicators);
@@ -230,8 +229,8 @@ function forceImageVisibility() {
         }
     });
 
-    // Também forçar visibilidade dos itens do carrossel
-    const carouselItems = document.querySelectorAll('.testemunhos-carousel .owl-item');
+    // Também forçar visibilidade dos itens do carrossel ativos
+    const carouselItems = document.querySelectorAll('.testemunhos-carousel .owl-item.active');
     carouselItems.forEach(item => {
         item.style.opacity = '1';
         item.style.visibility = 'visible';
