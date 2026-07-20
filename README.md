@@ -1,31 +1,66 @@
-<h2>Descrição do Projeto</h2>
+# LINKTHREE
 
-Este repositório reúne o desenvolvimento de um conjunto de páginas web voltadas ao direito das pessoas com deficiência, com foco especial no Transtorno do Espectro Autista (TEA). O projeto contempla:
+Conjunto de páginas estáticas do escritório Nathiara Borges — advocacia, mentoria, portfólio e marketing digital.
 
-Landing Page: Página principal que apresenta os serviços do escritório de advocacia especializado.
+## Estrutura
 
-Portfólio: Página dedicada à apresentação dos trabalhos, cases e experiências da profissional.
+```
+LINKTHREE/
+├── public/                 # Document root (servir esta pasta)
+│   ├── index.html          # Linktree / hub principal
+│   ├── assets/             # Recursos compartilhados entre sites
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── images/
+│   │       ├── brand/      # Logos
+│   │       ├── icons/      # Ícones sociais
+│   │       └── profile/    # Foto de perfil
+│   ├── portfolio/          # Site do portfólio
+│   ├── mentoria/           # Landing de salário maternidade
+│   ├── escritorio/         # Site do escritório
+│   ├── landing/            # Página de links / marketing
+│   └── vendas/             # Página de vendas
+├── resources/
+│   └── archive/            # Backups e versões antigas (não publicar)
+└── storage/                # Dados de runtime (se necessário)
+```
 
-Mentorias: Página específica para divulgar mentorias sobre temas jurídicos, especialmente ligados a direitos de pessoas com deficiência.
+Cada site segue a mesma convenção interna:
 
-Linktree Personalizado: Página única que centraliza links para todas as demais páginas e recursos.
+```
+site/
+├── index.html
+├── css/
+├── js/
+└── images/
+```
 
-O objetivo é criar uma experiência clara, acessível e informativa para usuários que buscam orientação e serviços jurídicos nessa área.
+## Convenções
 
- <h2>Tecnologias Utilizadas</h2>
+- Pastas em **inglês**, **kebab-case** ou nomes descritivos simples (`portfolio`, `escritorio`, `images`)
+- Arquivos estáticos servidos a partir de `public/`
+- Assets compartilhados (logos, ícones) em `public/assets/`
+- Arquivos legados preservados em `resources/archive/`
 
-HTML5 – Estrutura e marcação semântica
+## Desenvolvimento local
 
-CSS3 – Estilização responsiva e acessível
+```bash
+npm run dev
+```
 
-JavaScript – Interatividade e funcionalidades dinâmicas
+Abre em [http://localhost:3000](http://localhost:3000).
 
-Node.js – Gerenciamento do backend e integração de serviços
+## Rotas
 
-JSON – Estruturação e manipulação de dados
+| URL | Página |
+|-----|--------|
+| `/` | Linktree principal |
+| `/portfolio/` | Portfólio advocacia |
+| `/mentoria/` | Salário maternidade |
+| `/escritorio/` | Escritório |
+| `/landing/` | Links marketing |
+| `/vendas/` | Página de vendas |
 
-APIs – Integração com recursos externos para ampliar funcionalidades
+## Tecnologias
 
-<h2>Objetivo</h2>
-
-Oferecer uma plataforma web moderna e acessível, que reflita o compromisso do escritório com a defesa dos direitos das pessoas com deficiência, especialmente autistas, e facilite o acesso a informações, mentorias e serviços.
+HTML5, CSS3, JavaScript vanilla.

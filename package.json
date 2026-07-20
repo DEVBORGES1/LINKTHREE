@@ -1,0 +1,10 @@
+{
+  "name": "linkthree",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Páginas web do escritório Nathiara Borges",
+  "scripts": {
+    "dev": "npx serve public -l 3000",
+    "start": "npm run dev"
+  }
+}
