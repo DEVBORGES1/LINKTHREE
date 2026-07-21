@@ -566,8 +566,18 @@ footer {
 }
 
 footer .flex {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 30px;
+}
+
+footer .btn-social {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
 
 footer .line-footer p {
@@ -589,6 +599,9 @@ footer .line-footer a:hover {
 footer .btn-social a {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 footer .btn-social a:hover {
@@ -597,6 +610,8 @@ footer .btn-social a:hover {
 
 footer .btn-social img {
     filter: brightness(0) invert(1);
+    margin-right: 0 !important;
+    margin: 0 !important;
 }
 
 footer .line-footer img {
@@ -762,10 +777,13 @@ section.timeline-section {
 
     .flex {
         flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
     .btn-social {
         justify-content: center;
+        margin-top: 0;
     }
 
     .logo img {
