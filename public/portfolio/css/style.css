@@ -293,6 +293,12 @@ section.topo-do-site {
     transition: all 0.5s ease;
     max-height: 600px;
     object-fit: cover;
+    /* A altura manda; a largura acompanha a proporção. Os atributos width e
+       height no HTML existem só para o navegador reservar o espaço antes da
+       imagem chegar - sem este `width: auto`, o `max-width: 100%` do base.css
+       espremia a largura e a foto ficava esticada. */
+    width: auto;
+    height: 600px;
 }
 
 .img-topo-site:hover img {

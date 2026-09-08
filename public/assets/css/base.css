@@ -77,27 +77,19 @@
 }
 
 /* ---------- Reset ---------- */
+/* Os seis sites já zeravam margin e padding no seletor universal; o reset
+   mora aqui para que todos partam da mesma base. Sem o `padding: 0`, elementos
+   com espaçamento próprio do navegador (button, ul, fieldset) voltam a
+   empurrar o layout. */
+* {
+    margin: 0;
+    padding: 0;
+}
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-figure,
-blockquote,
-dl,
-dd,
-ul,
-ol {
-    margin: 0;
 }
 
 html {
@@ -114,15 +106,25 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Imagens nunca estouram o container.
-   `height` fica de fora de proposito: varios icones de rodape usam o
-   atributo height="20" do HTML para se dimensionar. */
+/* Imagens nunca estouram o container. */
 img,
 picture,
 svg,
 video,
 canvas {
     max-width: 100%;
+}
+
+/* Logotipo do rodape: o tamanho vem do atributo height no HTML. Em tela
+   estreita o max-width acima aperta a largura enquanto essa altura continua
+   fixa, e a imagem sai esticada. Aqui a largura passa a mandar e a altura
+   acompanha a proporcao. */
+@media (max-width: 640px) {
+
+    .logo-footer img {
+        width: min(100%, 260px);
+        height: auto;
+    }
 }
 
 input,

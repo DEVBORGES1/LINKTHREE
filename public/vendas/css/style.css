@@ -146,6 +146,7 @@ body {
 
 .logo-img {
     height: 120px;
+    width: auto;
     transition: height 0.3s ease;
     filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
 }
@@ -345,6 +346,10 @@ body {
 
 .image-container img {
     width: 100%;
+    /* A largura manda; a altura acompanha. Sem isto, o height do HTML (que
+       existe para reservar espaço e evitar salto de layout) fixaria a altura e
+       a foto sairia esticada. */
+    height: auto;
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border-subtle);
@@ -1055,6 +1060,7 @@ footer {
 
 .logo-footer img {
     height: 150px;
+    width: auto;
     margin-bottom: 1.5rem;
     opacity: 0.9;
 }
@@ -1424,5 +1430,18 @@ footer {
 
     .social-proof-notification.visible {
         transform: translate(-50%, 0);
+    }
+}
+/* Logotipos em tela estreita.
+   No desktop o tamanho vem da altura fixa (.logo-img: 120px, .logo-footer img:
+   150px). Quando a tela é menor que a largura correspondente, o max-width do
+   base.css aperta só a largura e a imagem sai esticada. Aqui a largura passa a
+   mandar e a altura acompanha a proporção. */
+@media (max-width: 640px) {
+
+    .logo-img,
+    .logo-footer img {
+        width: min(100%, 260px);
+        height: auto;
     }
 }
