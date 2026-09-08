@@ -4,6 +4,8 @@
  * A pasta public/ continua legivel para edicao; quem vai para o ar e o dist/.
  * O workflow do GitHub Pages roda isto antes de publicar.
  *
+ * Tambem e aqui que se decide o que NAO vai ao ar: veja UNPUBLISHED.
+ *
  * Rodar com:  npm run minify
  */
 import fs from 'node:fs';
@@ -17,6 +19,22 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'public');
 const OUT = path.join(ROOT, process.argv[2] || 'dist');
 
+/**
+ * Pastas de public/ que NAO vao para o ar.
+ *
+ * Elas continuam no repositorio e funcionam normalmente em `npm run dev`;
+ * so ficam de fora do que e publicado. Para colocar uma no ar, apague a linha
+ * correspondente e faca o deploy.
+ *
+ * - vendas:  ainda em desenvolvimento, a cliente nao decidiu.
+ * - landing: existe so como funil para /vendas/ (o botao principal aponta para
+ *            la), entao no ar sozinha o CTA seria um link quebrado.
+ */
+const UNPUBLISHED = [
+  'vendas',
+  'landing',
+];
+
 const SEP = new RegExp('\\\\', 'g');
 const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
   const p = path.join(d, e.name);
@@ -29,9 +47,17 @@ fs.mkdirSync(OUT, { recursive: true });
 let before = 0;
 let after = 0;
 const rows = [];
+const skipped = new Set();
 
 for (const file of walk(SRC)) {
   const rel = path.relative(SRC, file).replace(SEP, '/');
+
+  const unpublished = UNPUBLISHED.find((dir) => rel === dir || rel.startsWith(`${dir}/`));
+  if (unpublished) {
+    skipped.add(unpublished);
+    continue;
+  }
+
   const dest = path.join(OUT, rel);
   fs.mkdirSync(path.dirname(dest), { recursive: true });
 
@@ -88,3 +114,29 @@ for (const [rel, a, b] of rows.slice(0, 12)) {
 }
 console.log('');
 console.log(`Total public/ -> ${path.relative(ROOT, OUT).replace(SEP, '/')}/: ${kb(before)} -> ${kb(after)} (-${Math.round((1 - after / before) * 100)}%)`);
+
+if (skipped.size) {
+  console.log('');
+  console.log(`NAO publicado (fica no repositorio, fora do ar): ${[...skipped].sort().join(', ')}`);
+  console.log('Para publicar, remova da lista UNPUBLISHED em scripts/minify.mjs.');
+}
+
+// Nenhum link do que foi publicado pode apontar para o que ficou de fora.
+const brokenLinks = [];
+for (const file of walk(OUT)) {
+  if (!/\.(html|css|js)$/i.test(file)) continue;
+  const rel = path.relative(OUT, file).replace(SEP, '/');
+  const txt = fs.readFileSync(file, 'utf8');
+  for (const dir of UNPUBLISHED) {
+    // Casa href="vendas/", href="../vendas/" e href="/vendas/", mas nao
+    // href="vendas-antigo/". O caminho opcional antes tem de terminar em "/".
+    const re = new RegExp(`(?:href|src)\\s*=\\s*["'](?:[^"']*/)?${dir}/`, 'i');
+    if (re.test(txt)) brokenLinks.push(`${rel} -> /${dir}/`);
+  }
+}
+if (brokenLinks.length) {
+  console.error('');
+  console.error('ERRO: pagina publicada aponta para pasta nao publicada:');
+  brokenLinks.forEach((l) => console.error(`  ${l}`));
+  process.exit(1);
+}

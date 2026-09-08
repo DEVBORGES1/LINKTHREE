@@ -74,7 +74,7 @@ e todas as imagens `.webp`.
 | `npm run icons` | Varre o HTML, descobre os ícones usados e gera um Font Awesome enxuto |
 | `npm run fonts` | Copia as fontes do `node_modules` e gera o `fonts.css` |
 | `npm run build` | Os três acima |
-| `npm run minify` | Gera `dist/` minificado (o workflow usa isso para publicar) |
+| `npm run minify` | Gera `dist/` minificado, já sem as páginas fora do ar (o workflow usa isso para publicar) |
 
 ### Trocar ou adicionar uma imagem
 
@@ -91,14 +91,30 @@ O script inclui no subset só o que aparece no código.
 
 ## Rotas
 
-| URL | Página |
-|-----|--------|
-| `/` | Linktree principal |
-| `/portfolio/` | Portfólio advocacia |
-| `/mentoria/` | Salário maternidade |
-| `/escritorio/` | Escritório |
-| `/landing/` | Links marketing |
-| `/vendas/` | Página de vendas |
+| URL | Página | No ar |
+|-----|--------|-------|
+| `/` | Linktree principal | sim |
+| `/portfolio/` | Portfólio advocacia | sim |
+| `/mentoria/` | Salário maternidade | sim |
+| `/escritorio/` | Escritório | sim |
+| `/landing/` | Links marketing | **não** |
+| `/vendas/` | Página de vendas | **não** |
+
+### Páginas fora do ar
+
+`vendas/` e `landing/` continuam no repositório e funcionam normalmente em
+`npm run dev`, mas **não são publicadas**: o `npm run minify` não as copia para
+`dist/`, então `https://.../vendas/` responde 404.
+
+- `vendas/` — ainda em desenvolvimento, a cliente não decidiu.
+- `landing/` — existe só como funil para `/vendas/` (o botão principal aponta
+  para lá), então no ar sozinha o CTA seria um link quebrado.
+
+Para colocar uma delas no ar, apague a linha correspondente da lista
+`UNPUBLISHED` em [`scripts/minify.mjs`](scripts/minify.mjs) e faça o deploy.
+
+O build falha de propósito se alguma página publicada passar a apontar para uma
+pasta dessa lista, para não ir ao ar um link quebrado.
 
 ## Analytics
 
