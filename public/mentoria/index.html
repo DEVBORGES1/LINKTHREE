@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>document.documentElement.classList.add('js');</script>
 
     <!-- SEO & Social Sharing -->
     <title>Auxílio Maternidade & Salário Maternidade | Nathiara Borges Advocacia</title>
@@ -14,39 +15,34 @@
 
     <!-- Open Graph / WhatsApp -->
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Auxílio Maternidade & Salário Maternidade | Nathiara Borges">
     <meta property="og:description"
         content="Atendimento previdenciário especializado e humanizado para garantir o seu Salário Maternidade.">
-    <meta property="og:image" content="/portfolio/images/Foto 2 sobre.jpg">
+    <meta property="og:image" content="https://www.nathiaraborges.adv.br/assets/images/og-image.jpg">
     <meta property="og:url" content="https://www.nathiaraborges.adv.br/mentoria">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/logos/logo_simbolo.png">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
 
-    <!-- CSS -->
+    <!-- Fontes, ícones e base compartilhados (auto-hospedados) -->
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="css/mentoria.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Preload de fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>
+    <a class="skip-link" href="#inicio">Pular para o conteúdo</a>
     <!-- Header com navegação fixa -->
     <header class="header" id="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
                     <a href="../index.html" aria-label="Página inicial">
-                        <img src="images/logos/logo_advogada.png?v=4" alt="Logo Nathiara Borges | Advogada" class="logo-full" height="120">
-                        <img src="images/logos/logo_simbolo.png?v=4" alt="Logo Nathiara Borges | Advogada" class="logo-symbol" height="80">
+                        <img fetchpriority="high" src="/assets/images/brand/logo-advogada.webp" alt="Logo Nathiara Borges | Advogada" class="logo-full" width="321" height="120">
+                        <img loading="lazy" decoding="async" src="/assets/images/brand/logo-simbolo.webp" alt="Logo Nathiara Borges | Advogada" class="logo-symbol" width="80" height="80">
                     </a>
                 </div>
 
@@ -77,11 +73,20 @@
         </div>
     </header>
 
+    <main>
+
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="hero-background">
-            <img src="images/logos/capadesk.png" alt="Imagem de fundo para Computador" class="hero-bg-image desktop-only">
-            <img src="images/logos/capamob.png" alt="Imagem de fundo para Celular" class="hero-bg-image mobile-only">
+            <!-- Fundo decorativo, renderizado com blur(10px): não precisa de
+                 resolução alta, e alt="" tira do leitor de tela.
+                 O <picture> baixa uma versão só - antes as duas (1,2 MB + 1,7 MB)
+                 vinham juntas e o CSS escondia uma. -->
+            <picture>
+                <source media="(max-width: 768px)" srcset="images/capa-mobile.webp" width="600" height="1067">
+                <img src="images/capa-desktop.webp" width="900" height="379" alt="" aria-hidden="true"
+                    fetchpriority="high" class="hero-bg-image">
+            </picture>
             <div class="hero-overlay"></div>
         </div>
 
@@ -122,7 +127,7 @@
             </div>
 
             <div class="mentorias-grid">
-                <div class="mentoria-card" data-aos="fade-up">
+                <div class="mentoria-card reveal" data-reveal="fade-up">
                     <div class="card-icon">
                         <i class="fas fa-baby"></i>
                     </div>
@@ -137,7 +142,7 @@
                     </div>
                 </div>
 
-                <div class="mentoria-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="mentoria-card reveal" data-reveal="fade-up" data-reveal-delay="100">
                     <div class="card-icon">
                         <i class="fas fa-child"></i>
                     </div>
@@ -152,7 +157,7 @@
                     </div>
                 </div>
 
-                <div class="mentoria-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="mentoria-card reveal" data-reveal="fade-up" data-reveal-delay="200">
                     <div class="card-icon">
                         <i class="fas fa-heart"></i>
                     </div>
@@ -181,7 +186,7 @@
             </div>
 
             <div class="beneficios-grid">
-                <div class="beneficio-item" data-aos="zoom-in">
+                <div class="beneficio-item reveal" data-reveal="zoom-in">
                     <div class="beneficio-icon">
                         <i class="fas fa-search"></i>
                     </div>
@@ -189,7 +194,7 @@
                     <p class="beneficio-description">Análise completa da sua situação previdenciária atual e do histórico de contribuições.</p>
                 </div>
 
-                <div class="beneficio-item" data-aos="zoom-in" data-aos-delay="100">
+                <div class="beneficio-item reveal" data-reveal="zoom-in" data-reveal-delay="100">
                     <div class="beneficio-icon">
                         <i class="fas fa-calculator"></i>
                     </div>
@@ -197,7 +202,7 @@
                     <p class="beneficio-description">Verificação de direito ao benefício mesmo para quem possui poucas ou nenhuma contribuição recente.</p>
                 </div>
 
-                <div class="beneficio-item" data-aos="zoom-in" data-aos-delay="200">
+                <div class="beneficio-item reveal" data-reveal="zoom-in" data-reveal-delay="200">
                     <div class="beneficio-icon">
                         <i class="fas fa-folder-open"></i>
                     </div>
@@ -205,7 +210,7 @@
                     <p class="beneficio-description">Orientação detalhada sobre toda a documentação necessária para o processo administrativo.</p>
                 </div>
 
-                <div class="beneficio-item" data-aos="zoom-in" data-aos-delay="300">
+                <div class="beneficio-item reveal" data-reveal="zoom-in" data-reveal-delay="300">
                     <div class="beneficio-icon">
                         <i class="fas fa-file-invoice"></i>
                     </div>
@@ -213,7 +218,7 @@
                     <p class="beneficio-description">Entrada e acompanhamento do pedido de Salário Maternidade diretamente junto ao INSS.</p>
                 </div>
 
-                <div class="beneficio-item" data-aos="zoom-in" data-aos-delay="400">
+                <div class="beneficio-item reveal" data-reveal="zoom-in" data-reveal-delay="400">
                     <div class="beneficio-icon">
                         <i class="fas fa-gavel"></i>
                     </div>
@@ -221,7 +226,7 @@
                     <p class="beneficio-description">Atuação judicial ágil e assertiva em caso de indeferimento indevido do benefício pelo órgão previdenciário.</p>
                 </div>
 
-                <div class="beneficio-item" data-aos="zoom-in" data-aos-delay="500">
+                <div class="beneficio-item reveal" data-reveal="zoom-in" data-reveal-delay="500">
                     <div class="beneficio-icon">
                         <i class="fas fa-hand-holding-heart"></i>
                     </div>
@@ -230,7 +235,7 @@
                 </div>
             </div>
 
-            <div class="beneficios-cta" data-aos="fade-up">
+            <div class="beneficios-cta reveal" data-reveal="fade-up">
                 <a href="https://wa.me/5549999894224" target="_blank" rel="noopener" class="btn btn-whatsapp btn-large">
                     <i class="fab fa-whatsapp"></i>
                     <span>Garantir Meu Benefício</span>
@@ -264,7 +269,7 @@
                 </div>
             </div>
 
-            <div class="testemunhos-carousel owl-carousel">
+            <div class="testemunhos-carousel">
                 <div class="testemunho-item">
                     <div class="testemunho-content">
                         <div class="testemunho-header">
@@ -394,7 +399,7 @@
                 </div>
             </div>
 
-            <div class="testemunhos-cta" data-aos="fade-up">
+            <div class="testemunhos-cta reveal" data-reveal="fade-up">
                 <p class="cta-text">Garantir o seu benefício é proteger o futuro do seu bebê!</p>
                 <a href="https://wa.me/5549999894224" target="_blank" rel="noopener" class="btn btn-whatsapp btn-large">
                     <i class="fab fa-whatsapp"></i>
@@ -554,35 +559,38 @@
     </section>
 
     <!-- Footer -->
+    </main>
+
     <footer role="contentinfo">
         <div class="interface">
             <div class="line-footer">
                 <div class="flex">
                     <div class="logo-footer">
-                        <img src="../assets/images/brand/logo-advogada.png?v=4" alt="Logo Nathiara Borges | Advogada" height="220">
+                        <img loading="lazy" decoding="async" src="/assets/images/brand/logo-advogada.webp" alt="Logo Nathiara Borges | Advogada" width="589" height="220">
                     </div>
                     <div class="btn-social">
-                        <a href="https://www.instagram.com/nathiaraborges/" target="_blank"><button><img
-                                    src="../assets/images/icons/instagram.png" alt="" height="20"></button></a>
-                        <a href="https://www.facebook.com/nathiaraborges/" target="_blank"><button><img
-                                    src="../assets/images/icons/facebook.png" alt="" height="20"></button></a>
-                        <a href="https://wa.me/5549999894224" target="_blank"><button><img
-                                    src="../assets/images/icons/whatsapp.png" alt="" height="20"></button></a>
+                        <a href="https://www.instagram.com/nathiaraborges/" target="_blank"><button><img loading="lazy" decoding="async"
+                                    src="/assets/images/icons/instagram.webp" alt="" width="20" height="20"></button></a>
+                        <a href="https://www.facebook.com/nathiaraborges/" target="_blank"><button><img loading="lazy" decoding="async"
+                                    src="/assets/images/icons/facebook.webp" alt="" width="20" height="20"></button></a>
+                        <a href="https://wa.me/5549999894224" target="_blank"><button><img loading="lazy" decoding="async"
+                                    src="/assets/images/icons/whatsapp.webp" alt="" width="20" height="20"></button></a>
                     </div>
                 </div>
             </div>
             <div class="line-footer borda">
-                <p><img src="../assets/images/icons/email.png" height="20"> <a
+                <p><img loading="lazy" decoding="async" src="/assets/images/icons/email.webp" width="20" height="20"> <a
                         href="mailto:nathiara.borges@outlook.com" style="color: black">nathiara.borges@outlook.com</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/mentoria.js"></script>
+    <!-- Scripts
+         Saíram daqui: jQuery (87 KB), OwlCarousel (43 KB) e AOS (15 KB).
+         O carrossel virou scroll-snap nativo e o AOS era redundante - o próprio
+         a animação de entrada agora é a compartilhada em /assets/js/reveal.js. -->
+    <script src="/assets/js/reveal.js" defer></script>
+    <script src="js/mentoria.js" defer></script>
 </body>
 
 </html>

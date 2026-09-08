@@ -286,16 +286,9 @@ html {
 }
 
 /* Animações */
-.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
-}
-
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* A animação de entrada agora vem de /assets/css/base.css (.reveal / .is-visible).
+   O nome .hidden foi abandonado: no escritório ele significava duas coisas ao
+   mesmo tempo - "ainda não animou" e "header escondido no scroll". */
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -577,16 +570,7 @@ footer .line-footer p a:hover {
     transform: translateY(-5px);
 }
 
-.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
 
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 /* Responsividade do Footer */
 @media screen and (max-width: 768px) {

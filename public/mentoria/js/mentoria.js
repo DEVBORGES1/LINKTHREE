@@ -2,7 +2,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Inicializar todas as funcionalidades
     initHeader();
-    initAnimations();
     initCarousel();
     initFormValidation();
     initSmoothScrolling();
@@ -60,181 +59,103 @@ function initHeader() {
 }
 
 // ===== ANIMAÇÕES DE SCROLL =====
-function initAnimations() {
-    // Verificar se o navegador suporta Intersection Observer
-    if (!('IntersectionObserver' in window)) {
-        // Fallback para navegadores antigos
-        document.querySelectorAll('[data-aos]').forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'none';
-        });
-        return;
-    }
-
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const element = entry.target;
-                const animation = element.getAttribute('data-aos');
-                const delay = element.getAttribute('data-aos-delay') || 0;
-
-                setTimeout(() => {
-                    element.classList.add('aos-animate');
-                    element.style.opacity = '1';
-                    element.style.transform = 'none';
-                }, delay);
-
-                observer.unobserve(element);
-            }
-        });
-    }, observerOptions);
-
-    // Observar todos os elementos com data-aos
-    document.querySelectorAll('[data-aos]').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
+// Removido: esta página tinha o seu próprio IntersectionObserver para [data-aos],
+// duplicando o de /assets/js/reveal.js (e ainda carregava a biblioteca AOS do
+// unpkg, que nunca era usada). Os elementos agora usam a classe .reveal
+// compartilhada; o atraso em cascata é `data-reveal-delay` lido pelo base.css.
 
 // ===== CARROSSEL DE TESTEMUNHOS =====
+//
+// Antes: jQuery (87 KB) + OwlCarousel (43 KB de JS + CSS) para 4 depoimentos.
+// Agora: rolagem com scroll-snap, que o navegador já faz sozinho. O JS abaixo
+// só acrescenta as setas e os indicadores; sem ele o carrossel continua
+// funcionando por arrasto e teclado.
+//
+// A função forceImageVisibility() que existia aqui foi removida: ela recarregava
+// `.author-avatar`, um elemento que não existe mais - os depoimentos usam ícone,
+// não foto.
 function initCarousel() {
-    if (typeof $ === 'undefined') {
-        console.warn('jQuery não está carregado. Carrossel não funcionará.');
-        return;
+    const track = document.querySelector('.testemunhos-carousel');
+    if (!track) return;
+
+    const items = Array.from(track.querySelectorAll('.testemunho-item'));
+    if (items.length < 2) return;
+
+    track.setAttribute('tabindex', '0');
+    track.setAttribute('role', 'region');
+    track.setAttribute('aria-label', 'Depoimentos de clientes');
+
+    const controls = document.createElement('div');
+    controls.className = 'carousel-controls';
+    controls.innerHTML = `
+        <button class="carousel-btn" type="button" data-dir="-1" aria-label="Depoimento anterior">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <div class="carousel-dots" role="tablist"></div>
+        <button class="carousel-btn" type="button" data-dir="1" aria-label="Próximo depoimento">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+    `;
+    track.parentNode.insertBefore(controls, track.nextSibling);
+
+    const dotsWrap = controls.querySelector('.carousel-dots');
+    const dots = items.map((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', `Ir para o depoimento ${i + 1}`);
+        dot.addEventListener('click', () => scrollToItem(i));
+        dotsWrap.appendChild(dot);
+        return dot;
+    });
+
+    function scrollToItem(index) {
+        const clamped = Math.max(0, Math.min(index, items.length - 1));
+        track.scrollTo({ left: items[clamped].offsetLeft - track.offsetLeft, behavior: 'smooth' });
     }
 
-    $('.testemunhos-carousel').owlCarousel({
-        loop: true,
-        margin: 30,
-        nav: true,
-        dots: false,
-        autoplay: true,
-        autoplayTimeout: 5000,
-        autoplayHoverPause: true,
-        mouseDrag: false,
-        touchDrag: true,
-        pullDrag: false,
-        lazyLoad: true,
-        lazyLoadEager: 1,
-        responsive: {
-            0: {
-                items: 1,
-                margin: 20
-            },
-            768: {
-                items: 1,
-                margin: 30
-            },
-            1024: {
-                items: 2,
-                margin: 40
+    function currentIndex() {
+        const center = track.scrollLeft + track.clientWidth / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        items.forEach((item, i) => {
+            const itemCenter = item.offsetLeft - track.offsetLeft + item.offsetWidth / 2;
+            const dist = Math.abs(itemCenter - center);
+            if (dist < bestDist) {
+                bestDist = dist;
+                best = i;
             }
-        },
-        navText: [
-            '<i class="fas fa-chevron-left"></i>',
-            '<i class="fas fa-chevron-right"></i>'
-        ],
-        onInitialized: function () {
-            // Garantir que as imagens sejam visíveis após inicialização
-            $('.testemunhos-carousel .owl-item').each(function () {
-                $(this).find('img').css('opacity', '1');
-            });
-        },
-        onChanged: function () {
-            // Garantir que as imagens sejam visíveis após mudança de slide
-            $('.testemunhos-carousel .owl-item').each(function () {
-                $(this).find('img').css({
-                    'opacity': '1',
-                    'visibility': 'visible',
-                    'display': 'block'
-                });
-            });
+        });
+        return best;
+    }
 
-            // Forçar visibilidade após mudança
-            setTimeout(() => {
-                forceImageVisibility();
-            }, 50);
-        }
+    function syncDots() {
+        const active = currentIndex();
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('is-active', i === active);
+            dot.setAttribute('aria-selected', String(i === active));
+        });
+    }
+
+    controls.querySelectorAll('.carousel-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            scrollToItem(currentIndex() + Number(btn.dataset.dir));
+        });
     });
 
-    // Adicionar controles de navegação personalizados
-    addCustomCarouselControls();
+    // Um só listener, agendado em requestAnimationFrame: o evento de scroll
+    // dispara dezenas de vezes por segundo e não pode fazer trabalho pesado.
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            syncDots();
+            ticking = false;
+        });
+    }, { passive: true });
 
-    // Forçar visibilidade das imagens após inicialização
-    setTimeout(() => {
-        forceImageVisibility();
-    }, 100);
-
-    // Adicionar listener para mudanças de slide
-    $('.testemunhos-carousel').on('changed.owl.carousel', function () {
-        setTimeout(() => {
-            forceImageVisibility();
-        }, 100);
-    });
-}
-
-function addCustomCarouselControls() {
-    const carousel = document.querySelector('.testemunhos-carousel');
-    if (!carousel) return;
-
-    // Adicionar indicadores personalizados
-    const indicators = document.createElement('div');
-    indicators.className = 'custom-indicators';
-    indicators.innerHTML = `
-        <button class="indicator active" data-slide="0"></button>
-        <button class="indicator" data-slide="1"></button>
-        <button class="indicator" data-slide="2"></button>
-        <button class="indicator" data-slide="3"></button>
-    `;
-
-    carousel.parentNode.appendChild(indicators);
-
-    // Adicionar funcionalidade aos indicadores
-    indicators.addEventListener('click', (e) => {
-        if (e.target.classList.contains('indicator')) {
-            const slideIndex = parseInt(e.target.dataset.slide);
-            $('.testemunhos-carousel').trigger('to.owl.carousel', [slideIndex]);
-
-            // Atualizar indicadores ativos
-            indicators.querySelectorAll('.indicator').forEach(ind => ind.classList.remove('active'));
-            e.target.classList.add('active');
-        }
-    });
-}
-
-// ===== FORÇAR VISIBILIDADE DAS IMAGENS =====
-function forceImageVisibility() {
-    const carouselImages = document.querySelectorAll('.testemunhos-carousel .author-avatar');
-
-    carouselImages.forEach(img => {
-        // Forçar visibilidade
-        img.style.opacity = '1';
-        img.style.visibility = 'visible';
-        img.style.display = 'block';
-
-        // Se a imagem não carregou, tentar recarregar
-        if (!img.complete || img.naturalHeight === 0) {
-            const originalSrc = img.src;
-            img.src = '';
-            setTimeout(() => {
-                img.src = originalSrc;
-            }, 50);
-        }
-    });
-
-    // Também forçar visibilidade dos itens do carrossel ativos
-    const carouselItems = document.querySelectorAll('.testemunhos-carousel .owl-item.active');
-    carouselItems.forEach(item => {
-        item.style.opacity = '1';
-        item.style.visibility = 'visible';
-    });
+    syncDots();
 }
 
 // ===== VALIDAÇÃO DE FORMULÁRIO =====
@@ -671,8 +592,8 @@ window.addEventListener('resize', debouncedResizeHandler);
 function preloadResources() {
     // Preload de imagens importantes
     const importantImages = [
-        'images/logos/logo_advogada.png',
-        'images/logos/logo_simbolo.png'
+        '/assets/images/brand/logo-advogada.webp',
+        '/assets/images/brand/logo-simbolo.webp'
     ];
 
     importantImages.forEach(src => {
@@ -762,6 +683,5 @@ window.MentoriaApp = {
     showNotification,
     trackEvent,
     validateField,
-    initAnimations,
     initFAQ
 };

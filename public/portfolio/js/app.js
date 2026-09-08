@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
 
     // --- Mobile Menu Logic ---
@@ -48,73 +47,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // --- Typewriter Effect ---
-    const titleElement = document.querySelector('.topo-do-site h1');
-    if (titleElement) {
-        titleElement.innerHTML = ''; // Clear
-        const textToType = "Advocacia especializada em Direito dos Autistas e das Pessoas com Deficiência";
-        let i = 0;
+    // O efeito de máquina de escrever no <h1> foi removido: ele apagava o
+    // título, digitava uma letra a cada 40 ms e só então devolvia o HTML com os
+    // <span> destacados. Isso empurrava o LCP para depois do fim da digitação e
+    // deixava o <h1> vazio para o Google e para leitores de tela.
 
-        const typeWriter = () => {
-            if (i < textToType.length) {
-                titleElement.textContent += textToType.charAt(i);
-                i++;
-                setTimeout(typeWriter, 40);
-            } else {
-                titleElement.innerHTML = 'Advocacia especializada em <br><span>Direito dos Autistas</span> e das <span>Pessoas com Deficiência</span>';
-            }
-        };
-
-        // Start after a delay
-        setTimeout(typeWriter, 500);
-    }
-
-
-    // --- Intersection Observer for Animations ---
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                }
-            });
-        },
-        {
-            threshold: 0.1,
-        }
-    );
-
-    const hiddenElements = document.querySelectorAll(".hidden");
-    hiddenElements.forEach((el) => observer.observe(el));
+    // A animação de entrada é a compartilhada em /assets/js/reveal.js
+    // (classe .reveal). O observer que existia aqui procurava por .hidden e
+    // ficou órfão quando a classe foi renomeada.
 
     // --- Header Scroll Effect ---
+    let ticking = false;
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    // --- Smooth Scroll for anchors ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                const headerOffset = 100;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
+        // Sem o requestAnimationFrame, isto media o scroll a cada evento -
+        // dezenas de vezes por segundo, forçando recálculo de estilo.
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+            ticking = false;
         });
-    });
+    }, { passive: true });
+
+    // A rolagem suave das âncoras é feita pelo CSS (scroll-behavior e
+    // scroll-padding-top em /assets/css/base.css), que já respeita
+    // prefers-reduced-motion. O JS que fazia isso foi removido.
 
 });

@@ -1173,30 +1173,10 @@ footer {
     }
 }
 
-/* Animation Utilities */
-.reveal-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
-}
-
-.reveal-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Stagger delays */
-.delay-100 {
-    transition-delay: 0.1s;
-}
-
-.delay-200 {
-    transition-delay: 0.2s;
-}
-
-.delay-300 {
-    transition-delay: 0.3s;
-}
+/* A animação de entrada (.reveal / .is-visible) e os atrasos em cascata
+   (data-reveal-delay) vivem em /assets/css/base.css, junto com a guarda de
+   prefers-reduced-motion. As regras .reveal-on-scroll e .delay-N que existiam
+   aqui foram removidas. */
 
 /* Mobile Menu Active State overrides */
 @media (max-width: 768px) {

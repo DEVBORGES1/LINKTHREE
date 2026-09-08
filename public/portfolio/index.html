@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>document.documentElement.classList.add('js');</script>
 
     <!-- SEO & Social Sharing -->
     <title>Nathiara Borges | Advogada Especialista em Autismo</title>
@@ -15,32 +16,32 @@
 
     <!-- Open Graph / WhatsApp -->
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Nathiara Borges | Advogada Especialista em Autismo">
     <meta property="og:description"
         content="Garanta os direitos do seu filho. Especialista em ações contra planos de saúde para tratamento de autismo.">
-    <meta property="og:image" content="images/Foto 2 sobre.jpg">
-    <meta property="og:url" content="https://www.nathiaraborges.adv.br"> <!-- Exemplo - Ajustar no deploy -->
+    <meta property="og:image" content="https://www.nathiaraborges.adv.br/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://www.nathiaraborges.adv.br">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Fonts & Icons -->
-    <link rel="icon" href="images/logo_simbolo.png" type="image/png">
+    <!-- Fontes, ícones e base compartilhados (auto-hospedados) -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+    </head>
 
 <body>
+    <a class="skip-link" href="#Inicio">Pular para o conteúdo</a>
     <header>
-        <div class="interface hidden">
+        <div class="interface reveal">
             <div class="logo">
                 <a href="../index.html" aria-label="Voltar para página inicial">
-                    <img src="images/logo_advogada.png?v=4"
-                        alt="Logo Nathiara Borges | Advogada" class="logo-full" height="120">
-                    <img src="images/logo_simbolo.png?v=4"
-                        alt="Símbolo Nathiara Borges" class="logo-symbol" height="80">
+                    <img fetchpriority="high" src="/assets/images/brand/logo-advogada.webp"
+                        alt="Logo Nathiara Borges | Advogada" class="logo-full" width="321" height="120">
+                    <img loading="lazy" decoding="async" src="/assets/images/brand/logo-simbolo.webp"
+                        alt="Símbolo Nathiara Borges" class="logo-symbol" width="80" height="80">
                 </a>
             </div><!--logo-->
             <nav class="menu-desktop">
@@ -80,15 +81,15 @@
         </div><!--interface-->
     </header>
     <main>
-        <section class="topo-do-site hidden" id="Inicio">
+        <section class="topo-do-site reveal" id="Inicio">
             <br><br>
             <div class="interface">
                 <div class="flex">
                     <div class="img-topo-site">
-                        <img src="images/0864_0341.jpg" alt="" height="600">
+                        <img fetchpriority="high" src="images/nathiara-hero.webp" alt="" width="400" height="600">
 
                     </div><!--img-topo-site-->
-                    <div class="txt-topo-site hidden">
+                    <div class="txt-topo-site reveal">
                         <h1>Advocacia especializada em Direito dos Autistas e das Pessoas com Deficiência</h1>
                         <p>Cuidar de direitos é, antes de tudo, cuidar de pessoas. Meu escritório nasceu com a missão de oferecer serviços jurídicos de excelência, pautados na legalidade, ética e empatia, promovendo justiça e igualdade, sempre com foco em um atendimento verdadeiramente humanizado.</p>
                         <p>Atuo com dedicação especial na defesa dos direitos das pessoas com deficiência e das pessoas autistas, compreendendo profundamente suas necessidades, desafios e especificidades — não apenas pela formação técnica, mas também pela vivência pessoal que transformou minha trajetória profissional.</p>
@@ -100,29 +101,29 @@
                 </div><!--flex-->
             </div><!--interface-->
         </section>
-        <section class="Especialidades hidden" id="especialidades">
+        <section class="Especialidades reveal" id="especialidades">
             <div class="interface">
                 <h2 class="titulo">ESPECIALIDADES</h2>
                 <div class="especialidades-grid">
-                    <div class="especialidades-box hidden">
+                    <div class="especialidades-box reveal">
                         <i class="fas fa-user-shield"></i>
                         <h3>Autismo e PCD</h3>
                         <p>Atuação completa em direitos fundamentais, educação, saúde, previdência, acessibilidade, inclusão e garantias legais previstas na Lei Brasileira de Inclusão e demais normas correlatas.</p>
                     </div><!--especialidades-box-->
 
-                    <div class="especialidades-box hidden">
+                    <div class="especialidades-box reveal">
                         <i class="fas fa-balance-scale"></i>
                         <h3>Direito Civil</h3>
                         <p>Consultoria e atuação em demandas envolvendo contratos, responsabilidade civil, família, sucessões e questões patrimoniais.</p>
                     </div><!--especialidades-box-->
 
-                    <div class="especialidades-box hidden">
+                    <div class="especialidades-box reveal">
                         <i class="fas fa-gavel"></i>
                         <h3>Direito Penal</h3>
                         <p>Atendimento humanizado em casos criminais, com foco na proteção de direitos, acompanhamento integral e atuação técnica estratégica.</p>
                     </div><!--especialidades-box-->
 
-                    <div class="especialidades-box hidden">
+                    <div class="especialidades-box reveal">
                         <i class="fas fa-clipboard-check"></i>
                         <h3>Compliance & Riscos</h3>
                         <p>Implementação, revisão e auditoria de programas de integridade, controles internos, conformidade legal e prevenção de riscos corporativos — sempre alinhados às melhores práticas e às exigências da Lei Anticorrupção.</p>
@@ -130,7 +131,7 @@
                 </div><!--especialidades-grid-->
             </div><!--interface-->
         </section><!--especialidades-->
-        <section class="sobre hidden" id="sobre">
+        <section class="sobre reveal" id="sobre">
             <div class="interface">
                 <div class="flex">
                     <div class="txt-sobre">
@@ -142,19 +143,19 @@
                         <p>Além disso, sou pós-graduada em Direito Empresarial pela PUC Paraná, com especialização em Compliance, Gestão de Riscos e Auditoria, prestando serviços também para empresas que buscam segurança jurídica, integridade e conformidade.</p>
                         <div class="btn-social">
                             <a href="https://www.instagram.com/nathiaraborges/" target="_blank" aria-label="Instagram">
-                                <img src="images/instagram.png" alt="Instagram" height="20">
+                                <img loading="lazy" decoding="async" src="/assets/images/icons/instagram.webp" alt="Instagram" width="20" height="20">
                             </a>
                             <a href="https://www.facebook.com/nathiaraborges/" target="_blank" aria-label="Facebook">
-                                <img src="images/facebook.png" alt="Facebook" height="20">
+                                <img loading="lazy" decoding="async" src="/assets/images/icons/facebook.webp" alt="Facebook" width="20" height="20">
                             </a>
                             <a href="https://wa.me/5549999894224" target="_blank" aria-label="WhatsApp">
-                                <img src="images/whatsapp.png" alt="WhatsApp" height="20">
+                                <img loading="lazy" decoding="async" src="/assets/images/icons/whatsapp.webp" alt="WhatsApp" width="20" height="20">
                             </a>
                         </div><!--btn social-->
 
                     </div>
                     <div class="img-sobre">
-                        <img src="images/Foto 2 sobre.jpg" alt="Nathiara Borges" height="500">
+                        <img loading="lazy" decoding="async" src="/assets/images/profile/nathiara-sobre.webp" alt="Nathiara Borges" width="333" height="500">
                         <div class="image-overlay">
                             <div class="overlay-content">
                                 <i class="fas fa-balance-scale"></i>
@@ -168,7 +169,7 @@
 
         </section><!--Sobre-->
 
-        <section class="timeline-section hidden" id="como-funciona">
+        <section class="timeline-section reveal" id="como-funciona">
             <div class="interface">
                 <h2 class="titulo">NOSSO ESCRITÓRIO <span>|</span> COMO FUNCIONA</h2>
                 <p class="subtitle-timeline" style="text-align: center; max-width: 800px; margin: -40px auto 50px; color: #ccc; font-size: 16px; line-height: 1.6;">
@@ -206,7 +207,7 @@
             </div>
         </section>
 
-        <section class="faq-section hidden" id="faq">
+        <section class="faq-section reveal" id="faq">
             <div class="interface">
                 <h2 class="titulo">PERGUNTAS <SPAN>FREQUENTES.</SPAN></h2>
                 <div class="faq-container">
@@ -266,7 +267,7 @@
             </div>
         </section>
 
-        <section class="formulario hidden" id="contato">
+        <section class="formulario reveal" id="contato">
             <div class="interface">
                 <h2 class="titulo">FALE <SPAN>COMIGO.</SPAN></h2>
                 <form action="https://formsubmit.co/bstech.ti@gmail.com" method="POST">
@@ -284,28 +285,28 @@
 
     </main>
     <footer><!--interface-->
-        <div class="interface hidden">
+        <div class="interface reveal">
             <div class="line-footer">
                 <div class="flex">
                     <div class="logo-footer">
-                        <img src="images/logo_advogada.png?v=4" alt="Logo Nathiara Borges | Advogada"
-                            height="220">
+                        <img loading="lazy" decoding="async" src="/assets/images/brand/logo-advogada.webp" alt="Logo Nathiara Borges | Advogada"
+                            width="589" height="220">
                     </div><!--footer-->
                     <div class="btn-social">
                         <a href="https://www.instagram.com/nathiaraborges/" target="_blank" aria-label="Instagram">
-                            <img src="images/instagram.png" alt="Instagram" height="20">
+                            <img loading="lazy" decoding="async" src="/assets/images/icons/instagram.webp" alt="Instagram" width="20" height="20">
                         </a>
                         <a href="https://www.facebook.com/nathiaraborges/" target="_blank" aria-label="Facebook">
-                            <img src="images/facebook.png" alt="Facebook" height="20">
+                            <img loading="lazy" decoding="async" src="/assets/images/icons/facebook.webp" alt="Facebook" width="20" height="20">
                         </a>
                         <a href="https://wa.me/5549999894224" target="_blank" aria-label="WhatsApp">
-                            <img src="images/whatsapp.png" alt="WhatsApp" height="20">
+                            <img loading="lazy" decoding="async" src="/assets/images/icons/whatsapp.webp" alt="WhatsApp" width="20" height="20">
                         </a>
                     </div><!--btn social-->
                 </div>
             </div>
             <div class="line-footer borda">
-                <p><img src="images/o-email (5).png" height="20"> <a
+                <p><img loading="lazy" decoding="async" src="/assets/images/icons/email.webp" width="20" height="20"> <a
                         href="mailto:nathiara.borges@outlook.com">nathiara.borges@outlook.com</a></p>
             </div><!--footer-->
         </div>
@@ -314,7 +315,8 @@
         aria-label="Fale conosco no WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
-    <script src="js/app.js"></script>
+    <script src="/assets/js/reveal.js" defer></script>
+    <script src="js/app.js" defer></script>
 </body>
 
 </html>

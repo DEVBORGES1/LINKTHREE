@@ -1,6 +1,4 @@
 /* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -318,6 +316,13 @@ h6 {
     z-index: -2;
 }
 
+/* O <picture> ocupa a área toda; a troca desktop/mobile é feita por ele. */
+.hero-background picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .hero-bg-image {
     width: 100%;
     height: 100%;
@@ -326,22 +331,6 @@ h6 {
     max-height: 100vh;
     filter: blur(10px);
     transform: scale(1.05);
-}
-
-.desktop-only {
-    display: block;
-}
-.mobile-only {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .desktop-only {
-        display: none !important;
-    }
-    .mobile-only {
-        display: block !important;
-    }
 }
 
 .hero-overlay {
@@ -753,31 +742,40 @@ section {
     letter-spacing: 0.8px;
 }
 
+/* Carrossel em scroll-snap nativo: arrasta no celular, roda com a roda do
+   mouse e navega por teclado sem nenhuma biblioteca. Substituiu jQuery +
+   OwlCarousel (130 KB). */
 .testemunhos-carousel {
     margin-top: 4rem;
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 1rem;
+    padding-bottom: 1rem;
+    /* Firefox */
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
 }
 
-.testemunhos-carousel .owl-stage-outer {
-    overflow: hidden;
+.testemunhos-carousel::-webkit-scrollbar {
+    height: 6px;
 }
 
-.testemunhos-carousel .owl-item {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.testemunhos-carousel .owl-item.active {
-    opacity: 1;
-}
-
-.testemunhos-carousel .owl-item img {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
+.testemunhos-carousel::-webkit-scrollbar-thumb {
+    background: rgba(26, 54, 93, 0.25);
+    border-radius: 999px;
 }
 
 .testemunho-item {
-    padding: 0 1rem;
+    flex: 0 0 min(100%, 520px);
+    scroll-snap-align: center;
+}
+
+@media (min-width: 1024px) {
+    .testemunho-item {
+        flex-basis: calc(50% - 1rem);
+    }
 }
 
 .testemunho-content {
@@ -791,38 +789,21 @@ section {
     overflow: hidden;
 }
 
-.owl-carousel .owl-item img {
-    display: block;
-    width: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.owl-carousel .owl-item {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.owl-carousel .owl-item.active {
-    opacity: 1;
-}
-
-.testemunhos-carousel .owl-nav {
+/* Setas e indicadores do carrossel (criados por mentoria.js) */
+.carousel-controls {
     margin-top: 2.5rem;
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 1rem;
 }
 
-.testemunhos-carousel .owl-nav button.owl-prev,
-.testemunhos-carousel .owl-nav button.owl-next {
+.carousel-btn {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: #ffffff !important;
-    color: var(--primary-color) !important;
+    background: #ffffff;
+    color: var(--primary-color);
     border: 1px solid rgba(26, 54, 93, 0.12);
     box-shadow: 0 4px 14px rgba(26, 54, 93, 0.1);
     display: flex;
@@ -830,20 +811,34 @@ section {
     justify-content: center;
     font-size: 1rem;
     transition: all var(--transition-normal);
-    margin: 0 !important;
 }
 
-.testemunhos-carousel .owl-nav button.owl-prev:hover,
-.testemunhos-carousel .owl-nav button.owl-next:hover {
-    background: var(--gradient-gold) !important;
-    color: #ffffff !important;
+.carousel-btn:hover {
+    background: var(--gradient-gold);
+    color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(197, 160, 89, 0.35);
 }
 
-.testemunhos-carousel .owl-nav button.disabled {
-    opacity: 0.35;
-    cursor: default;
+.carousel-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(26, 54, 93, 0.2);
+    border: none;
+    padding: 0;
+    transition: all var(--transition-fast);
+}
+
+.carousel-dot.is-active,
+.carousel-dot:hover {
+    background: var(--primary-color);
+    transform: scale(1.2);
 }
 
 .testemunho-content::before {
@@ -1678,29 +1673,8 @@ section {
     width: 100%;
 }
 
-/* ===== INDICADORES DO CARROSSEL ===== */
-.custom-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-}
-
-.indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--gray-600);
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.indicator.active,
-.indicator:hover {
-    background: var(--primary-color);
-    transform: scale(1.2);
-}
+/* Os indicadores do carrossel agora são .carousel-dot, definidos junto com o
+   carrossel mais acima. */
 
 /* ===== ESTADOS DE FOCO MELHORADOS ===== */
 .btn:focus-visible,
@@ -1867,16 +1841,9 @@ footer .line-footer p a:hover {
     transform: translateY(-5px);
 }
 
-.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* A animação de entrada agora vem de /assets/css/base.css (.reveal / .is-visible).
+   O nome .hidden foi abandonado: no escritório ele significava duas coisas ao
+   mesmo tempo - "ainda não animou" e "header escondido no scroll". */
 
 /* Responsividade do Footer */
 @media screen and (max-width: 768px) {
