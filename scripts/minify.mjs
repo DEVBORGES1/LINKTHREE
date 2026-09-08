@@ -121,6 +121,31 @@ if (skipped.size) {
   console.log('Para publicar, remova da lista UNPUBLISHED em scripts/minify.mjs.');
 }
 
+// Caminho absoluto ("/assets/...") quebra o site inteiro.
+// O GitHub Pages publica este repositorio em /LINKTHREE/ (project site, sem
+// CNAME), entao "/" e a raiz do dominio, nao a do projeto: o CSS e as imagens
+// dao 404 e a pagina aparece sem estilo nenhum. Tambem quebra ao abrir o
+// arquivo direto pelo explorador. Todo caminho interno tem de ser relativo.
+const absolutePaths = [];
+for (const file of walk(OUT)) {
+  if (!/\.(html|js)$/i.test(file)) continue;
+  const rel = path.relative(OUT, file).replace(SEP, '/');
+  const txt = fs.readFileSync(file, 'utf8');
+  for (const m of txt.matchAll(/\b(?:href|src|srcset)\s*=\s*["']\/(?!\/)[^"']*/g)) {
+    absolutePaths.push(`${rel}: ${m[0].slice(0, 60)}`);
+  }
+  for (const m of txt.matchAll(/(['"])\/(?:assets|escritorio|portfolio|mentoria|landing|vendas)\//g)) {
+    absolutePaths.push(`${rel}: ${m[0]}...`);
+  }
+}
+if (absolutePaths.length) {
+  console.error('');
+  console.error('ERRO: caminho absoluto encontrado (precisa ser relativo):');
+  absolutePaths.slice(0, 20).forEach((l) => console.error(`  ${l}`));
+  if (absolutePaths.length > 20) console.error(`  ... e mais ${absolutePaths.length - 20}`);
+  process.exit(1);
+}
+
 // Nenhum link do que foi publicado pode apontar para o que ficou de fora.
 const brokenLinks = [];
 for (const file of walk(OUT)) {

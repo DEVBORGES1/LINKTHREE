@@ -485,11 +485,11 @@ class AdvocaciaIntegration {
                     <i class="fab fa-whatsapp"></i>
                     <span>WhatsApp</span>
                 </a>
-                <a href="/escritorio/agendamento.html" class="floating-btn agendamento-btn">
+                <a href="agendamento.html" class="floating-btn agendamento-btn">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Agendar</span>
                 </a>
-                <a href="/escritorio/lead-capture.html" class="floating-btn consulta-btn">
+                <a href="lead-capture.html" class="floating-btn consulta-btn">
                     <i class="fas fa-gavel"></i>
                     <span>Consulta Grátis</span>
                 </a>

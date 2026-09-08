@@ -592,8 +592,8 @@ window.addEventListener('resize', debouncedResizeHandler);
 function preloadResources() {
     // Preload de imagens importantes
     const importantImages = [
-        '/assets/images/brand/logo-advogada.webp',
-        '/assets/images/brand/logo-simbolo.webp'
+        '../assets/images/brand/logo-advogada.webp',
+        '../assets/images/brand/logo-simbolo.webp'
     ];
 
     importantImages.forEach(src => {
