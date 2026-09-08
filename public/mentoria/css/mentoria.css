@@ -273,15 +273,25 @@ h6 {
     box-shadow: var(--shadow-xl);
 }
 
+/* Cuidado com os nomes das variáveis nesta folha: no :root, --white vale
+   #111827 (quase preto) e --black vale #ffffff. Ficaram invertidos quando a
+   página passou para tema claro.
+
+   Este botão fica sobre o hero escuro, então `color: var(--white)` pintava
+   texto e borda quase pretos sobre fundo escuro: contraste de 1,13:1, quando o
+   mínimo acessível é 4,5:1. Na prática ele estava invisível. Cores explícitas
+   aqui para não depender das variáveis trocadas. */
 .btn-outline {
     background: transparent;
-    color: var(--white);
-    border: 2px solid var(--white);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
-.btn-outline:hover {
-    background: var(--white);
-    color: var(--black);
+.btn-outline:hover,
+.btn-outline:focus-visible {
+    background: #ffffff;
+    color: var(--primary-color);
+    border-color: #ffffff;
     transform: translateY(-2px);
 }
 
