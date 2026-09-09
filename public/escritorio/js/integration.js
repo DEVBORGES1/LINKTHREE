@@ -584,10 +584,10 @@ class AdvocaciaIntegration {
             input.addEventListener('blur', () => this.validateField(input));
         });
 
-        // Melhorar submit
-        form.addEventListener('submit', (e) => {
-            this.handleFormSubmit(e, form);
-        });
+        // O submit é do /assets/js/form-contato.js, compartilhado pelos três
+        // formulários do projeto. O handler que existia aqui era o segundo
+        // ligado ao mesmo formulário: um mostrava sucesso simulado e o outro
+        // abria o WhatsApp, os dois ao mesmo tempo.
     }
 
     validateField(field) {
@@ -615,86 +615,10 @@ class AdvocaciaIntegration {
         return isValid;
     }
 
-    async handleFormSubmit(e, form) {
-        e.preventDefault();
-        
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        
-        // Validar todos os campos
-        const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
-        let isFormValid = true;
-
-        inputs.forEach(input => {
-            if (!this.validateField(input)) {
-                isFormValid = false;
-            }
-        });
-
-        if (!isFormValid) {
-            alert('Por favor, preencha todos os campos obrigatórios corretamente.');
-            return;
-        }
-
-        try {
-            // Enviar dados
-            await this.sendFormData(data, form);
-            this.showSuccessMessage(form);
-            this.trackEvent('form_submitted', { form: form.id || 'unknown' });
-        } catch (error) {
-            alert('Erro ao enviar formulário. Tente novamente.');
-        }
-    }
-
-    async sendFormData(data, form) {
-        // Simular envio (substituir por API real)
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Salvar no localStorage
-        const submissions = JSON.parse(localStorage.getItem('form_submissions') || '[]');
-        submissions.push({
-            ...data,
-            timestamp: new Date().toISOString(),
-            formId: form.id || 'unknown'
-        });
-        localStorage.setItem('form_submissions', JSON.stringify(submissions));
-
-        // Enviar para WhatsApp
-        const message = this.formatFormMessage(data);
-        const whatsappUrl = `https://wa.me/${this.config.whatsapp}?text=${encodeURIComponent(message)}`;
-        
-        // Abrir WhatsApp
-        window.open(whatsappUrl, '_blank');
-    }
-
-    formatFormMessage(data) {
-        return `📋 *Nova Solicitação do Site*
-
-${Object.entries(data).map(([key, value]) => 
-    `• ${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`
-).join('\n')}
-
----
-*Enviado através do site*`;
-    }
-
-    showSuccessMessage(form) {
-        const successDiv = document.createElement('div');
-        successDiv.className = 'form-success';
-        successDiv.innerHTML = `
-            <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
-                <i class="fas fa-check-circle"></i>
-                <strong>Sucesso!</strong> Sua mensagem foi enviada. Você será redirecionado para o WhatsApp.
-            </div>
-        `;
-        
-        form.appendChild(successDiv);
-        
-        // Remover após 5 segundos
-        setTimeout(() => {
-            successDiv.remove();
-        }, 5000);
-    }
+    // handleFormSubmit, sendFormData, formatFormMessage e showSuccessMessage
+    // foram removidas: o envio dos formularios agora e do modulo compartilhado
+    // /assets/js/form-contato.js, que manda por e-mail e oferece o WhatsApp se
+    // falhar. O apiEndpoint que essa classe declarava nunca existiu.
 
     // Tracking de eventos
     setupLeadTracking() {
@@ -745,7 +669,7 @@ ${Object.entries(data).map(([key, value]) =>
             fbq('track', eventName, properties);
         }
 
-        console.log('Event tracked:', event);
+        // Sem analytics configurado, o evento so fica no localStorage acima.
     }
 
     // Métodos utilitários

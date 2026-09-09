@@ -461,7 +461,7 @@
     </section>
 
     <!-- Floating CTA -->
-    <a href="https://wa.me/5549999894224" class="floating-cta" manual_verification_action="Click to open WhatsApp"
+    <a href="https://wa.me/5549999894224" class="floating-cta"
         target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -520,7 +520,10 @@
                 </div>
 
                 <div class="contato-formulario">
-                    <form id="formContato" class="formulario">
+                    <form id="formContato" class="formulario" data-form-contato
+                        data-email="nathiara.borges@outlook.com"
+                        data-assunto="Site - Salario Maternidade"
+                        data-whatsapp="5549999894224">
                         <h3 class="formulario-title">ENVIE UMA <span class="highlight">MENSAGEM</span></h3>
 
                         <div class="form-group">
@@ -568,17 +571,17 @@
                         <img loading="lazy" decoding="async" src="../assets/images/brand/logo-advogada.webp" alt="Logo Nathiara Borges | Advogada" width="589" height="220">
                     </div>
                     <div class="btn-social">
-                        <a href="https://www.instagram.com/nathiaraborges/" target="_blank"><button><img loading="lazy" decoding="async"
-                                    src="../assets/images/icons/instagram.webp" alt="" width="20" height="20"></button></a>
-                        <a href="https://www.facebook.com/nathiaraborges/" target="_blank"><button><img loading="lazy" decoding="async"
-                                    src="../assets/images/icons/facebook.webp" alt="" width="20" height="20"></button></a>
-                        <a href="https://wa.me/5549999894224" target="_blank"><button><img loading="lazy" decoding="async"
-                                    src="../assets/images/icons/whatsapp.webp" alt="" width="20" height="20"></button></a>
+                        <a href="https://www.instagram.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Instagram"><img loading="lazy" decoding="async"
+                                    src="../assets/images/icons/instagram.webp" alt="" width="20" height="20"></a>
+                        <a href="https://www.facebook.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Facebook"><img loading="lazy" decoding="async"
+                                    src="../assets/images/icons/facebook.webp" alt="" width="20" height="20"></a>
+                        <a href="https://wa.me/5549999894224" target="_blank" rel="noopener" aria-label="WhatsApp"><img loading="lazy" decoding="async"
+                                    src="../assets/images/icons/whatsapp.webp" alt="" width="20" height="20"></a>
                     </div>
                 </div>
             </div>
             <div class="line-footer borda">
-                <p><img loading="lazy" decoding="async" src="../assets/images/icons/email.webp" width="20" height="20"> <a
+                <p><img loading="lazy" decoding="async" src="../assets/images/icons/email.webp" alt="" width="20" height="20"> <a
                         href="mailto:nathiara.borges@outlook.com" style="color: black">nathiara.borges@outlook.com</a></p>
             </div>
         </div>
@@ -589,6 +592,7 @@
          O carrossel virou scroll-snap nativo e o AOS era redundante - o próprio
          a animação de entrada agora é a compartilhada em /assets/js/reveal.js. -->
     <script src="../assets/js/reveal.js" defer></script>
+    <script src="../assets/js/form-contato.js" defer></script>
     <script src="js/mentoria.js" defer></script>
 </body>
 

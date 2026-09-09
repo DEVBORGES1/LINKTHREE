@@ -171,7 +171,9 @@ function initFormValidation() {
     });
 
     // Submissão do formulário
-    form.addEventListener('submit', handleFormSubmit);
+    // O envio é do /assets/js/form-contato.js, compartilhado. O handler que
+    // existia aqui só simulava: mostrava "enviada com sucesso" e limpava o
+    // formulário sem mandar nada a lugar nenhum.
 }
 
 function validateField(e) {
@@ -251,45 +253,9 @@ function clearFieldError(e) {
     field.style.borderColor = '';
 }
 
-function handleFormSubmit(e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const inputs = form.querySelectorAll('input, textarea');
-
-    // Validar todos os campos
-    let isValid = true;
-    inputs.forEach(input => {
-        if (!validateField({ target: input })) {
-            isValid = false;
-        }
-    });
-
-    if (!isValid) {
-        showNotification('Por favor, corrija os erros no formulário.', 'error');
-        return;
-    }
-
-    // Simular envio
-    submitBtn.classList.add('loading');
-    submitBtn.disabled = true;
-
-    // Simular delay de envio
-    setTimeout(() => {
-        submitBtn.classList.remove('loading');
-        submitBtn.disabled = false;
-
-        showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-        form.reset();
-
-        // Limpar todos os erros
-        form.querySelectorAll('.field-error').forEach(error => error.remove());
-        form.querySelectorAll('input, textarea').forEach(input => {
-            input.style.borderColor = '';
-        });
-    }, 2000);
-}
+// handleFormSubmit foi removida: ela apenas simulava o envio com setTimeout e
+// mostrava "enviada com sucesso" sem mandar nada. O envio real e o retorno de
+// erro estao em /assets/js/form-contato.js.
 
 // ===== ROLAGEM SUAVE =====
 function initSmoothScrolling() {
@@ -616,7 +582,8 @@ if ('serviceWorker' in navigator) {
 // ===== ANALYTICS E TRACKING =====
 function trackEvent(eventName, eventData = {}) {
     // Implementar tracking de eventos se necessário
-    console.log('Event tracked:', eventName, eventData);
+    // Sem analytics configurado, o evento nao vai a lugar nenhum. Quando o
+    // GA4 ou o Pixel forem ativados, e aqui que eles entram.
 }
 
 // ===== FOOTER =====
@@ -644,9 +611,9 @@ function initFooter() {
 
 // ===== FAQ ACCORDION =====
 function initFAQ() {
-    console.log('MentoriaApp: initFAQ starting');
+
     const faqItems = document.querySelectorAll('.faq-item');
-    console.log('MentoriaApp: Found FAQ items:', faqItems.length);
+
 
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
@@ -654,7 +621,7 @@ function initFAQ() {
         if (!question) return;
 
         question.addEventListener('click', () => {
-            console.log('MentoriaApp: FAQ clicked');
+
             const isActive = item.classList.contains('active');
 
             // Fechar todos os outros

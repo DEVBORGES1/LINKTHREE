@@ -171,13 +171,26 @@ function initializeSocialProof() {
         }, 5000);
     };
 
-    // Initial delay 5s, then different intervals
-    setTimeout(() => {
-        showNotification();
-        setInterval(() => {
-            // Random interval between 10s and 25s
-            const randomInterval = Math.floor(Math.random() * (25000 - 10000 + 1) + 10000);
-            setTimeout(showNotification, randomInterval);
-        }, 15000); // Base loop
-    }, 5000);
+    // Agendamento em cadeia: cada notificação marca a próxima só depois de
+    // aparecer. Antes havia um setInterval de 15s que, dentro dele, agendava um
+    // setTimeout de 10 a 25s — como o atraso podia passar do intervalo, as
+    // chamadas se acumulavam e as notificações começavam a se sobrepor. Não
+    // havia clearInterval em lugar nenhum.
+    let proxima = null;
+    const agendar = (espera) => {
+        proxima = setTimeout(() => {
+            showNotification();
+            agendar(Math.floor(Math.random() * 15000) + 10000);
+        }, espera);
+    };
+    agendar(5000);
+
+    // Para de agendar quando a aba sai de vista e retoma quando volta.
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            clearTimeout(proxima);
+        } else {
+            agendar(10000);
+        }
+    });
 }

@@ -56,10 +56,9 @@
     /* Textos específicos */
     --text-on-primary: #ffffff;
 
-    /* Transições */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    /* As transições vêm do /assets/css/base.css, que define uma escala única
+       para o projeto. Estes valores locais foram removidos: tinham os mesmos
+       nomes do compartilhado, com valores diferentes. */
 
     /* Bordas */
     --border-radius-sm: 0.375rem;
@@ -881,18 +880,32 @@ section {
     gap: 0.5rem;
 }
 
+/* A área clicável tem 44x44 (mínimo confortável no celular) e o ponto visível
+   é desenhado no ::before, com 12px. Antes o próprio botão tinha 12x12 e era
+   quase impossível acertar com o dedo. */
 .carousel-dot {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: none;
+    display: grid;
+    place-items: center;
+}
+
+.carousel-dot::before {
+    content: '';
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background: rgba(26, 54, 93, 0.2);
-    border: none;
-    padding: 0;
-    transition: all var(--transition-fast);
+    transition:
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
 }
 
-.carousel-dot.is-active,
-.carousel-dot:hover {
+.carousel-dot.is-active::before,
+.carousel-dot:hover::before {
     background: var(--primary-color);
     transform: scale(1.2);
 }

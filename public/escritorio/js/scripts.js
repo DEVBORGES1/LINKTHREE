@@ -223,7 +223,9 @@ class ContactForm {
 
     init() {
         if (this.form) {
-            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+            // O submit é do /assets/js/form-contato.js. Esta classe cuida só
+            // da validação em tempo real e da máscara de telefone - antes
+            // havia dois listeners de submit no mesmo formulário.
             this.setupFormValidation();
             this.setupPhoneMask();
         }
@@ -305,45 +307,8 @@ class ContactForm {
         }
     }
 
-    async handleSubmit(e) {
-        e.preventDefault();
-
-        // Validar todos os campos
-        const inputs = this.form.querySelectorAll('input, textarea, select');
-        let isValid = true;
-
-        inputs.forEach(input => {
-            if (!this.validateField(input)) {
-                isValid = false;
-            }
-        });
-
-        if (!isValid) {
-            this.showNotification('Por favor, corrija os erros no formulário.', 'error');
-            return;
-        }
-
-        // Simular envio
-        const submitBtn = this.form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-        submitBtn.disabled = true;
-
-        try {
-            // Simular delay de envio
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            this.showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-            this.form.reset();
-
-        } catch (error) {
-            this.showNotification('Erro ao enviar mensagem. Tente novamente.', 'error');
-        } finally {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }
-    }
+    // handleSubmit foi removida: era o segundo handler de submit deste mesmo
+    // formulario e tambem so simulava o envio. Ver /assets/js/form-contato.js.
 
     showNotification(message, type) {
         // Criar notificação

@@ -417,17 +417,6 @@ html {
     }
 }
 
-/* Partículas flutuantes */
-.floating-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(173, 23, 0, 0.3);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    animation: float 6s ease-in-out infinite;
-}
 
 @keyframes float {
 

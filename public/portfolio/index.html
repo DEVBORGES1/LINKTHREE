@@ -147,13 +147,13 @@
                         <p>Essa vivência me trouxe sensibilidade, propósito e especialização. Hoje, minha atuação é guiada pela empatia, pela técnica e pela certeza de que cada família merece ser acolhida e orientada com respeito.</p>
                         <p>Além disso, sou pós-graduada em Direito Empresarial pela PUC Paraná, com especialização em Compliance, Gestão de Riscos e Auditoria, prestando serviços também para empresas que buscam segurança jurídica, integridade e conformidade.</p>
                         <div class="btn-social">
-                            <a href="https://www.instagram.com/nathiaraborges/" target="_blank" aria-label="Instagram">
+                            <a href="https://www.instagram.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Instagram">
                                 <img loading="lazy" decoding="async" src="../assets/images/icons/instagram.webp" alt="Instagram" width="20" height="20">
                             </a>
-                            <a href="https://www.facebook.com/nathiaraborges/" target="_blank" aria-label="Facebook">
+                            <a href="https://www.facebook.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Facebook">
                                 <img loading="lazy" decoding="async" src="../assets/images/icons/facebook.webp" alt="Facebook" width="20" height="20">
                             </a>
-                            <a href="https://wa.me/5549999894224" target="_blank" aria-label="WhatsApp">
+                            <a href="https://wa.me/5549999894224" target="_blank" rel="noopener" aria-label="WhatsApp">
                                 <img loading="lazy" decoding="async" src="../assets/images/icons/whatsapp.webp" alt="WhatsApp" width="20" height="20">
                             </a>
                         </div><!--btn social-->
@@ -177,7 +177,7 @@
         <section class="timeline-section reveal" id="como-funciona">
             <div class="interface">
                 <h2 class="titulo">NOSSO ESCRITÓRIO <span>|</span> COMO FUNCIONA</h2>
-                <p class="subtitle-timeline" style="text-align: center; max-width: 800px; margin: -40px auto 50px; color: #ccc; font-size: 16px; line-height: 1.6;">
+                <p class="subtitle-timeline" style="text-align: center; max-width: 800px; margin: -40px auto 50px; color: var(--text-muted); font-size: 16px; line-height: 1.6;">
                     O atendimento é pensado para ser claro, acessível e acolhedor, respeitando as necessidades individuais de cada cliente.
                 </p>
                 <div class="timeline-container">
@@ -232,7 +232,7 @@
                         </div>
                         <div class="faq-answer">
                             <p>Atuo com foco especializado em:</p>
-                            <ul style="margin-left: 20px; margin-top: 10px; color: #ccc; line-height: 1.8;">
+                            <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-muted); line-height: 1.8;">
                                 <li>Direito das Pessoas com Deficiência</li>
                                 <li>Direito dos Autistas</li>
                                 <li>Direito Civil</li>
@@ -260,7 +260,7 @@
                         </div>
                         <div class="faq-answer">
                             <p>Os documentos variam conforme o caso, mas geralmente incluem:</p>
-                            <ul style="margin-left: 20px; margin-top: 10px; color: #ccc; line-height: 1.8;">
+                            <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-muted); line-height: 1.8;">
                                 <li>Documento pessoal (RG/CPF)</li>
                                 <li>Comprovante de residência</li>
                                 <li>Documentos relacionados ao caso (laudos, contratos, notificações, decisões, exames, relatórios, etc.)</li>
@@ -275,7 +275,10 @@
         <section class="formulario reveal" id="contato">
             <div class="interface">
                 <h2 class="titulo">FALE <SPAN>COMIGO.</SPAN></h2>
-                <form action="https://formsubmit.co/bstech.ti@gmail.com" method="POST">
+                <form data-form-contato
+                    data-email="nathiara.borges@outlook.com"
+                    data-assunto="Site - Portfolio"
+                    data-whatsapp="5549999894224">
                     <input type="text" name="nome" id="nome" placeholder="Seu nome completo:" required>
                     <input type="email" name="email" id="email" placeholder="Seu E-mail (para resposta):" required>
                     <input type="text" name="celular" id="celular" placeholder="Seu celular:" required>
@@ -298,13 +301,13 @@
                             width="589" height="220">
                     </div><!--footer-->
                     <div class="btn-social">
-                        <a href="https://www.instagram.com/nathiaraborges/" target="_blank" aria-label="Instagram">
+                        <a href="https://www.instagram.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Instagram">
                             <img loading="lazy" decoding="async" src="../assets/images/icons/instagram.webp" alt="Instagram" width="20" height="20">
                         </a>
-                        <a href="https://www.facebook.com/nathiaraborges/" target="_blank" aria-label="Facebook">
+                        <a href="https://www.facebook.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Facebook">
                             <img loading="lazy" decoding="async" src="../assets/images/icons/facebook.webp" alt="Facebook" width="20" height="20">
                         </a>
-                        <a href="https://wa.me/5549999894224" target="_blank" aria-label="WhatsApp">
+                        <a href="https://wa.me/5549999894224" target="_blank" rel="noopener" aria-label="WhatsApp">
                             <img loading="lazy" decoding="async" src="../assets/images/icons/whatsapp.webp" alt="WhatsApp" width="20" height="20">
                         </a>
                     </div><!--btn social-->
@@ -316,11 +319,12 @@
             </div><!--footer-->
         </div>
     </footer><!--interface-->
-    <a href="https://wa.me/5549999894224" target="_blank" class="btn-whatsapp-flutuante"
+    <a href="https://wa.me/5549999894224" target="_blank" rel="noopener" class="btn-whatsapp-flutuante"
         aria-label="Fale conosco no WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
     <script src="../assets/js/reveal.js" defer></script>
+    <script src="../assets/js/form-contato.js" defer></script>
     <script src="js/app.js" defer></script>
 </body>
 
