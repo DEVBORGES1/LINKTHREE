@@ -31,6 +31,14 @@
         return el && el.value ? el.value.trim() : '';
     }
 
+    /** Registra o resultado na camada de medição, se ela existir. */
+    function medir(evento, form, extra) {
+        if (typeof window.medirEvento !== 'function') return;
+        var dados = { pagina: window.location.pathname, formulario: form.id || 'sem-id' };
+        if (extra) Object.keys(extra).forEach(function (k) { dados[k] = extra[k]; });
+        window.medirEvento(evento, dados);
+    }
+
     /** Área de status dentro do formulário, criada uma vez. */
     function areaStatus(form) {
         var el = form.querySelector('.form-status');
@@ -129,9 +137,13 @@
             sucesso(status);
             form.reset();
             restaurar();
-        }).catch(function () {
+            medir('formulario_enviado', form);
+        }).catch(function (e) {
             erro(status, form, dados);
             restaurar();
+            // A taxa de falha importa: sem isso não há como saber que leads
+            // estão se perdendo por erro de envio.
+            medir('formulario_falhou', form, { motivo: String(e && e.message || 'desconhecido').slice(0, 60) });
         });
     }
 

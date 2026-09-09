@@ -74,6 +74,7 @@ e todas as imagens `.webp`.
 | `npm run icons` | Varre o HTML, descobre os ícones usados e gera um Font Awesome enxuto |
 | `npm run fonts` | Copia as fontes do `node_modules` e gera o `fonts.css` |
 | `npm run build` | Os três acima |
+| `npm run sitemap` | Gera sitemap.xml e robots.txt a partir das páginas publicadas |
 | `npm run minify` | Gera `dist/` minificado, já sem as páginas fora do ar (o workflow usa isso para publicar) |
 
 ### Trocar ou adicionar uma imagem
@@ -116,7 +117,63 @@ Para colocar uma delas no ar, apague a linha correspondente da lista
 O build falha de propósito se alguma página publicada passar a apontar para uma
 pasta dessa lista, para não ir ao ar um link quebrado.
 
-## Analytics
+## Medição e analytics
+
+Tudo mora em [`public/assets/js/analytics.js`](public/assets/js/analytics.js).
+
+### Ativar o Cloudflare Web Analytics
+
+Grátis, sem cookie, então **não exige banner de consentimento**. Dá visitas,
+origem do tráfego, países, navegadores e os Core Web Vitals reais dos visitantes.
+
+1. Em [dash.cloudflare.com](https://dash.cloudflare.com) → *Analytics & Logs* →
+   *Web Analytics* → *Add a site*. Não precisa mover o domínio para a Cloudflare.
+2. Copie o valor de `token` do snippet que aparecer.
+3. Cole na constante `cloudflareToken` no topo do `analytics.js`.
+
+Enquanto o token estiver vazio, nada é carregado — sem requisição quebrada.
+
+### Ver as métricas sem ferramenta nenhuma
+
+Abra qualquer página com `?debug=analytics` na URL. Os Core Web Vitals e os
+eventos aparecem no console do navegador, com a avaliação (bom / precisa
+melhorar / ruim) ao lado de cada número.
+
+Para deixar ligado entre recarregamentos:
+`localStorage.setItem('debug-analytics', '1')`.
+
+### Eventos
+
+O `analytics.js` registra sozinho, por delegação de clique:
+`contato_whatsapp`, `clique_telefone`, `clique_email`, `rolagem_25/50/75/100`.
+O `form-contato.js` acrescenta `formulario_enviado` e `formulario_falhou`.
+
+**O Cloudflare não recebe eventos personalizados.** Hoje esses eventos só
+aparecem no modo debug. Para medir conversão de verdade é preciso uma ferramenta
+que aceite eventos (GA4 ou Plausible) — o único ponto a mexer é a função
+`enviarEvento` no fim do arquivo, que já encaminha para `gtag` e `plausible`
+quando eles existem.
+
+Atenção: o GA4 usa cookie. Sob a LGPD isso exige base legal e, na prática,
+banner de consentimento — o Cloudflare foi escolhido justamente para evitar isso.
+
+### Search Console
+
+`sitemap.xml` e `robots.txt` são gerados por
+[`scripts/build-sitemap.mjs`](scripts/build-sitemap.mjs) (roda dentro do
+`npm run build`). Ele ignora sozinho as páginas fora do ar e o
+`chat-widget.html`, que é fragmento e não deve ser indexado.
+
+**Confira a constante `SITE` nesse script antes de publicar.** Ela está como
+`https://www.nathiaraborges.adv.br`. Se o site estiver no ar pelo endereço
+padrão do GitHub Pages, o valor certo é `https://devborges1.github.io/LINKTHREE`
+— um sitemap com o domínio errado é ignorado pelo Google.
+
+Depois de publicar: cadastre o site em
+[search.google.com/search-console](https://search.google.com/search-console) e
+envie `/sitemap.xml`.
+
+## Histórico: Google Analytics e Pixel
 
 O Google Analytics e o Pixel do Facebook foram removidos do `escritorio/index.html`:
 estavam com os IDs de exemplo (`GA_MEASUREMENT_ID`, `YOUR_PIXEL_ID`), não mediam nada e

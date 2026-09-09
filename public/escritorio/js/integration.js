@@ -645,31 +645,16 @@ class AdvocaciaIntegration {
     trackEvent(eventName, properties = {}) {
         if (!this.config.trackingEnabled) return;
 
-        const event = {
-            name: eventName,
-            properties: {
-                ...properties,
-                timestamp: new Date().toISOString(),
-                url: window.location.href,
-                userAgent: navigator.userAgent
-            }
-        };
-
-        // Salvar no localStorage
-        const events = JSON.parse(localStorage.getItem('tracking_events') || '[]');
-        events.push(event);
-        localStorage.setItem('tracking_events', JSON.stringify(events));
-
-        // Enviar para analytics (Google Analytics, Facebook Pixel, etc.)
-        if (typeof gtag !== 'undefined') {
-            gtag('event', eventName, properties);
+        // Encaminha para /assets/js/analytics.js, que concentra a medição do
+        // projeto. Antes isto empilhava cada evento no localStorage, com
+        // userAgent e URL completa, numa lista que ninguém lia e que crescia
+        // sem limite até estourar a cota do navegador.
+        if (typeof window.medirEvento === 'function') {
+            window.medirEvento(eventName, { ...properties, pagina: window.location.pathname });
         }
 
-        if (typeof fbq !== 'undefined') {
-            fbq('track', eventName, properties);
-        }
-
-        // Sem analytics configurado, o evento so fica no localStorage acima.
+        // O encaminhamento para gtag e fbq mora dentro de analytics.js, para
+        // não haver dois lugares mandando o mesmo evento.
     }
 
     // Métodos utilitários

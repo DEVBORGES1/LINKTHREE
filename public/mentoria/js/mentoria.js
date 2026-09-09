@@ -581,9 +581,9 @@ if ('serviceWorker' in navigator) {
 
 // ===== ANALYTICS E TRACKING =====
 function trackEvent(eventName, eventData = {}) {
-    // Implementar tracking de eventos se necessário
-    // Sem analytics configurado, o evento nao vai a lugar nenhum. Quando o
-    // GA4 ou o Pixel forem ativados, e aqui que eles entram.
+    // Encaminha para /assets/js/analytics.js, que concentra a medição do
+    // projeto. Se ele não estiver carregado, o evento simplesmente não sai.
+    if (typeof window.medirEvento === 'function') window.medirEvento(eventName, eventData);
 }
 
 // ===== FOOTER =====
