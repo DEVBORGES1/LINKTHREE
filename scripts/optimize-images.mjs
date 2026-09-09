@@ -19,7 +19,14 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'resources', 'source-images');
 const OUT = path.join(ROOT, 'public');
 
-/** @type {{from: string, to: string, width: number, quality?: number}[]} */
+/**
+ * `crop` (opcional) recorta a origem antes de redimensionar, em pixels da imagem
+ * original: {left, top, width, height}. Serve para tirar um enquadramento
+ * paisagem de uma foto vertical, por exemplo.
+ *
+ * @type {{from: string, to: string, width: number, quality?: number,
+ *         crop?: {left: number, top: number, width: number, height: number}}[]}
+ */
 const MANIFEST = [
   // ---------- Compartilhado ----------
   { from: 'brand/logo-advogada.png', to: 'assets/images/brand/logo-advogada.webp', width: 600 },
@@ -44,9 +51,25 @@ const MANIFEST = [
   { from: 'landing/banner.png', to: 'landing/images/banner.webp', width: 1920, quality: 72 },
   { from: 'landing/banner.png', to: 'landing/images/banner-mobile.webp', width: 900, quality: 72 },
 
-  // ---------- Mentoria (fundo do hero: renderizado com blur(10px)) ----------
-  { from: 'mentoria/capa-desktop.png', to: 'mentoria/images/capa-desktop.webp', width: 900, quality: 60 },
-  { from: 'mentoria/capa-mobile.png', to: 'mentoria/images/capa-mobile.webp', width: 600, quality: 60 },
+  // ---------- Mentoria (fundo do hero) ----------
+  // Dois enquadramentos do mesmo retrato 2000x3000: paisagem no desktop, com ela
+  // à direita e área escura à esquerda para o texto; e um corte mais vertical no
+  // celular, com o rosto no terço superior e o texto sobre a roupa escura.
+  // O <picture> baixa só um dos dois.
+  {
+    from: 'profile/foto-perfil.jpg',
+    to: 'mentoria/images/hero-desktop.webp',
+    crop: { left: 0, top: 280, width: 2000, height: 1125 },
+    width: 1600,
+    quality: 78,
+  },
+  {
+    from: 'profile/foto-perfil.jpg',
+    to: 'mentoria/images/hero-mobile.webp',
+    crop: { left: 200, top: 250, width: 1600, height: 2250 },
+    width: 800,
+    quality: 78,
+  },
 
   // ---------- Portfolio ----------
   { from: 'portfolio/nathiara-hero.jpg', to: 'portfolio/images/nathiara-hero.webp', width: 900 },
@@ -85,7 +108,9 @@ async function run() {
       continue;
     }
     fs.mkdirSync(path.dirname(to), { recursive: true });
-    await sharp(from)
+    let pipeline = sharp(from);
+    if (item.crop) pipeline = pipeline.extract(item.crop);
+    await pipeline
       .resize({ width: item.width, withoutEnlargement: true })
       .webp({ quality: item.quality ?? 80 })
       .toFile(to);

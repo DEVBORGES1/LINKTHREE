@@ -308,13 +308,18 @@ h6 {
 .hero {
     position: relative;
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
     overflow: hidden;
     padding-top: 170px;
     /* Compensar o header fixo */
+    padding-bottom: 3rem;
+    /* Cor de espera enquanto a foto não chegou. */
+    background-color: #0b1420;
+    /* Cria uma pilha própria: sem isto, o fundo com z-index negativo escaparia
+       para trás do próprio background-color acima e a foto sumiria. */
+    isolation: isolate;
 }
 
 .hero-background {
@@ -323,7 +328,7 @@ h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -2;
+    z-index: 0;
 }
 
 /* O <picture> ocupa a área toda; a troca desktop/mobile é feita por ele. */
@@ -333,23 +338,33 @@ h6 {
     height: 100%;
 }
 
+/* Sem blur: a foto fica nítida. O que garante a leitura do texto é o
+   escurecimento direcional abaixo, não desfoque. */
 .hero-bg-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    max-height: 100vh;
-    filter: blur(10px);
-    transform: scale(1.05);
+    /* Ela fica à direita do enquadramento, deixando a área escura à esquerda
+       livre para o texto. */
+    object-position: 62% center;
 }
 
+/* Duas camadas: uma escura na horizontal, forte onde fica o texto e quase nula
+   sobre ela; e um véu navy que amarra a foto com a cor da marca. */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.7) 100%);
+    background:
+        linear-gradient(97deg,
+            rgba(8, 16, 27, 0.97) 0%,
+            rgba(8, 16, 27, 0.93) 28%,
+            rgba(8, 16, 27, 0.62) 52%,
+            rgba(8, 16, 27, 0.18) 76%,
+            rgba(8, 16, 27, 0.04) 100%),
+        linear-gradient(160deg, rgba(26, 54, 93, 0.42) 0%, rgba(8, 18, 34, 0.30) 100%);
     z-index: 1;
 }
 
@@ -360,15 +375,17 @@ h6 {
 
 }
 
+/* Texto alinhado à esquerda, dentro da faixa escura do degradê. */
 .hero-content {
-    max-width: 800px;
-    padding: 2rem;
+    max-width: 33rem;
+    padding: 0;
     position: relative;
     z-index: 2;
+    text-align: left;
 }
 
 .hero-title {
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(2rem, 4.2vw, 3rem);
     font-weight: 800;
     color: #ffffff;
     margin-bottom: 1.5rem;
@@ -378,23 +395,52 @@ h6 {
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    color: #ffffff;
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    color: #d5dce7;
     margin-bottom: 2.5rem;
-    line-height: 1.6;
+    line-height: 1.65;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .hero-actions {
     display: flex;
     gap: 1rem;
-    justify-content: center;
     flex-wrap: wrap;
     position: relative;
     z-index: 2;
+}
+
+/* No celular não há coluna livre ao lado: o texto ocupa a largura toda. Então o
+   escurecimento deixa de ser horizontal e passa a subir de baixo, mantendo o
+   rosto visível no topo e o texto sobre a área escura da roupa. */
+@media (max-width: 860px) {
+    .hero {
+        align-items: flex-end;
+        padding-bottom: 2.5rem;
+    }
+
+    .hero-bg-image {
+        object-position: center top;
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(184deg,
+                rgba(8, 16, 27, 0.30) 0%,
+                rgba(8, 16, 27, 0.62) 38%,
+                rgba(8, 16, 27, 0.95) 68%,
+                rgba(8, 16, 27, 0.98) 100%),
+            linear-gradient(160deg, rgba(26, 54, 93, 0.40) 0%, rgba(8, 18, 34, 0.30) 100%);
+    }
+
+    .hero-content {
+        max-width: none;
+        text-align: center;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
 }
 
 /* ===== SEÇÕES GERAIS ===== */
@@ -1428,7 +1474,9 @@ section {
     }
 
     .hero {
-        padding-top: 80px !important;
+        /* Folga suficiente para o header fixo, que tem ~123px no celular.
+           O !important que havia aqui não era necessário. */
+        padding-top: 130px;
     }
 
     .nav-menu {
