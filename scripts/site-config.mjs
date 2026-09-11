@@ -18,4 +18,4 @@
  *
  * Para trocar: edite a constante abaixo e rode `npm run site-url`.
  */
-export const SITE_URL = process.env.SITE_URL || 'https://linkthree.vercel.app';
+export const SITE_URL = process.env.SITE_URL || 'https://nathiaraborgesadv.vercel.app';

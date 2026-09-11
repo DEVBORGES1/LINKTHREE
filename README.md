@@ -124,20 +124,21 @@ O site é estático: o build gera `dist/` e é essa pasta que vai ao ar.
 
 ### Vercel
 
-[`vercel.json`](vercel.json) já define tudo (build, pasta de saída, cabeçalhos
-de cache e de segurança). O que falta é vincular o projeto — isso exige login
-por dispositivo e só pode ser feito por você:
+Endereço de produção: **https://nathiaraborgesadv.vercel.app**
+
+O projeto já está vinculado e publica sozinho a cada push para `main`.
+[`vercel.json`](vercel.json) define o build (`npm run build && npm run minify`),
+a pasta de saída (`dist`), `trailingSlash` para casar com os links do site, e os
+cabeçalhos de cache e de segurança.
+
+Para publicar manualmente de uma máquina:
 
 ```bash
-npx vercel login
-npx vercel link
 npx vercel --prod
 ```
 
-Depois do `link`, a Vercel mostra o endereço real do projeto. **Se ele for
-diferente de `linkthree.vercel.app`**, ajuste `SITE_URL` em
+Se o endereço do projeto mudar, ajuste `SITE_URL` em
 [`scripts/site-config.mjs`](scripts/site-config.mjs) e rode `npm run build`.
-A partir daí, cada push para `main` publica sozinho.
 
 ### GitHub Pages
 

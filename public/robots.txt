@@ -6,4 +6,4 @@ Disallow: /escritorio/chat-widget.html
 Disallow: /vendas/
 Disallow: /landing/
 
-Sitemap: https://linkthree.vercel.app/sitemap.xml
+Sitemap: https://nathiaraborgesadv.vercel.app/sitemap.xml
