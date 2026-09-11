@@ -31,12 +31,15 @@ export const SITE_URL = process.env.SITE_URL || 'https://nathiaraborgesadv.verce
  * clicar. Se o e-mail de ativação não aparecer, o provedor está bloqueando.
  *
  * Histórico: até setembro de 2026 o destino era nathiara.borges@outlook.com, e
- * o e-mail de ativação nunca chegou — o Outlook barrou. Por isso voltou a ser
- * este Gmail, que já era o destino dos formulários deste projeto antes da
- * reescrita e recebe sem filtrar. De lá o contato é repassado à Nathiara.
+ * o e-mail de ativação nunca chegou — o Outlook barrou. Trocado para o Gmail da
+ * Nathiara, que recebe sem filtrar. Os leads chegam direto nela, sem passar por
+ * ninguém no meio.
+ *
+ * Repare que não é o mesmo endereço que aparece nos `mailto:` e no chat: lá fica
+ * o @outlook.com, que é o contato público dela. Mudar um não muda o outro.
  *
  * O endereço fica visível no HTML publicado. Se isso incomodar, o FormSubmit
  * oferece um identificador aleatório depois da ativação, que pode substituir o
  * e-mail na URL.
  */
-export const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'bstech.ti@gmail.com';
+export const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'nathiara.borges@gmail.com';
