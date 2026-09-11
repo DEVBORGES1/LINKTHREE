@@ -9,20 +9,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { SITE_URL } from './site-config.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = path.join(ROOT, 'public');
 const SEP = new RegExp('\\\\', 'g');
 
-/**
- * ATENÇÃO: confira este endereço antes de publicar.
- *
- * É o domínio que aparece nas tags og:url do projeto. Se o site estiver no ar
- * pelo endereço padrão do GitHub Pages, o valor certo é
- * 'https://devborges1.github.io/LINKTHREE' — um sitemap com o domínio errado é
- * simplesmente ignorado pelo Google.
- */
-const SITE = 'https://www.nathiaraborges.adv.br';
+/** Vem do site-config.mjs, o único lugar onde o endereço é declarado. */
+const SITE = SITE_URL.replace(/\/+$/, '');
 
 /** Mesma lista do minify.mjs: o que não vai ao ar não entra no sitemap. */
 const NAO_PUBLICADAS = ['vendas', 'landing'];
@@ -94,4 +88,4 @@ console.log(`sitemap.xml: ${paginas.length} página(s)`);
 paginas.forEach((p) => console.log(`  ${SITE}${p.url}`));
 console.log('\nrobots.txt gerado.');
 console.log(`\nDomínio usado: ${SITE}`);
-console.log('Se o site não estiver nesse endereço, ajuste a constante SITE neste arquivo.');
+console.log('Para trocar: edite SITE_URL em scripts/site-config.mjs e rode npm run build.');

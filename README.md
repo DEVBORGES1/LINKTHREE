@@ -74,6 +74,7 @@ e todas as imagens `.webp`.
 | `npm run icons` | Varre o HTML, descobre os ícones usados e gera um Font Awesome enxuto |
 | `npm run fonts` | Copia as fontes do `node_modules` e gera o `fonts.css` |
 | `npm run build` | Os três acima |
+| `npm run site-url` | Aplica o SITE_URL nas tags og:url, og:image e canonical |
 | `npm run sitemap` | Gera sitemap.xml e robots.txt a partir das páginas publicadas |
 | `npm run minify` | Gera `dist/` minificado, já sem as páginas fora do ar (o workflow usa isso para publicar) |
 
@@ -116,6 +117,49 @@ Para colocar uma delas no ar, apague a linha correspondente da lista
 
 O build falha de propósito se alguma página publicada passar a apontar para uma
 pasta dessa lista, para não ir ao ar um link quebrado.
+
+## Publicação
+
+O site é estático: o build gera `dist/` e é essa pasta que vai ao ar.
+
+### Vercel
+
+[`vercel.json`](vercel.json) já define tudo (build, pasta de saída, cabeçalhos
+de cache e de segurança). O que falta é vincular o projeto — isso exige login
+por dispositivo e só pode ser feito por você:
+
+```bash
+npx vercel login
+npx vercel link
+npx vercel --prod
+```
+
+Depois do `link`, a Vercel mostra o endereço real do projeto. **Se ele for
+diferente de `linkthree.vercel.app`**, ajuste `SITE_URL` em
+[`scripts/site-config.mjs`](scripts/site-config.mjs) e rode `npm run build`.
+A partir daí, cada push para `main` publica sozinho.
+
+### GitHub Pages
+
+Continua ativo em `https://devborges1.github.io/LINKTHREE/`, pelo workflow
+[`deploy-pages.yml`](.github/workflows/deploy-pages.yml), que dispara em `main`.
+Se a Vercel virar o endereço oficial, vale desativar esse workflow para não
+manter duas cópias no ar.
+
+### O endereço do site
+
+Declarado num lugar só: `SITE_URL` em
+[`scripts/site-config.mjs`](scripts/site-config.mjs). Dele saem as tags
+`og:url`, `og:image` e `canonical` das seis páginas (via `npm run site-url`) e
+as URLs do `sitemap.xml` e do `robots.txt`.
+
+Esse valor precisa bater com o endereço em que o site responde de fato. As
+prévias de link do WhatsApp e do Facebook buscam a `og:image` pelo endereço
+absoluto: se ele não resolver, a prévia sai vazia.
+
+> Até setembro de 2026 isso apontava para `www.nathiaraborges.adv.br`, um
+> domínio registrado mas sem registro de endereço — não respondia, e por isso as
+> prévias de link estavam quebradas.
 
 ## Medição e analytics
 
