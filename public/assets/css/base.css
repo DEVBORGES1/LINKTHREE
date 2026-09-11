@@ -151,6 +151,14 @@ a {
     color: inherit;
 }
 
+/* Endereco de e-mail nao tem espaco, entao o navegador nao acha onde quebrar:
+   em tela estreita ele nao cabe e empurra o bloco inteiro para fora. Num
+   aparelho de 320px, "nathiara.borges@outlook.com" pedia 227px onde cabiam 215
+   e levava junto a secao de contato da mentoria. */
+a[href^="mailto:"] {
+    overflow-wrap: anywhere;
+}
+
 /* ---------- Acessibilidade ---------- */
 
 /* Foco visivel para quem navega por teclado (nao aparece no clique de mouse). */
