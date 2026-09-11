@@ -370,25 +370,31 @@ class AdvocaciaIntegration {
             });
         });
 
-        // Auto-abrir após delay
+        // Auto-abrir após delay. A abertura automática é registrada como tal:
+        // contada junto com a do visitante, "chat aberto" viraria só "ficou 10
+        // segundos na página", e o número nao diria mais nada.
         setTimeout(() => {
             if (this.config.autoOpenDelay > 0) {
-                this.toggleChat();
+                this.toggleChat('automatico');
             }
         }, this.config.autoOpenDelay);
     }
 
-    toggleChat() {
+    toggleChat(origem) {
         const container = document.getElementById('advocaciaChatContainer');
         const toggle = document.getElementById('advocaciaChatToggle');
-        
+
         if (container.classList.contains('active')) {
             this.closeChat();
         } else {
             container.classList.add('active');
             toggle.querySelector('.chat-badge').style.display = 'none';
-            document.getElementById('advocaciaMessageInput').focus();
-            this.trackEvent('chat_opened');
+            // O foco é roubado da página quando o chat se abre sozinho. Só
+            // levamos o cursor para o campo quando foi o visitante que pediu.
+            if (origem !== 'automatico') {
+                document.getElementById('advocaciaMessageInput').focus();
+            }
+            this.trackEvent('chat_opened', { origem: origem || 'visitante' });
         }
     }
 
@@ -404,8 +410,12 @@ class AdvocaciaIntegration {
         if (message) {
             this.addMessage(message, 'user');
             input.value = '';
-            this.handleBotResponse(message);
-            this.trackEvent('message_sent', { message: message });
+            // Só o tamanho, nunca o conteúdo. Num site de advocacia o que a
+            // visitante digita aqui é assunto pessoal dela -- e passaria a
+            // trafegar para fora no dia em que houvesse um painel configurado.
+            // O que interessa medir é se o chat gera conversa, e para isso
+            // basta saber que uma mensagem foi enviada.
+            this.trackEvent('message_sent', { tamanho: message.length });
         }
     }
 
