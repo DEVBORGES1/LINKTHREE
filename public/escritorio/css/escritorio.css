@@ -485,7 +485,7 @@ p {
 /* ===== HERO FEATURES ===== */
 .hero-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: var(--spacing-md);
     margin-top: var(--spacing-lg);
 }
@@ -1045,7 +1045,7 @@ p {
     }
 
     .hero-features {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
         gap: var(--spacing-sm);
     }
 
@@ -1118,6 +1118,16 @@ p {
 
     .slide-img {
         min-height: 250px;
+    }
+}
+
+/* Aparelhos mais estreitos: em 320px o container do header tem 273px uteis, e a
+   logo de 264px mais o botao do menu (41px) nao cabem lado a lado -- o botao era
+   empurrado para fora da tela. Nos 360px em diante os 120px cabem folgados, por
+   isso o corte e baixo. */
+@media (max-width: 340px) {
+    .logo-full {
+        height: 95px;
     }
 }
 
@@ -1289,7 +1299,7 @@ p {
 
 .areas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: var(--spacing-xl);
     margin-top: var(--spacing-2xl);
 }
@@ -1354,7 +1364,7 @@ p {
 
 .diferenciais-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: var(--spacing-xl);
     margin-top: var(--spacing-2xl);
 }
@@ -1418,7 +1428,7 @@ p {
 
 .depoimentos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: var(--spacing-xl);
     margin-top: var(--spacing-2xl);
 }
