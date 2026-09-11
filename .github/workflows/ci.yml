@@ -1,26 +1,30 @@
-name: Deploy GitHub Pages
+# Verifica que o projeto continua construindo, e que o que esta versionado em
+# public/ bate com o que o build gera.
+#
+# Nao publica nada: quem serve o site e a Vercel, que roda o proprio build a
+# cada push na main. Ate setembro de 2026 este arquivo tambem publicava no
+# GitHub Pages, e o site ficava no ar em dois lugares ao mesmo tempo -- com o
+# Pages servindo uma versao sem o token de medicao. O deploy saiu; a checagem
+# ficou, porque e ela que pega imagem de origem editada sem rodar o build.
+name: CI
 
 on:
   push:
     branches:
       - main
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,34 +39,20 @@ jobs:
         run: npm ci
 
       # Gera imagens WebP, subset do Font Awesome e fontes auto-hospedadas.
-      # Roda no CI para garantir que o que vai ao ar bate com resources/source-images.
       - name: Build assets
         run: npm run build
 
-      # Falha o deploy se `npm run build` mudou algo versionado: significa que
-      # alguém editou uma imagem de origem sem rodar o build antes de commitar.
+      # Falha se `npm run build` mudou algo versionado: significa que alguem
+      # editou uma imagem de origem sem rodar o build antes de commitar.
       - name: Check generated assets are up to date
         run: |
           if [ -n "$(git status --porcelain public)" ]; then
             echo "::error::public/ ficou diferente depois de 'npm run build'."
-            echo "Rode 'npm run build' localmente e faça commit do resultado."
+            echo "Rode 'npm run build' localmente e faca commit do resultado."
             git status --porcelain public
             exit 1
           fi
 
+      # Mesma etapa que a Vercel roda: se quebrar aqui, o deploy quebraria la.
       - name: Minify HTML/CSS/JS
         run: npm run minify
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
