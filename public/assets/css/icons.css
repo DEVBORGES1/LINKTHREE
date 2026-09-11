@@ -1,0 +1,140 @@
+/* Font Awesome Free 6.7.2 - subset gerado por scripts/build-icons.mjs. NAO EDITAR A MAO.
+   Icones: CC BY 4.0 / Fontes: SIL OFL 1.1 / Codigo: MIT - https://fontawesome.com/license/free
+   70 icones incluidos. Para adicionar um icone novo, use a classe no HTML e rode: npm run icons */
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('../fonts/fa-solid-900.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/fa-brands-400.woff2') format('woff2');
+}
+
+.fa,
+.fas,
+.fab,
+.fa-solid,
+.fa-brands {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: var(--fa-display, inline-block);
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+
+.fa,
+.fas,
+.fa-solid {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+.fab,
+.fa-brands {
+  font-family: 'Font Awesome 6 Brands';
+  font-weight: 400;
+}
+
+.fa::before,
+.fas::before,
+.fab::before,
+.fa-solid::before,
+.fa-brands::before {
+  content: var(--fa);
+}
+
+.fa-spin {
+  animation: fa-spin 2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-spin {
+    animation: none;
+  }
+}
+
+@keyframes fa-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.fa-address-book { --fa: "\f2b9"; }
+.fa-arrow-down { --fa: "\f063"; }
+.fa-arrow-left { --fa: "\f060"; }
+.fa-arrow-right { --fa: "\f061"; }
+.fa-baby { --fa: "\f77c"; }
+.fa-balance-scale { --fa: "\f24e"; }
+.fa-bars { --fa: "\f0c9"; }
+.fa-brain { --fa: "\f5dc"; }
+.fa-briefcase { --fa: "\f0b1"; }
+.fa-building { --fa: "\f1ad"; }
+.fa-calculator { --fa: "\f1ec"; }
+.fa-calendar { --fa: "\f133"; }
+.fa-calendar-alt { --fa: "\f073"; }
+.fa-calendar-check { --fa: "\f274"; }
+.fa-chart-line { --fa: "\f201"; }
+.fa-check { --fa: "\f00c"; }
+.fa-check-circle { --fa: "\f058"; }
+.fa-chevron-down { --fa: "\f078"; }
+.fa-chevron-left { --fa: "\f053"; }
+.fa-chevron-right { --fa: "\f054"; }
+.fa-child { --fa: "\f1ae"; }
+.fa-clipboard-check { --fa: "\f46c"; }
+.fa-clock { --fa: "\f017"; }
+.fa-comments { --fa: "\f086"; }
+.fa-crown { --fa: "\f521"; }
+.fa-directions { --fa: "\f5eb"; }
+.fa-envelope { --fa: "\f0e0"; }
+.fa-facebook { --fa: "\f09a"; }
+.fa-file-contract { --fa: "\f56c"; }
+.fa-file-invoice { --fa: "\f570"; }
+.fa-file-signature { --fa: "\f573"; }
+.fa-fire { --fa: "\f06d"; }
+.fa-folder-open { --fa: "\f07c"; }
+.fa-gavel { --fa: "\f0e3"; }
+.fa-hand-holding-heart { --fa: "\f4be"; }
+.fa-handshake { --fa: "\f2b5"; }
+.fa-heart { --fa: "\f004"; }
+.fa-heart-pulse { --fa: "\f21e"; }
+.fa-info-circle { --fa: "\f05a"; }
+.fa-instagram { --fa: "\f16d"; }
+.fa-laptop-house { --fa: "\e066"; }
+.fa-lightbulb { --fa: "\f0eb"; }
+.fa-linkedin { --fa: "\f08c"; }
+.fa-map { --fa: "\f279"; }
+.fa-map-marker-alt { --fa: "\f3c5"; }
+.fa-money-bill-wave { --fa: "\f53a"; }
+.fa-paper-plane { --fa: "\f1d8"; }
+.fa-phone { --fa: "\f095"; }
+.fa-play { --fa: "\f04b"; }
+.fa-play-circle { --fa: "\f144"; }
+.fa-plus { --fa: "\2b"; }
+.fa-quote-left { --fa: "\f10d"; }
+.fa-quote-right { --fa: "\f10e"; }
+.fa-rocket { --fa: "\f135"; }
+.fa-search { --fa: "\f002"; }
+.fa-search-plus { --fa: "\f00e"; }
+.fa-shield-alt { --fa: "\f3ed"; }
+.fa-shield-halved { --fa: "\f3ed"; }
+.fa-shopping-cart { --fa: "\f07a"; }
+.fa-spinner { --fa: "\f110"; }
+.fa-star { --fa: "\f005"; }
+.fa-stopwatch { --fa: "\f2f2"; }
+.fa-store { --fa: "\f54e"; }
+.fa-times { --fa: "\f00d"; }
+.fa-trophy { --fa: "\f091"; }
+.fa-user { --fa: "\f007"; }
+.fa-user-secret { --fa: "\f21b"; }
+.fa-user-shield { --fa: "\f505"; }
+.fa-users { --fa: "\f0c0"; }
+.fa-whatsapp { --fa: "\f232"; }

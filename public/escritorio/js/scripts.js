@@ -162,41 +162,8 @@ class HeroSlider {
 }
 
 // ===== ANIMAÇÕES DE SCROLL =====
-class ScrollAnimations {
-    constructor() {
-        this.observer = new IntersectionObserver(
-            (entries) => this.handleIntersection(entries),
-            CONFIG.animations
-        );
-
-        this.init();
-    }
-
-    init() {
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach(el => this.observer.observe(el));
-    }
-
-    handleIntersection(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-
-                // Adicionar delay para elementos em sequência
-                if (entry.target.classList.contains('contato-card') ||
-                    entry.target.classList.contains('stat-item') ||
-                    entry.target.classList.contains('area-card') ||
-                    entry.target.classList.contains('diferencial-card') ||
-                    entry.target.classList.contains('depoimento-card')) {
-                    const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
-                    const delay = `${index * 0.15}s`;
-                    entry.target.style.animationDelay = delay;
-                    entry.target.style.transitionDelay = delay;
-                }
-            }
-        });
-    }
-}
+// A animação de entrada saiu daqui: agora é /assets/js/reveal.js, usada pelos
+// seis sites. O atraso em cascata dos cards virou transition-delay no CSS.
 
 // ===== HEADER SCROLL =====
 class HeaderScroll {
@@ -233,11 +200,11 @@ class HeaderScroll {
     }
 
     hideHeader() {
-        this.header.classList.add('hidden');
+        this.header.classList.add('is-hidden');
     }
 
     showHeader() {
-        this.header.classList.remove('hidden');
+        this.header.classList.remove('is-hidden');
     }
 
     handleMouseLeave() {
@@ -256,7 +223,9 @@ class ContactForm {
 
     init() {
         if (this.form) {
-            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+            // O submit é do /assets/js/form-contato.js. Esta classe cuida só
+            // da validação em tempo real e da máscara de telefone - antes
+            // havia dois listeners de submit no mesmo formulário.
             this.setupFormValidation();
             this.setupPhoneMask();
         }
@@ -338,45 +307,8 @@ class ContactForm {
         }
     }
 
-    async handleSubmit(e) {
-        e.preventDefault();
-
-        // Validar todos os campos
-        const inputs = this.form.querySelectorAll('input, textarea, select');
-        let isValid = true;
-
-        inputs.forEach(input => {
-            if (!this.validateField(input)) {
-                isValid = false;
-            }
-        });
-
-        if (!isValid) {
-            this.showNotification('Por favor, corrija os erros no formulário.', 'error');
-            return;
-        }
-
-        // Simular envio
-        const submitBtn = this.form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-        submitBtn.disabled = true;
-
-        try {
-            // Simular delay de envio
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            this.showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-            this.form.reset();
-
-        } catch (error) {
-            this.showNotification('Erro ao enviar mensagem. Tente novamente.', 'error');
-        } finally {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }
-    }
+    // handleSubmit foi removida: era o segundo handler de submit deste mesmo
+    // formulario e tambem so simulava o envio. Ver /assets/js/form-contato.js.
 
     showNotification(message, type) {
         // Criar notificação
@@ -527,47 +459,17 @@ class Utils {
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializar todas as funcionalidades
     new HeroSlider();
-    new ScrollAnimations();
     new HeaderScroll();
     new ContactForm();
     new MobileMenu();
 
-    // Smooth scroll para links internos
-    const internalLinks = document.querySelectorAll('a[href^="#"]');
-    internalLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            Utils.smoothScroll(link.getAttribute('href'));
-        });
-    });
+    // A rolagem suave das âncoras é feita pelo CSS (scroll-behavior e
+    // scroll-padding-top em /assets/css/base.css), que já respeita
+    // prefers-reduced-motion. Não precisa de JS.
 
-    // Adicionar efeitos de hover nos cards
-    const cards = document.querySelectorAll('.contato-card, .info-card, .stat-item');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-5px)';
-        });
+    // O hover dos cards virou CSS (:hover) em escritorio.css: escrever
+    // style.transform a cada mouseenter forçava recálculo de layout.
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-        });
-    });
-
-    // Lazy loading para imagens
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => imageObserver.observe(img));
-
-    console.log('🚀 Nathiara Borges Advocacia - Página carregada com sucesso!');
+    // O lazy loading manual saiu: as <img> usam loading="lazy" nativo.
 });
 

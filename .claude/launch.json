@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "linkthree",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "public", "-l", "3000"],
+      "port": 3000
+    },
+    {
+      "name": "linkthree-dist",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "dist", "-l", "3001"],
+      "port": 3001
+    }
+  ]
+}

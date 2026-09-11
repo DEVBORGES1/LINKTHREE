@@ -50,10 +50,9 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 
-    /* Transições */
-    --transition-fast: 0.15s ease-in-out;
-    --transition-normal: 0.3s ease-in-out;
-    --transition-slow: 0.5s ease-in-out;
+    /* As transições vêm do /assets/css/base.css, que define uma escala única
+       para o projeto. Estes valores locais foram removidos: tinham os mesmos
+       nomes do compartilhado, com valores diferentes. */
 }
 
 /* ===== BASE STYLES ===== */
@@ -187,7 +186,7 @@ p {
     transition: all var(--transition-normal);
 }
 
-.header.hidden {
+.header.is-hidden {
     transform: translateY(-100%);
 }
 
@@ -286,7 +285,11 @@ p {
 /* ===== HERO SECTION ===== */
 .hero {
     padding-top: 170px;
+    padding-bottom: var(--spacing-2xl);
+    /* svh acompanha a barra do navegador no celular; vh dá um salto quando ela
+       aparece e some. O fallback em vh atende navegadores antigos. */
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     background: linear-gradient(135deg, var(--color-gray-800) 0%, var(--color-gray-900) 100%);
@@ -391,30 +394,19 @@ p {
     text-align: center;
 }
 
-.desktop-img,
-.mobile-img {
-    max-width: 100%;
+/* Uma única imagem por slide: a troca desktop/mobile agora é feita pelo
+   <picture> no HTML, que baixa só a versão usada. */
+.slide-img {
+    width: 100%;
     height: auto;
+    min-height: 400px;
+    object-fit: cover;
     border-radius: var(--border-radius-xl);
     box-shadow: var(--shadow-xl);
     transition: transform var(--transition-normal);
 }
 
-.desktop-img {
-    min-height: 400px;
-    object-fit: cover;
-    width: 100%;
-}
-
-.mobile-img {
-    display: none;
-    min-height: 300px;
-    object-fit: cover;
-    width: 100%;
-}
-
-.slide-image:hover .desktop-img,
-.slide-image:hover .mobile-img {
+.slide-image:hover .slide-img {
     transform: scale(1.02);
 }
 
@@ -568,6 +560,15 @@ p {
     background-color: var(--color-white);
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+/* Hover que antes era feito por JS escrevendo style.transform a cada
+   mouseenter/mouseleave. Em CSS não custa recálculo de layout. */
+.stat-item:hover,
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 .stat-number {
@@ -789,6 +790,7 @@ p {
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
     overflow: hidden;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .card-header {
@@ -974,16 +976,9 @@ p {
 }
 
 /* ===== ANIMAÇÕES ===== */
-.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all var(--transition-slow);
-}
-
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* A animação de entrada agora vem de /assets/css/base.css (.reveal / .is-visible).
+   O nome .hidden foi abandonado: no escritório ele significava duas coisas ao
+   mesmo tempo - "ainda não animou" e "header escondido no scroll". */
 
 /* ===== RESPONSIVIDADE ===== */
 @media (max-width: 1100px) {
@@ -996,7 +991,13 @@ p {
     }
 
     .hero {
-        padding-top: 100px;
+        /* No celular o conteúdo do slide é mais alto que a tela. Com
+           align-items: center o excesso vazava para cima e o <h1> ficava
+           atrás do header fixo (que tem ~123px de altura aqui).
+           Alinhar no topo + folga suficiente resolve. */
+        align-items: flex-start;
+        padding-top: 150px;
+        min-height: auto;
     }
 
     .slide-content {
@@ -1078,13 +1079,8 @@ p {
         height: 40px;
     }
 
-    .mobile-img {
-        display: block;
+    .slide-img {
         min-height: 250px;
-    }
-
-    .desktop-img {
-        display: none;
     }
 }
 
@@ -1458,16 +1454,7 @@ p {
 }
 
 /* ===== ANIMAÇÕES E TRANSITIONS ===== */
-.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
 
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 .card-hover {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);

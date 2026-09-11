@@ -25,6 +25,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Gera imagens WebP, subset do Font Awesome e fontes auto-hospedadas.
+      # Roda no CI para garantir que o que vai ao ar bate com resources/source-images.
+      - name: Build assets
+        run: npm run build
+
+      # Falha o deploy se `npm run build` mudou algo versionado: significa que
+      # alguém editou uma imagem de origem sem rodar o build antes de commitar.
+      - name: Check generated assets are up to date
+        run: |
+          if [ -n "$(git status --porcelain public)" ]; then
+            echo "::error::public/ ficou diferente depois de 'npm run build'."
+            echo "Rode 'npm run build' localmente e faça commit do resultado."
+            git status --porcelain public
+            exit 1
+          fi
+
+      - name: Minify HTML/CSS/JS
+        run: npm run minify
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
@@ -33,7 +61,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment

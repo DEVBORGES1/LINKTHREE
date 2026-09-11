@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>document.documentElement.classList.add('js');</script>
 
     <!-- SEO & Social Sharing -->
     <title>Nathiara Borges | Links Importantes</title>
@@ -14,26 +15,36 @@
 
     <!-- Open Graph / WhatsApp -->
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Nathiara Borges | Links Importantes">
     <meta property="og:description"
         content="Acesse todos os meus conteúdos, cursos e canais de contato em um só lugar.">
-    <meta property="og:image" content="/portfolio/images/Foto 2 sobre.jpg">
-    <meta property="og:url" content="https://www.nathiaraborges.adv.br">
+    <meta property="og:image" content="https://nathiaraborgesadv.vercel.app/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://nathiaraborgesadv.vercel.app/landing/">
+    <meta name="twitter:card" content="summary_large_image">
 
+    <!-- Fontes, ícones e base compartilhados (auto-hospedados) -->
+    <link rel="stylesheet" href="../assets/css/fonts.css">
+    <link rel="stylesheet" href="../assets/css/icons.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="../assets/images/brand/logo-simbolo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-</head>
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    </head>
 
 <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <div class="container">
         <div class="overlay"></div>
-        <img class="backgroundImage" src="images/BANNER NATHIARA.png" alt="Banner Principal">
+        <!-- Banner de fundo decorativo (alt="" para não poluir o leitor de tela).
+             Antes era um PNG de 3,1 MB em 3360x1890 servido igual no celular. -->
+        <picture>
+            <source media="(max-width: 768px)" srcset="images/banner-mobile.webp" width="900" height="506">
+            <img class="backgroundImage" src="images/banner.webp" width="1920" height="1080" alt="" aria-hidden="true"
+                fetchpriority="high">
+        </picture>
 
-        <div class="content">
-            <div class="header-section hidden">
+        <main class="content" id="conteudo">
+            <div class="header-section reveal">
                 <a href="../index.html" style="color: inherit; text-decoration: none;"><h2 class="brand">Nathiara Borges</h2></a>
                 <div class="badge">
                     <i class="fas fa-star"></i>
@@ -41,18 +52,18 @@
                 </div>
             </div>
 
-            <h1 class="main-title hidden">
+            <h1 class="main-title reveal">
                 Descubra como transformar o seu celular numa máquina de imprimir dinheiro <span class="highlight">mesmo
                     começando do zero!</span>
             </h1>
 
 
-            <p class="description hidden">
+            <p class="description reveal">
                 Você vai descobrir os <strong>SEGREDOS</strong> que fazem parte da <strong>CAIXA PRETA</strong> do meu
                 negócio, sem papo furado. Aqui, você aprende a construir riqueza através da internet.
             </p>
 
-            <section class="benefits-cards hidden">
+            <section class="benefits-cards reveal">
                 <div class="benefit-card">
                     <div class="card-icon">
                         <i class="fas fa-store"></i>
@@ -79,7 +90,7 @@
                 </div>
             </section>
 
-            <div class="cta-section hidden">
+            <div class="cta-section reveal">
                 <div class="guarantee">
                     <i class="fas fa-shield-alt"></i>
                     <span>Garantia de 30 dias ou seu dinheiro de volta</span>
@@ -95,36 +106,38 @@
                     <span>Oferta por tempo limitado - Vagas limitadas</span>
                 </p>
             </div>
-        </div>
+        </main>
     </div>
 
     <!-- Footer -->
     <footer role="contentinfo">
-        <div class="interface hidden">
+        <div class="interface reveal">
             <div class="line-footer">
                 <div class="flex">
                     <div class="logo-footer">
-                        <img src="../assets/images/brand/logo-advogada.png?v=4"
-                            alt="Logo Nathiara Borges | Advogada" height="220">
+                        <img loading="lazy" decoding="async" src="../assets/images/brand/logo-advogada.webp"
+                            alt="Logo Nathiara Borges | Advogada" width="589" height="220">
                     </div>
                     <div class="btn-social">
-                        <a href="https://www.instagram.com/nathiaraborges/" target="_blank"><img
-                                src="../assets/images/icons/instagram.png" alt="Instagram" height="20"></a>
-                        <a href="https://www.facebook.com/nathiaraborges/" target="_blank"><img
-                                src="../assets/images/icons/facebook.png" alt="Facebook" height="20"></a>
-                        <a href="https://wa.me/5549999894224" target="_blank"><img
-                                src="../assets/images/icons/whatsapp.png" alt="WhatsApp" height="20"></a>
+                        <a href="https://www.instagram.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Instagram"><img loading="lazy" decoding="async"
+                                src="../assets/images/icons/instagram.webp" alt="Instagram" width="20" height="20"></a>
+                        <a href="https://www.facebook.com/nathiaraborges/" target="_blank" rel="noopener" aria-label="Facebook"><img loading="lazy" decoding="async"
+                                src="../assets/images/icons/facebook.webp" alt="Facebook" width="20" height="20"></a>
+                        <a href="https://wa.me/5549999894224" target="_blank" rel="noopener" aria-label="WhatsApp"><img loading="lazy" decoding="async"
+                                src="../assets/images/icons/whatsapp.webp" alt="WhatsApp" width="20" height="20"></a>
                     </div>
                 </div>
             </div>
             <div class="line-footer borda">
-                <p><img src="../assets/images/icons/email.png" height="20"> <a
+                <p><img loading="lazy" decoding="async" src="../assets/images/icons/email.webp" alt="" width="20" height="20"> <a
                         href="mailto:nathiara.borges@outlook.com">nathiara.borges@outlook.com</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="js/app.js"></script>
+    <script src="../assets/js/analytics.js" defer></script>
+    <script src="../assets/js/reveal.js" defer></script>
+    <script src="js/app.js" defer></script>
 </body>
 
 </html>

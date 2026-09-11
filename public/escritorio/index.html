@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>document.documentElement.classList.add('js');</script>
 
     <!-- SEO & Social Sharing -->
     <title>Nathiara Borges Advocacia | Escritório de Advocacia em Videira-SC</title>
@@ -15,36 +16,32 @@
 
     <!-- Open Graph / WhatsApp -->
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Nathiara Borges Advocacia | Escritório de Advocacia">
     <meta property="og:description"
         content="Atuação jurídica especializada em Direito Civil, Penal, Família e defesa intransigente dos direitos dos Autistas (TEA) e PcD.">
-    <meta property="og:image" content="/portfolio/images/Foto 2 sobre.jpg">
-    <meta property="og:url" content="https://www.nathiaraborges.adv.br/">
+    <meta property="og:image" content="https://nathiaraborgesadv.vercel.app/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://nathiaraborgesadv.vercel.app/escritorio/">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Styles -->
+    <!-- Fontes, ícones e base compartilhados (auto-hospedados) -->
+    <link rel="stylesheet" href="../assets/css/fonts.css">
+    <link rel="stylesheet" href="../assets/css/icons.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="css/escritorio.css">
-    <link rel="icon" type="image/png" href="../assets/images/brand/logo-simbolo.png">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
 </head>
 
 <body>
+    <a class="skip-link" href="#inicio">Pular para o conteúdo</a>
     <!-- Header -->
     <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
                     <a href="../index.html" aria-label="Voltar para página inicial">
-                        <img src="../assets/images/brand/logo-advogada.png?v=4" alt="Logo Nathiara Borges | Advogada" class="logo-full" height="120">
-                        <img src="../assets/images/brand/logo-simbolo.png?v=4" alt="Logo Nathiara Borges | Advogada" class="logo-symbol" height="80">
+                        <img fetchpriority="high" src="../assets/images/brand/logo-advogada.webp" alt="Logo Nathiara Borges | Advogada" class="logo-full" width="321" height="120">
+                        <img loading="lazy" decoding="async" src="../assets/images/brand/logo-simbolo.webp" alt="Logo Nathiara Borges | Advogada" class="logo-symbol" width="80" height="80">
                     </a>
                 </div>
 
@@ -76,8 +73,12 @@
         </div>
     </header>
 
+    <main>
+
     <!-- Hero Section -->
-    <section class="hero" id="inicio" role="banner">
+    <!-- role="banner" saiu daqui: esse papel é do <header>, e ter dois na mesma
+         página confunde o leitor de tela. -->
+    <section class="hero" id="inicio">
         <div class="hero-slider">
             <div class="slide active" data-slide="1">
                 <div class="slide-content">
@@ -100,9 +101,15 @@
                             </a>
                         </div>
                     </div>
+                    <!-- O picture baixa só a versão que vai aparecer. Antes eram duas
+                         imagens (desktop e mobile) baixadas sempre, com o CSS
+                         escondendo uma delas depois. -->
                     <div class="slide-image">
-                        <img src="images/image.png" alt="Escritório Nathiara Borges Advocacia" class="desktop-img">
-                        <img src="images/image_copy_2.png" alt="Escritório Nathiara Borges Advocacia" class="mobile-img">
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="images/hero-escritorio-vertical.webp" width="800" height="1422">
+                            <img src="images/hero-escritorio.webp" width="1200" height="675" fetchpriority="high"
+                                alt="Recepção do escritório Nathiara Borges Advocacia" class="slide-img">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -133,8 +140,8 @@
                         </div>
                     </div>
                     <div class="slide-image">
-                        <img src="images/image_copy.png" alt="Área de Direito Civil" class="desktop-img">
-                        <img src="images/image_copy.png" alt="Área de Direito Civil" class="mobile-img">
+                        <img src="images/hero-direito-civil.webp" width="1200" height="675" fetchpriority="low"
+                            decoding="async" alt="Atendimento em Direito Civil" class="slide-img">
                     </div>
                 </div>
             </div>
@@ -165,8 +172,11 @@
                         </div>
                     </div>
                     <div class="slide-image">
-                        <img src="images/image_copy_3.png" alt="Áreas de Direito Penal e Família" class="desktop-img">
-                        <img src="images/image_copy_2.png" alt="Áreas de Direito Penal e Família" class="mobile-img">
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="images/hero-escritorio-vertical.webp" width="800" height="1422">
+                            <img src="images/hero-penal-familia.webp" width="1200" height="675" fetchpriority="low"
+                                decoding="async" alt="Áreas de Direito Penal e Família" class="slide-img">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -205,9 +215,8 @@
                         </div>
                     </div>
                     <div class="slide-image">
-                        <img src="images/image_copy_4.png" alt="Localização do escritório em Videira-SC" class="desktop-img">
-                        <img src="images/image_copy_4.png" alt="Localização do escritório em Videira-SC"
-                            class="mobile-img">
+                        <img src="images/hero-localizacao.webp" width="1200" height="674" fetchpriority="low"
+                            decoding="async" alt="Fachada do escritório em Videira-SC" class="slide-img">
                     </div>
                 </div>
             </div>
@@ -233,7 +242,7 @@
     </section>
 
     <!-- Areas de Atuacao Section -->
-    <section class="areas-atuacao hidden" id="areas-atuacao" role="region" aria-labelledby="areas-titulo">
+    <section class="areas-atuacao reveal" id="areas-atuacao" role="region" aria-labelledby="areas-titulo">
         <div class="container">
             <div class="section-header">
                 <h2 id="areas-titulo" class="section-title text-center">
@@ -245,7 +254,7 @@
             </div>
 
             <div class="areas-grid">
-                <div class="area-card card-hover hidden">
+                <div class="area-card card-hover reveal">
                     <div class="area-icon">
                         <i class="fa-solid fa-brain"></i>
                     </div>
@@ -253,7 +262,7 @@
                     <p>Atuação completa na garantia de direitos fundamentais: tratamento multidisciplinar ilimitado pelas operadoras de plano de saúde ou SUS, fornecimento de medicamentos de alto custo, concessão do Benefício de Prestação Continuada (BPC/LOAS) e suporte jurídico para inclusão escolar e acessibilidade.</p>
                 </div>
 
-                <div class="area-card card-hover hidden">
+                <div class="area-card card-hover reveal">
                     <div class="area-icon">
                         <i class="fa-solid fa-users"></i>
                     </div>
@@ -261,7 +270,7 @@
                     <p>Consultoria e representação sensível e acolhedora em momentos delicados, atuando em divórcios consensuais e litigiosos, definição de guarda e visitas, fixação de pensão alimentícia, partilha de bens, inventários e planejamento sucessório.</p>
                 </div>
 
-                <div class="area-card card-hover hidden">
+                <div class="area-card card-hover reveal">
                     <div class="area-icon">
                         <i class="fa-solid fa-file-signature"></i>
                     </div>
@@ -269,7 +278,7 @@
                     <p>Elaboração e análise detalhada de contratos civis e comerciais, ações de indenização por responsabilidade civil, reparação de danos morais e materiais, além da defesa especializada em litígios de Direito do Consumidor.</p>
                 </div>
 
-                <div class="area-card card-hover hidden">
+                <div class="area-card card-hover reveal">
                     <div class="area-icon">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
@@ -349,7 +358,7 @@
                 </div>
 
                 <div class="sobre-image">
-                    <img src="images/Foto 2 sobre.jpg" alt="Dra. Nathiara Borges - Advogada especializada"
+                    <img loading="lazy" decoding="async" src="../assets/images/profile/nathiara-sobre.webp" width="900" height="1350" alt="Dra. Nathiara Borges - Advogada especializada"
                         class="sobre-img">
                     <div class="image-overlay">
                         <div class="overlay-content">
@@ -363,7 +372,7 @@
     </section>
 
     <!-- Diferenciais Section -->
-    <section class="diferenciais hidden" id="diferenciais" role="region" aria-labelledby="diferenciais-titulo">
+    <section class="diferenciais reveal" id="diferenciais" role="region" aria-labelledby="diferenciais-titulo">
         <div class="container">
             <div class="section-header">
                 <h2 id="diferenciais-titulo" class="section-title text-center">
@@ -375,7 +384,7 @@
             </div>
 
             <div class="diferenciais-grid">
-                <div class="diferencial-card card-hover hidden">
+                <div class="diferencial-card card-hover reveal">
                     <div class="diferencial-icon">
                         <i class="fa-solid fa-heart-pulse"></i>
                     </div>
@@ -383,7 +392,7 @@
                     <p>Nossa atuação em Direito dos Autistas e PcD nasce de uma vivência diária e pessoal. Compreendemos na pele as angústias, lutas e o tempo de espera das famílias, o que nos permite oferecer um acolhimento com sensibilidade e sensatez.</p>
                 </div>
 
-                <div class="diferencial-card card-hover hidden">
+                <div class="diferencial-card card-hover reveal">
                     <div class="diferencial-icon">
                         <i class="fa-solid fa-comments"></i>
                     </div>
@@ -391,7 +400,7 @@
                     <p>Adaptamos nossa comunicação e espaço para que você se sinta seguro e confortável. Respeitamos limites sensoriais, traduzimos termos jurídicos complexos e oferecemos um atendimento verdadeiramente focado em acolher seres humanos.</p>
                 </div>
 
-                <div class="diferencial-card card-hover hidden">
+                <div class="diferencial-card card-hover reveal">
                     <div class="diferencial-icon">
                         <i class="fa-solid fa-laptop-house"></i>
                     </div>
@@ -403,7 +412,7 @@
     </section>
 
     <!-- Depoimentos Section -->
-    <section class="depoimentos hidden" id="depoimentos" role="region" aria-labelledby="depoimentos-titulo">
+    <section class="depoimentos reveal" id="depoimentos" role="region" aria-labelledby="depoimentos-titulo">
         <div class="container">
             <div class="section-header">
                 <h2 id="depoimentos-titulo" class="section-title text-center">
@@ -415,7 +424,7 @@
             </div>
 
             <div class="depoimentos-grid">
-                <div class="depoimento-card card-hover hidden">
+                <div class="depoimento-card card-hover reveal">
                     <div class="depoimento-stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -432,7 +441,7 @@
                     </div>
                 </div>
 
-                <div class="depoimento-card card-hover hidden">
+                <div class="depoimento-card card-hover reveal">
                     <div class="depoimento-stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -449,7 +458,7 @@
                     </div>
                 </div>
 
-                <div class="depoimento-card card-hover hidden">
+                <div class="depoimento-card card-hover reveal">
                     <div class="depoimento-stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -515,7 +524,10 @@
                 </div>
 
                 <div class="contato-form">
-                    <form id="formContato" class="form" role="form" aria-labelledby="form-titulo">
+                    <form id="formContato" class="form" role="form" aria-labelledby="form-titulo" data-form-contato
+                        data-email="nathiara.borges@outlook.com"
+                        data-assunto="Site - Escritorio"
+                        data-whatsapp="5549999894224">
                         <h3 id="form-titulo">Envie uma <span class="highlight">Mensagem</span></h3>
 
                         <div class="form-group">
@@ -610,11 +622,12 @@
                 </div>
 
                 <div class="localizacao-mapa">
+                    <!-- Os atributos width/height/style/allowfullscreen/loading/referrerpolicy
+                         estavam duplicados nesta tag; o navegador ignorava a segunda cópia. -->
                     <iframe
                         src="https://maps.google.com/maps?q=R.+Alo%C3%ADsio+P.+Kroeff+-+S%C3%A3o+Francisco,+Videira+-+SC,+89565-158&t=&z=15&ie=UTF8&iwloc=&output=embed"
                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade" width="100%" height="450" style="border:0;"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        referrerpolicy="no-referrer-when-downgrade"
                         title="Localização do escritório Nathiara Borges Advocacia em Videira-SC">
                     </iframe>
                 </div>
@@ -623,12 +636,14 @@
     </section>
 
     <!-- Footer -->
+    </main>
+
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="../assets/images/brand/logo-advogada.png?v=4" alt="Logo Nathiara Borges | Advogada" height="220">
+                        <img loading="lazy" decoding="async" src="../assets/images/brand/logo-advogada.webp" alt="Logo Nathiara Borges | Advogada" width="589" height="220">
                     </div>
                     <p class="footer-description">
                         Escritório especializado em Direito Civil, Penal, Família e TEA.
@@ -690,36 +705,22 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/scripts.js"></script>
+    <script src="../assets/js/analytics.js" defer></script>
+    <script src="../assets/js/reveal.js" defer></script>
+    <script src="../assets/js/form-contato.js" defer></script>
+    <script src="js/scripts.js" defer></script>
 
     <!-- Sistema de Chat e Agendamento -->
-    <script src="js/integration.js"></script>
+    <script src="js/integration.js" defer></script>
 
-    <!-- Google Analytics (opcional) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID'); // Substituir pelo seu ID do Google Analytics
-    </script>
+    <!-- ATENÇÃO: o Google Analytics e o Pixel do Facebook estavam aqui com os IDs
+         de exemplo (GA_MEASUREMENT_ID e YOUR_PIXEL_ID). Nesse estado eles não
+         mediam nada: o Pixel baixava 406 KB de fbevents.js e falhava no console
+         ("Invalid PixelID: null"), e o gtag disparava uma requisição quebrada em
+         toda visita. Foram removidos.
 
-    <!-- Facebook Pixel (opcional) -->
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', 'YOUR_PIXEL_ID'); // Substituir pelo seu Pixel ID
-        fbq('track', 'PageView');
-    </script>
+         Para ativar de verdade, cole aqui o snippet oficial com o ID real da
+         conta (G-XXXXXXXXXX no GA4, e o ID numérico do Pixel). -->
 </body>
 
 </html>

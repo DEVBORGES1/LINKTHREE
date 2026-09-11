@@ -1,0 +1,9 @@
+# Gerado por scripts/build-sitemap.mjs. Não editar à mão.
+
+User-agent: *
+Allow: /
+Disallow: /escritorio/chat-widget.html
+Disallow: /vendas/
+Disallow: /landing/
+
+Sitemap: https://nathiaraborgesadv.vercel.app/sitemap.xml

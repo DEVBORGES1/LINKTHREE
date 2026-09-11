@@ -1,6 +1,4 @@
 /* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -58,10 +56,9 @@
     /* Textos específicos */
     --text-on-primary: #ffffff;
 
-    /* Transições */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    /* As transições vêm do /assets/css/base.css, que define uma escala única
+       para o projeto. Estes valores locais foram removidos: tinham os mesmos
+       nomes do compartilhado, com valores diferentes. */
 
     /* Bordas */
     --border-radius-sm: 0.375rem;
@@ -275,15 +272,25 @@ h6 {
     box-shadow: var(--shadow-xl);
 }
 
+/* Cuidado com os nomes das variáveis nesta folha: no :root, --white vale
+   #111827 (quase preto) e --black vale #ffffff. Ficaram invertidos quando a
+   página passou para tema claro.
+
+   Este botão fica sobre o hero escuro, então `color: var(--white)` pintava
+   texto e borda quase pretos sobre fundo escuro: contraste de 1,13:1, quando o
+   mínimo acessível é 4,5:1. Na prática ele estava invisível. Cores explícitas
+   aqui para não depender das variáveis trocadas. */
 .btn-outline {
     background: transparent;
-    color: var(--white);
-    border: 2px solid var(--white);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
-.btn-outline:hover {
-    background: var(--white);
-    color: var(--black);
+.btn-outline:hover,
+.btn-outline:focus-visible {
+    background: #ffffff;
+    color: var(--primary-color);
+    border-color: #ffffff;
     transform: translateY(-2px);
 }
 
@@ -300,13 +307,18 @@ h6 {
 .hero {
     position: relative;
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
     overflow: hidden;
     padding-top: 170px;
     /* Compensar o header fixo */
+    padding-bottom: 3rem;
+    /* Cor de espera enquanto a foto não chegou. */
+    background-color: #0b1420;
+    /* Cria uma pilha própria: sem isto, o fundo com z-index negativo escaparia
+       para trás do próprio background-color acima e a foto sumiria. */
+    isolation: isolate;
 }
 
 .hero-background {
@@ -315,42 +327,43 @@ h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -2;
+    z-index: 0;
 }
 
+/* O <picture> ocupa a área toda; a troca desktop/mobile é feita por ele. */
+.hero-background picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sem blur: a foto fica nítida. O que garante a leitura do texto é o
+   escurecimento direcional abaixo, não desfoque. */
 .hero-bg-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    max-height: 100vh;
-    filter: blur(10px);
-    transform: scale(1.05);
+    /* Ela fica à direita do enquadramento, deixando a área escura à esquerda
+       livre para o texto. */
+    object-position: 62% center;
 }
 
-.desktop-only {
-    display: block;
-}
-.mobile-only {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .desktop-only {
-        display: none !important;
-    }
-    .mobile-only {
-        display: block !important;
-    }
-}
-
+/* Duas camadas: uma escura na horizontal, forte onde fica o texto e quase nula
+   sobre ela; e um véu navy que amarra a foto com a cor da marca. */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.7) 100%);
+    background:
+        linear-gradient(97deg,
+            rgba(8, 16, 27, 0.97) 0%,
+            rgba(8, 16, 27, 0.93) 28%,
+            rgba(8, 16, 27, 0.62) 52%,
+            rgba(8, 16, 27, 0.18) 76%,
+            rgba(8, 16, 27, 0.04) 100%),
+        linear-gradient(160deg, rgba(26, 54, 93, 0.42) 0%, rgba(8, 18, 34, 0.30) 100%);
     z-index: 1;
 }
 
@@ -361,15 +374,17 @@ h6 {
 
 }
 
+/* Texto alinhado à esquerda, dentro da faixa escura do degradê. */
 .hero-content {
-    max-width: 800px;
-    padding: 2rem;
+    max-width: 33rem;
+    padding: 0;
     position: relative;
     z-index: 2;
+    text-align: left;
 }
 
 .hero-title {
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(2rem, 4.2vw, 3rem);
     font-weight: 800;
     color: #ffffff;
     margin-bottom: 1.5rem;
@@ -379,23 +394,52 @@ h6 {
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    color: #ffffff;
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    color: #d5dce7;
     margin-bottom: 2.5rem;
-    line-height: 1.6;
+    line-height: 1.65;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .hero-actions {
     display: flex;
     gap: 1rem;
-    justify-content: center;
     flex-wrap: wrap;
     position: relative;
     z-index: 2;
+}
+
+/* No celular não há coluna livre ao lado: o texto ocupa a largura toda. Então o
+   escurecimento deixa de ser horizontal e passa a subir de baixo, mantendo o
+   rosto visível no topo e o texto sobre a área escura da roupa. */
+@media (max-width: 860px) {
+    .hero {
+        align-items: flex-end;
+        padding-bottom: 2.5rem;
+    }
+
+    .hero-bg-image {
+        object-position: center top;
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(184deg,
+                rgba(8, 16, 27, 0.30) 0%,
+                rgba(8, 16, 27, 0.62) 38%,
+                rgba(8, 16, 27, 0.95) 68%,
+                rgba(8, 16, 27, 0.98) 100%),
+            linear-gradient(160deg, rgba(26, 54, 93, 0.40) 0%, rgba(8, 18, 34, 0.30) 100%);
+    }
+
+    .hero-content {
+        max-width: none;
+        text-align: center;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
 }
 
 /* ===== SEÇÕES GERAIS ===== */
@@ -753,31 +797,40 @@ section {
     letter-spacing: 0.8px;
 }
 
+/* Carrossel em scroll-snap nativo: arrasta no celular, roda com a roda do
+   mouse e navega por teclado sem nenhuma biblioteca. Substituiu jQuery +
+   OwlCarousel (130 KB). */
 .testemunhos-carousel {
     margin-top: 4rem;
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 1rem;
+    padding-bottom: 1rem;
+    /* Firefox */
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
 }
 
-.testemunhos-carousel .owl-stage-outer {
-    overflow: hidden;
+.testemunhos-carousel::-webkit-scrollbar {
+    height: 6px;
 }
 
-.testemunhos-carousel .owl-item {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.testemunhos-carousel .owl-item.active {
-    opacity: 1;
-}
-
-.testemunhos-carousel .owl-item img {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
+.testemunhos-carousel::-webkit-scrollbar-thumb {
+    background: rgba(26, 54, 93, 0.25);
+    border-radius: 999px;
 }
 
 .testemunho-item {
-    padding: 0 1rem;
+    flex: 0 0 min(100%, 520px);
+    scroll-snap-align: center;
+}
+
+@media (min-width: 1024px) {
+    .testemunho-item {
+        flex-basis: calc(50% - 1rem);
+    }
 }
 
 .testemunho-content {
@@ -791,38 +844,21 @@ section {
     overflow: hidden;
 }
 
-.owl-carousel .owl-item img {
-    display: block;
-    width: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.owl-carousel .owl-item {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.owl-carousel .owl-item.active {
-    opacity: 1;
-}
-
-.testemunhos-carousel .owl-nav {
+/* Setas e indicadores do carrossel (criados por mentoria.js) */
+.carousel-controls {
     margin-top: 2.5rem;
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 1rem;
 }
 
-.testemunhos-carousel .owl-nav button.owl-prev,
-.testemunhos-carousel .owl-nav button.owl-next {
+.carousel-btn {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: #ffffff !important;
-    color: var(--primary-color) !important;
+    background: #ffffff;
+    color: var(--primary-color);
     border: 1px solid rgba(26, 54, 93, 0.12);
     box-shadow: 0 4px 14px rgba(26, 54, 93, 0.1);
     display: flex;
@@ -830,20 +866,48 @@ section {
     justify-content: center;
     font-size: 1rem;
     transition: all var(--transition-normal);
-    margin: 0 !important;
 }
 
-.testemunhos-carousel .owl-nav button.owl-prev:hover,
-.testemunhos-carousel .owl-nav button.owl-next:hover {
-    background: var(--gradient-gold) !important;
-    color: #ffffff !important;
+.carousel-btn:hover {
+    background: var(--gradient-gold);
+    color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(197, 160, 89, 0.35);
 }
 
-.testemunhos-carousel .owl-nav button.disabled {
-    opacity: 0.35;
-    cursor: default;
+.carousel-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* A área clicável tem 44x44 (mínimo confortável no celular) e o ponto visível
+   é desenhado no ::before, com 12px. Antes o próprio botão tinha 12x12 e era
+   quase impossível acertar com o dedo. */
+.carousel-dot {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: none;
+    display: grid;
+    place-items: center;
+}
+
+.carousel-dot::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(26, 54, 93, 0.2);
+    transition:
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.carousel-dot.is-active::before,
+.carousel-dot:hover::before {
+    background: var(--primary-color);
+    transform: scale(1.2);
 }
 
 .testemunho-content::before {
@@ -1423,7 +1487,9 @@ section {
     }
 
     .hero {
-        padding-top: 80px !important;
+        /* Folga suficiente para o header fixo, que tem ~123px no celular.
+           O !important que havia aqui não era necessário. */
+        padding-top: 130px;
     }
 
     .nav-menu {
@@ -1678,29 +1744,8 @@ section {
     width: 100%;
 }
 
-/* ===== INDICADORES DO CARROSSEL ===== */
-.custom-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-}
-
-.indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--gray-600);
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.indicator.active,
-.indicator:hover {
-    background: var(--primary-color);
-    transform: scale(1.2);
-}
+/* Os indicadores do carrossel agora são .carousel-dot, definidos junto com o
+   carrossel mais acima. */
 
 /* ===== ESTADOS DE FOCO MELHORADOS ===== */
 .btn:focus-visible,
@@ -1867,16 +1912,9 @@ footer .line-footer p a:hover {
     transform: translateY(-5px);
 }
 
-.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* A animação de entrada agora vem de /assets/css/base.css (.reveal / .is-visible).
+   O nome .hidden foi abandonado: no escritório ele significava duas coisas ao
+   mesmo tempo - "ainda não animou" e "header escondido no scroll". */
 
 /* Responsividade do Footer */
 @media screen and (max-width: 768px) {

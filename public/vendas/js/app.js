@@ -1,58 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-    initializeAnimations();
     initializeHeader();
     initializeMobileMenu();
-    initializeSmoothScroll();
-    initializeCounters();
     initializeCountdown();
     initializeFAQ();
     initializeSocialProof();
 });
 
-function initializeAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: Stop observing once visible
-                // observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Select elements to animate
-    const animatedElements = document.querySelectorAll('.hero-text, .section-header, .qualification-card, .pricing-card, .result-card, .countdown-container, .faq-container');
-
-    animatedElements.forEach((el, index) => {
-        el.classList.add('reveal-on-scroll');
-        // Add stagger effect for grids
-        if (el.classList.contains('pricing-card') || el.classList.contains('result-card')) {
-            el.style.transitionDelay = `${(index % 3) * 100}ms`;
-        }
-        observer.observe(el);
-    });
-}
+// A animação de entrada saiu daqui: as classes .reveal estão direto no HTML e
+// quem anima é /assets/js/reveal.js, compartilhado pelos seis sites. O observer
+// antigo nunca chamava unobserve() e, num scroll rápido, os elementos pulados
+// ficavam invisíveis para sempre.
+//
+// initializeCounters() também foi removida: era um IntersectionObserver sobre
+// .stat-number e .metric-value cujo corpo só tinha o comentário
+// "Simple animation logic could go here" - observava e não fazia nada.
 
 function initializeHeader() {
     const header = document.querySelector('.header-modern');
-    let lastScroll = 0;
+    if (!header) return;
 
+    // Agendado em requestAnimationFrame: sem isso, cada evento de scroll
+    // (dezenas por segundo) mexia em classe e forçava recálculo de estilo.
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        lastScroll = currentScroll;
-    });
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+            ticking = false;
+        });
+    }, { passive: true });
 }
 
 function initializeMobileMenu() {
@@ -88,41 +65,9 @@ function initializeMobileMenu() {
     });
 }
 
-function initializeSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        });
-    });
-}
-
-function initializeCounters() {
-    const counters = document.querySelectorAll('.stat-number, .metric-value');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                const value = target.innerText;
-                // Simple animation logic could go here
-                observer.unobserve(target);
-            }
-        });
-    });
-
-    counters.forEach(counter => observer.observe(counter));
-}
+// A rolagem suave das âncoras é feita pelo CSS (scroll-behavior e
+// scroll-padding-top em /assets/css/base.css), que já respeita
+// prefers-reduced-motion. O JS que fazia isso foi removido.
 
 function initializeCountdown() {
     const hoursEl = document.getElementById('hours');
@@ -192,7 +137,7 @@ function initializeSocialProof() {
     notification.className = 'social-proof-notification';
     notification.innerHTML = `
         <button class="close-notification">&times;</button>
-        <img src="images/Mariane.png" alt="User" class="notification-image">
+        <img loading="lazy" decoding="async" src="images/depoimento-mariane.webp" width="320" height="322" alt="" class="notification-image">
         <div class="notification-content">
             <h4>Nova Compra Realizada!</h4>
             <p><strong id="sp-name">Ana Silva</strong> de <span id="sp-location">São Paulo</span> acabou de entrar no <strong id="sp-plan">Plano Start</strong></p>
@@ -215,7 +160,7 @@ function initializeSocialProof() {
         notification.querySelector('#sp-plan').textContent = `Plano ${person.plan}`;
 
         // Random image placeholder
-        const images = ['images/USER.png'];
+        const images = ['images/avatar-generico.webp'];
         notification.querySelector('.notification-image').src = images[Math.floor(Math.random() * images.length)];
 
         notification.classList.add('visible');
@@ -226,13 +171,26 @@ function initializeSocialProof() {
         }, 5000);
     };
 
-    // Initial delay 5s, then different intervals
-    setTimeout(() => {
-        showNotification();
-        setInterval(() => {
-            // Random interval between 10s and 25s
-            const randomInterval = Math.floor(Math.random() * (25000 - 10000 + 1) + 10000);
-            setTimeout(showNotification, randomInterval);
-        }, 15000); // Base loop
-    }, 5000);
+    // Agendamento em cadeia: cada notificação marca a próxima só depois de
+    // aparecer. Antes havia um setInterval de 15s que, dentro dele, agendava um
+    // setTimeout de 10 a 25s — como o atraso podia passar do intervalo, as
+    // chamadas se acumulavam e as notificações começavam a se sobrepor. Não
+    // havia clearInterval em lugar nenhum.
+    let proxima = null;
+    const agendar = (espera) => {
+        proxima = setTimeout(() => {
+            showNotification();
+            agendar(Math.floor(Math.random() * 15000) + 10000);
+        }, espera);
+    };
+    agendar(5000);
+
+    // Para de agendar quando a aba sai de vista e retoma quando volta.
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            clearTimeout(proxima);
+        } else {
+            agendar(10000);
+        }
+    });
 }
