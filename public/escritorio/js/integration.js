@@ -17,7 +17,13 @@ class AdvocaciaIntegration {
     }
 
     init() {
-        this.loadChatWidget();
+        // No celular o chat cobre boa parte da tela, abre sozinho depois de 10
+        // segundos e ainda disputa espaco com o botao flutuante do WhatsApp --
+        // que ja leva a pessoa ao mesmo lugar. Nao e escondido com CSS: nem
+        // chega a ser carregado, entao nao monta DOM nem arma o temporizador.
+        if (window.matchMedia('(min-width: 769px)').matches) {
+            this.loadChatWidget();
+        }
         this.setupLeadTracking();
         this.addFloatingButtons();
         this.setupFormIntegration();
@@ -469,7 +475,7 @@ class AdvocaciaIntegration {
         const responses = {
             'agendar': 'Perfeito! Para agendar uma consulta, você pode:\n\n📱 WhatsApp: https://wa.me/5549999894224\n📧 Email: nathiara.borges@outlook.com\n\nOu acessar nosso sistema de agendamento online. Qual prefere?',
             
-            'preço': 'Nossos honorários variam conforme o tipo de serviço:\n\n• Consulta inicial: R$ 200\n• Direito Civil: A partir de R$ 500\n• Direito Penal: A partir de R$ 800\n• Direito TEA: Consulta gratuita\n\n💡 Oferecemos consulta gratuita para casos de Direito dos Autistas!',
+            'preço': 'Nossos honorários variam conforme o tipo de serviço:\n\n• Consulta inicial: R$ 200\n• Direito Civil: A partir de R$ 500\n• Direito Penal: A partir de R$ 800\n\n💡 Fale comigo para avaliarmos o seu caso.',
             
             'dúvida': 'Estou aqui para esclarecer suas dúvidas jurídicas! 🧑‍⚖️\n\nPode me contar mais detalhes sobre sua situação? Quanto mais informações você fornecer, melhor poderei orientá-lo.',
             
@@ -498,10 +504,6 @@ class AdvocaciaIntegration {
                 <a href="agendamento.html" class="floating-btn agendamento-btn">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Agendar</span>
-                </a>
-                <a href="lead-capture.html" class="floating-btn consulta-btn">
-                    <i class="fas fa-gavel"></i>
-                    <span>Consulta Grátis</span>
                 </a>
             </div>
         `;

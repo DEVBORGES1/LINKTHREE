@@ -850,6 +850,11 @@ p {
 
 .localizacao-mapa iframe {
     display: block;
+    /* A tag traz width="600" fixo. Como o container tem overflow: hidden, em
+       qualquer tela menor que 600px o mapa nao encolhia: ficava cortado pela
+       direita -- 226px a menos num aparelho de 390px. */
+    width: 100%;
+    border: 0;
 }
 
 /* ===== FOOTER ===== */
@@ -998,11 +1003,11 @@ p {
    mesmo tempo - "ainda não animou" e "header escondido no scroll". */
 
 /* ===== RESPONSIVIDADE ===== */
-/* O menu some um pouco antes do que o resto do layout responsivo muda: entre
-   1101 e 1200px a logo maior e os sete itens do menu nao cabem lado a lado.
-   Este breakpoint cuida so da troca pelo hamburguer; o bloco de 1100px abaixo
-   segue responsavel pelo hero e pelos grids. */
-@media (max-width: 1200px) {
+/* O menu voltou a sumir so em 1100px. O breakpoint tinha subido para 1200px
+   quando a logo maior disputava espaco com os sete itens do menu e mais o botao
+   "Consulta Gratuita" do topo. Sem aquele botao sobram 260px de folga a 1280px,
+   entao nao ha motivo para esconder o menu antes da hora. */
+@media (max-width: 1100px) {
     .nav-menu {
         display: none;
     }
@@ -1010,9 +1015,7 @@ p {
     .mobile-menu-toggle {
         display: flex;
     }
-}
 
-@media (max-width: 1100px) {
     .hero {
         /* No celular o conteúdo do slide é mais alto que a tela. Com
            align-items: center o excesso vazava para cima e o <h1> ficava
@@ -1053,6 +1056,16 @@ p {
 }
 
 @media (max-width: 768px) {
+    /* A foto do slide ficava com 615px de altura -- 45% de um hero que somava
+       1364px numa tela de 800px. Era quase duas telas para um unico slide,
+       enquanto o carrossel troca sozinho. Recortada em 300px a foto continua
+       legivel e o hero encolhe para perto de uma tela. */
+    .slide-img {
+        min-height: 0;
+        height: 300px;
+        object-fit: cover;
+    }
+
     .container {
         padding: 0 var(--spacing-md);
     }
