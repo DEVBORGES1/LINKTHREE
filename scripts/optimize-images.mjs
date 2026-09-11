@@ -24,12 +24,20 @@ const OUT = path.join(ROOT, 'public');
  * original: {left, top, width, height}. Serve para tirar um enquadramento
  * paisagem de uma foto vertical, por exemplo.
  *
+ * `textoClaro` (opcional) gera a variante da logo para fundo escuro: o texto,
+ * que e quase preto, vira branco, e as quatro pecas coloridas ficam intactas.
+ * Ver clarearTexto() abaixo.
+ *
  * @type {{from: string, to: string, width: number, quality?: number,
+ *         textoClaro?: boolean,
  *         crop?: {left: number, top: number, width: number, height: number}}[]}
  */
 const MANIFEST = [
   // ---------- Compartilhado ----------
   { from: 'brand/logo-advogada.png', to: 'assets/images/brand/logo-advogada.webp', width: 600 },
+  // Mesma logo para os rodapes, que tem fundo escuro: sem isto o texto preto
+  // da arte fica ilegivel sobre o cinza-chumbo.
+  { from: 'brand/logo-advogada.png', to: 'assets/images/brand/logo-advogada-claro.webp', width: 600, textoClaro: true },
   { from: 'brand/logo-simbolo.png', to: 'assets/images/brand/logo-simbolo.webp', width: 240 },
   { from: 'icons/email.png', to: 'assets/images/icons/email.webp', width: 96 },
   { from: 'icons/facebook.png', to: 'assets/images/icons/facebook.webp', width: 96 },
@@ -89,6 +97,33 @@ const OG_IMAGE = { from: 'profile/foto-perfil.jpg', to: 'assets/images/og-image.
 
 const kb = (n) => `${String(Math.round(n / 1024)).padStart(5)} KB`;
 
+/**
+ * Troca por branco o texto quase preto da logo, deixando as pecas coloridas.
+ *
+ * A separacao e por saturacao, nao por posicao: o texto e cinza-escuro (os tres
+ * canais quase iguais) e as pecas sao cores saturadas (canais bem diferentes
+ * entre si). Assim a variante sai do mesmo arquivo de origem e nao vira uma
+ * segunda arte para manter em paralelo -- mexeu na logo, as duas acompanham.
+ *
+ * Os limites: diferenca entre o canal mais alto e o mais baixo abaixo de 40
+ * (pouca cor) e canal mais alto abaixo de 120 (escuro). O amarelo, o verde, o
+ * azul e o vermelho da marca passam longe dos dois.
+ */
+async function clarearTexto(from) {
+  const { data, info } = await sharp(from).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  for (let i = 0; i < data.length; i += 4) {
+    if (data[i + 3] === 0) continue; // transparente: nao mexe
+    const max = Math.max(data[i], data[i + 1], data[i + 2]);
+    const min = Math.min(data[i], data[i + 1], data[i + 2]);
+    if (max - min < 40 && max < 120) {
+      data[i] = 255;
+      data[i + 1] = 255;
+      data[i + 2] = 255;
+    }
+  }
+  return sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } });
+}
+
 async function run() {
   if (!fs.existsSync(SRC)) {
     console.error(`Pasta de origem nao encontrada: ${SRC}`);
@@ -108,7 +143,7 @@ async function run() {
       continue;
     }
     fs.mkdirSync(path.dirname(to), { recursive: true });
-    let pipeline = sharp(from);
+    let pipeline = item.textoClaro ? await clarearTexto(from) : sharp(from);
     if (item.crop) pipeline = pipeline.extract(item.crop);
     await pipeline
       .resize({ width: item.width, withoutEnlargement: true })

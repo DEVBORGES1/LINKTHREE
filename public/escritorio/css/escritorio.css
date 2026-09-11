@@ -23,6 +23,12 @@
     --color-gray-600: #495057;
     --color-gray-700: #343a40;
     --color-gray-800: #212529;
+    /* Faltava. Sem ela os dois `linear-gradient(... var(--color-gray-900))`
+       deste arquivo eram invalidos e simplesmente nao pintavam: o rodape ficava
+       sem fundo nenhum, e como ele define texto branco, o resultado era texto
+       branco sobre o branco do body -- contraste 1,00:1, rodape inteiro
+       invisivel. O hero usa o mesmo gradiente e tambem ficava sem ele. */
+    --color-gray-900: #16181b;
     --color-dark: #000000;
 
     /* Tipografia */
