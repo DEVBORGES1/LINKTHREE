@@ -1,16 +1,18 @@
 /**
- * Aplica o SITE_URL do site-config.mjs nas tags que precisam de URL absoluta:
- * og:url, og:image e canonical.
+ * Aplica os valores do site-config.mjs no HTML de public/:
  *
- * Essas tags não podem ser relativas — o WhatsApp e o Facebook buscam a imagem
- * de fora do site, então precisam do endereço completo.
+ *   - SITE_URL      em og:url, og:image e canonical
+ *   - CONTACT_EMAIL no data-email dos formulários de contato
+ *
+ * As tags de compartilhamento não podem ser relativas — o WhatsApp e o Facebook
+ * buscam a imagem de fora do site, então precisam do endereço completo.
  *
  * Rodar com:  npm run site-url
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE_URL } from './site-config.mjs';
+import { SITE_URL, CONTACT_EMAIL } from './site-config.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = path.join(ROOT, 'public');
@@ -54,6 +56,14 @@ for (const abs of walk(PUBLIC)) {
   s = s.replace(
     /(<meta property="og:image" content=")[^"]*(")/,
     `$1${base}/assets/images/og-image.jpg$2`,
+  );
+
+  // Destino dos formulários de contato. A troca é feita dentro da própria tag
+  // <form>, e não com um salto livre pelo documento: assim não há como o padrão
+  // atravessar um formulário e pegar o data-email do seguinte.
+  s = s.replace(
+    /<form[^>]*data-form-contato[^>]*>/g,
+    (tag) => tag.replace(/(data-email=")[^"]*(")/, `$1${CONTACT_EMAIL}$2`),
   );
 
   if (s !== antes) {

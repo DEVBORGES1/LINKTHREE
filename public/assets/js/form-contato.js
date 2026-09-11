@@ -146,6 +146,15 @@
                         + '(e no spam) o e-mail do FormSubmit com o link "Activate Form" '
                         + 'e clique nele. É uma vez só.'
                     );
+                } else if (window.location.protocol === 'file:') {
+                    // O FormSubmit recusa quando não há origem: é o que acontece
+                    // ao abrir o .html com duplo clique. Não é defeito do
+                    // formulário, e vale dizer isso a quem estiver testando.
+                    console.warn(
+                        '[formulário] Esta página foi aberta direto do disco (file://).\n'
+                        + 'O FormSubmit recusa envios sem origem. Para testar, abra o site '
+                        + 'por um servidor (npm start) ou pelo endereço publicado.'
+                    );
                 }
                 throw new Error(resposta.message || 'envio recusado');
             }
