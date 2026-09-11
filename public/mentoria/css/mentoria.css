@@ -141,6 +141,11 @@ h6 {
     display: block;
     height: 120px;
     transition: height 0.3s ease;
+    /* Sem isto o width="321" do HTML vale como largura e a logo estica: a
+       altura vem do CSS, a largura tem de vir da proporcao do arquivo. As
+       outras duas paginas ja traziam este width: auto; esta ficou de fora e
+       so nao aparecia porque a proporcao antiga batia com o atributo. */
+    width: auto;
     border-radius: var(--border-radius-md);
 }
 
