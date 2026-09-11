@@ -133,7 +133,22 @@
         }).then(function (resposta) {
             // O FormSubmit responde 200 com success:"false" quando o endereço
             // ainda não foi confirmado. Isso é falha, não sucesso.
-            if (String(resposta.success) === 'false') throw new Error(resposta.message || 'envio recusado');
+            if (String(resposta.success) === 'false') {
+                // Falta de ativação é problema de configuração, não do visitante.
+                // O aviso vai para o console para quem cuida do site perceber:
+                // sem ativar, nenhum envio chega, e todo contato acaba caindo no
+                // caminho alternativo do WhatsApp.
+                if (/activat/i.test(resposta.message || '')) {
+                    console.warn(
+                        '[formulário] O FormSubmit ainda não foi ativado para '
+                        + form.dataset.email + '.\n'
+                        + 'Nenhum envio chega enquanto isso. Procure na caixa de entrada '
+                        + '(e no spam) o e-mail do FormSubmit com o link "Activate Form" '
+                        + 'e clique nele. É uma vez só.'
+                    );
+                }
+                throw new Error(resposta.message || 'envio recusado');
+            }
             sucesso(status);
             form.reset();
             restaurar();
