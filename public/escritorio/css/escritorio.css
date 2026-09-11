@@ -1131,6 +1131,17 @@ p {
    logo de 264px mais o botao do menu (41px) nao cabem lado a lado -- o botao era
    empurrado para fora da tela. Nos 360px em diante os 120px cabem folgados, por
    isso o corte e baixo. */
+/* Segunda tranca do chat no celular.
+   O integration.js ja nao monta o widget abaixo de 769px, mas o navegador
+   guarda o script por uma hora: quem visitou antes continua rodando a versao
+   antiga, que montava o chat e o deixava com calc(100vw - 40px) -- a tela
+   inteira. Esta regra mora em outro arquivo, entao cobre esse caso. */
+@media (max-width: 768px) {
+    .advocacia-chat-widget {
+        display: none !important;
+    }
+}
+
 @media (max-width: 340px) {
     .logo-full {
         height: 95px;

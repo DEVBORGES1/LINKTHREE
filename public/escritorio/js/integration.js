@@ -17,16 +17,34 @@ class AdvocaciaIntegration {
     }
 
     init() {
-        // No celular o chat cobre boa parte da tela, abre sozinho depois de 10
-        // segundos e ainda disputa espaco com o botao flutuante do WhatsApp --
-        // que ja leva a pessoa ao mesmo lugar. Nao e escondido com CSS: nem
-        // chega a ser carregado, entao nao monta DOM nem arma o temporizador.
-        if (window.matchMedia('(min-width: 769px)').matches) {
-            this.loadChatWidget();
-        }
+        // No celular o chat cobre a tela inteira (a regra de <=768px o deixa com
+        // calc(100vw - 40px)), abre sozinho depois de 10 segundos e ainda disputa
+        // espaco com o botao flutuante do WhatsApp, que leva ao mesmo lugar.
+        //
+        // Nao e escondido com CSS: no celular ele nem chega a ser montado, entao
+        // nao cria DOM nem arma o temporizador de abertura automatica.
+        //
+        // A largura e reavaliada quando muda -- girar o aparelho, dividir a tela
+        // ou redimensionar a janela. Checar so no carregamento deixava o chat
+        // montado em quem abriu a pagina larga e depois estreitou.
+        this.chatSoNoDesktop = window.matchMedia('(min-width: 769px)');
+        const aplicar = () => this.ajustarChat();
+        aplicar();
+        this.chatSoNoDesktop.addEventListener('change', aplicar);
+
         this.setupLeadTracking();
         this.addFloatingButtons();
         this.setupFormIntegration();
+    }
+
+    /** Monta o chat quando ha largura para ele, e o desmonta quando nao ha. */
+    ajustarChat() {
+        const existe = document.querySelector('.advocacia-chat-widget');
+        if (this.chatSoNoDesktop.matches) {
+            if (!existe) this.loadChatWidget();
+            return;
+        }
+        if (existe) existe.remove();
     }
 
     // Carregar Chat Widget
@@ -88,8 +106,13 @@ class AdvocaciaIntegration {
     }
 
     addChatStyles() {
+        // O chat e montado e desmontado conforme a largura da tela, entao esta
+        // funcao pode ser chamada mais de uma vez. Sem isto, cada remontagem
+        // empilhava outro <style> igual no head.
+        if (document.getElementById('advocacia-chat-styles')) return;
+
         const styles = `
-            <style>
+            <style id="advocacia-chat-styles">
                 .advocacia-chat-widget {
                     position: fixed;
                     bottom: 20px;
