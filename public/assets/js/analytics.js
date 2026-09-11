@@ -30,10 +30,18 @@
         /**
          * Token do Cloudflare Web Analytics.
          * Onde pegar: dash.cloudflare.com > Analytics & Logs > Web Analytics >
-         * Add a site > copie o valor de `token` do snippet que ele mostra.
+         * Add a site > copie o valor de `token` do trecho que ele mostra.
          * Enquanto estiver vazio, nada é carregado (sem requisição quebrada).
+         *
+         * Não é segredo: este valor viaja para o navegador de toda visitante,
+         * então versioná-lo aqui não expõe nada. Ele só identifica para qual
+         * painel as visitas contam, e não dá acesso à conta.
+         *
+         * Vale para o hostname cadastrado na Cloudflare. Ao trocar de endereço
+         * (o dia em que o domínio próprio entrar no ar), é preciso cadastrar o
+         * novo hostname lá, senão as visitas deixam de ser contadas.
          */
-        cloudflareToken: '',
+        cloudflareToken: 'ec835b9328c94d9f937c6292631875d5',
 
         /** Rolagens que valem registrar, em porcentagem da página. */
         marcosDeRolagem: [25, 50, 75, 100]
@@ -56,7 +64,9 @@
     // ---------------------------------------------------------------
     if (CONFIG.cloudflareToken) {
         var beacon = document.createElement('script');
-        beacon.defer = true;
+        // type="module" é como a própria Cloudflare entrega o trecho hoje.
+        // Módulo já é adiado por natureza, então não precisa de defer.
+        beacon.type = 'module';
         beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
         beacon.setAttribute('data-cf-beacon', JSON.stringify({ token: CONFIG.cloudflareToken }));
         document.head.appendChild(beacon);

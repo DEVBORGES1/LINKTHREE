@@ -476,6 +476,8 @@
         </div>
     </div>
 
+    <script src="../assets/js/analytics.js" defer></script>
+
     <script>
         class LeadCapture {
             constructor() {
@@ -669,10 +671,13 @@
             new LeadCapture();
         });
 
-        // Analytics (exemplo)
+        // Encaminha para assets/js/analytics.js, que concentra a medição do
+        // projeto. Antes esta função só fazia console.log: a página aparecia
+        // como medida, e nenhum evento dela chegava a lugar nenhum.
         function trackEvent(eventName, properties = {}) {
-            // Integrar com Google Analytics, Facebook Pixel, etc.
-            console.log('Event tracked:', eventName, properties);
+            if (typeof window.medirEvento === 'function') {
+                window.medirEvento(eventName, properties);
+            }
         }
 
         // Rastrear visualização da página
