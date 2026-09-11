@@ -1,0 +1,15 @@
+# Normaliza as quebras de linha.
+#
+# Sem isto, no Windows o git troca LF por CRLF ao baixar, enquanto os scripts de
+# build gravam LF. O resultado é que arquivos gerados (fonts.css, icons.css,
+# robots.txt, sitemap.xml) apareciam como modificados logo depois de rodar o
+# build, sem que nada tivesse mudado de fato.
+* text=auto eol=lf
+
+# Binários: o git não deve tentar converter nada.
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.woff2 binary
+*.ico binary

@@ -8,6 +8,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { SITE_URL } from './site-config.mjs';
 
@@ -39,6 +40,28 @@ const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => {
   return e.isDirectory() ? walk(p) : [p];
 });
 
+/**
+ * Data da última alteração de verdade da página, tirada do git.
+ *
+ * Não dá para usar o mtime do arquivo: num clone novo todos os arquivos ficam
+ * com a data do clone, então o sitemad mudaria a cada build e a checagem de
+ * "assets atualizados" do workflow acusaria diferença sem que nada tivesse
+ * mudado. A data do commit é estável e, de quebra, é a informação correta.
+ */
+function ultimaAlteracao(abs) {
+  try {
+    const saida = execFileSync('git', ['log', '-1', '--format=%cs', '--', abs], {
+      cwd: ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(saida)) return saida;
+  } catch {
+    // Sem git disponível (ou arquivo ainda não versionado): cai no hoje.
+  }
+  return new Date().toISOString().slice(0, 10);
+}
+
 const paginas = [];
 for (const abs of walk(PUBLIC)) {
   if (!abs.endsWith('.html')) continue;
@@ -50,8 +73,7 @@ for (const abs of walk(PUBLIC)) {
 
   // Diretórios servem index.html na URL sem o arquivo.
   const url = rel === 'index.html' ? '/' : `/${rel.replace(/(^|\/)index\.html$/, '$1')}`;
-  const mtime = fs.statSync(abs).mtime.toISOString().slice(0, 10);
-  paginas.push({ url, mtime });
+  paginas.push({ url, mtime: ultimaAlteracao(abs) });
 }
 
 paginas.sort((a, b) => a.url.localeCompare(b.url));
