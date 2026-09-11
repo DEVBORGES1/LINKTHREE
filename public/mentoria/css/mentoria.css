@@ -570,7 +570,10 @@ section {
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    color: var(--white);
+    /* Explicito, nao var(--white): nesta folha --white vale #111827, quase
+       preto (ver a nota no .btn-outline). O icone fica sobre o azul do
+       gradiente, entao o que se via era 1,46:1 -- praticamente invisivel. */
+    color: #ffffff;
     transition: all var(--transition-normal);
     box-shadow: var(--shadow-md);
 }
@@ -703,7 +706,10 @@ section {
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
-    color: var(--white);
+    /* Explicito, nao var(--white): nesta folha --white vale #111827, quase
+       preto (ver a nota no .btn-outline). O icone fica sobre o azul do
+       gradiente, entao o que se via era 1,46:1 -- praticamente invisivel. */
+    color: #ffffff;
     transition: all var(--transition-normal);
     box-shadow: var(--shadow-md);
 }
@@ -1225,7 +1231,10 @@ section {
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    color: var(--white);
+    /* Explicito, nao var(--white): nesta folha --white vale #111827, quase
+       preto (ver a nota no .btn-outline). O icone fica sobre o azul do
+       gradiente, entao o que se via era 1,46:1 -- praticamente invisivel. */
+    color: #ffffff;
 }
 
 .contato-text h4 {
@@ -1262,13 +1271,19 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
+    /* Explicito, nao var(--white): nesta folha --white vale #111827, quase
+       preto (ver a nota no .btn-outline). O icone fica sobre o azul do
+       gradiente, entao o que se via era 1,46:1 -- praticamente invisivel. */
+    color: #ffffff;
     text-decoration: none;
     font-size: 1.2rem;
     transition: all var(--transition-normal);
 }
 
+/* O icone ja e branco em repouso, que e o que faltava para enxerga-lo. O hover
+   responde clareando o circulo e levantando o botao, como no escritorio. */
 .social-links a:hover {
+    background: linear-gradient(135deg, #2b6cb0 0%, #4299e1 100%);
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
 }

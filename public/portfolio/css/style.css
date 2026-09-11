@@ -18,6 +18,20 @@
     font-family: "Poppins", sans-serif;
 }
 
+/* Titulos na mesma Playfair Display que a pagina da mentoria usa. O `*` acima
+   pinta Poppins em tudo, mas tem especificidade 0: qualquer seletor de
+   elemento ganha dele, entao basta esta regra.
+   A fonte ja vem do fonts.css que esta pagina carrega -- nao entra arquivo
+   novo no projeto, so passa a ser baixada aqui (38 KB, uma vez). */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Playfair Display', serif;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
 }
