@@ -309,7 +309,13 @@ p {
     min-height: 100svh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, var(--color-gray-800) 0%, var(--color-gray-900) 100%);
+    /* O hero e claro de proposito: o titulo e preto, o subtitulo e cinza-escuro
+       e as pilulas sao branco translucido com borda e texto azuis.
+       Aqui havia um `linear-gradient(... var(--color-gray-900))` que nunca
+       pintou nada, porque a variavel nao existia -- o hero mostrava o branco do
+       body. Quando a variavel foi definida para consertar o rodape, o gradiente
+       "acordou" e escureceu o hero, deixando o texto preto sobre fundo preto.
+       A declaracao saiu: o fundo claro vem do body, como sempre veio. */
     color: var(--color-white);
     position: relative;
     overflow: hidden;
