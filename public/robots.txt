@@ -2,7 +2,7 @@
 
 User-agent: *
 Allow: /
-Disallow: /escritorio/chat-widget.html
+
 Disallow: /vendas/
 Disallow: /landing/
 

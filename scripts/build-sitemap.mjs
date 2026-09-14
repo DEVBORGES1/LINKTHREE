@@ -23,9 +23,7 @@ const SITE = SITE_URL.replace(/\/+$/, '');
 const NAO_PUBLICADAS = ['vendas', 'landing'];
 
 /** Páginas que existem no ar mas não devem ser indexadas. */
-const NAO_INDEXAR = [
-  'escritorio/chat-widget.html', // fragmento do widget, não é página de conteúdo
-];
+const NAO_INDEXAR = [];
 
 /** Prioridade e frequência por página. Quem não está aqui usa o padrão. */
 const PESOS = {
