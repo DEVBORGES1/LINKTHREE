@@ -44,12 +44,19 @@ jobs:
 
       # Falha se `npm run build` mudou algo versionado: significa que alguem
       # editou uma imagem de origem sem rodar o build antes de commitar.
+      #
+      # O sitemap.xml fica fora da comparacao. O lastmod dele vem da data do
+      # ultimo commit de cada pagina, e este checkout e raso (so o commit atual):
+      # aqui todas as paginas recebem a data de hoje, enquanto o arquivo
+      # versionado tem as datas reais. Ate 13/09/2026 a checagem passava por
+      # coincidencia -- todos os commits tinham sido no mesmo dia.
       - name: Check generated assets are up to date
         run: |
-          if [ -n "$(git status --porcelain public)" ]; then
+          MUDOU="$(git status --porcelain -- public ':(exclude)public/sitemap.xml')"
+          if [ -n "$MUDOU" ]; then
             echo "::error::public/ ficou diferente depois de 'npm run build'."
             echo "Rode 'npm run build' localmente e faca commit do resultado."
-            git status --porcelain public
+            echo "$MUDOU"
             exit 1
           fi
 
