@@ -206,17 +206,25 @@ banner de consentimento — o Cloudflare foi escolhido justamente para evitar is
 
 `sitemap.xml` e `robots.txt` são gerados por
 [`scripts/build-sitemap.mjs`](scripts/build-sitemap.mjs) (roda dentro do
-`npm run build`). Ele ignora sozinho as páginas fora do ar e o
-`chat-widget.html`, que é fragmento e não deve ser indexado.
+`npm run build`). Ele ignora sozinho as páginas fora do ar. O domínio usado vem
+de `SITE_URL`, em [`scripts/site-config.mjs`](scripts/site-config.mjs) — um
+sitemap com o domínio errado é ignorado pelo Google.
 
-**Confira a constante `SITE` nesse script antes de publicar.** Ela está como
-`https://www.nathiaraborges.adv.br`. Se o site estiver no ar pelo endereço
-padrão do GitHub Pages, o valor certo é `https://devborges1.github.io/LINKTHREE`
-— um sitemap com o domínio errado é ignorado pelo Google.
+**Verificação.** O site está cadastrado como propriedade **"Prefixo do URL"**
+(`https://nathiaraborgesadv.vercel.app/`), verificada pela tag
+`google-site-verification` no `<head>` de `public/index.html`. Não remova essa
+tag: sem ela o Google deixa de reconhecer o site como verificado.
 
-Depois de publicar: cadastre o site em
-[search.google.com/search-console](https://search.google.com/search-console) e
-envie `/sitemap.xml`.
+A opção **"Domínio"**, verificada por registro TXT no DNS, não serve para o
+endereço atual: o DNS de `vercel.app` é da Vercel, e ninguém de fora consegue
+incluir registros nele. Ela passa a ser possível quando o domínio próprio
+(`nathiaraborges.adv.br`) estiver no ar — o TXT vai no painel onde o domínio
+está registrado e cobre todos os endereços dele de uma vez. Nesse dia, lembre de
+trocar `SITE_URL` e de cadastrar o novo endereço também no Cloudflare Web
+Analytics.
+
+Depois de verificado, envie `/sitemap.xml` em **Sitemaps**, no menu do
+Search Console.
 
 ## Histórico: Google Analytics e Pixel
 
